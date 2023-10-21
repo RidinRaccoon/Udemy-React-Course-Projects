@@ -1,0 +1,37 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "jest": true
+  },
+  "extends": ["airbnb", "airbnb-typescript", "plugin:react/recommended"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  },
+  "plugins": ["react", "react-hooks", "@typescript-eslint", "prettier", "jest"],
+  "rules": {
+    "react/jsx-one-expression-per-line": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": [0, { "extensions": [".js", ".jsx", "ts", "tsx"] }],
+    "func-names": "off",
+    "no-unused-vars": "off",
+    "quotes": "off",
+    "@typescript-eslint/quotes": "error",
+    "max-len": "off",
+    "import/prefer-default-export": "off",
+    "implicit-arrow-linebreak": "off",
+    "jsx-a11y/label-has-associated-control": ["error", {
+      "required": {
+        "some": ["nesting", "id"]
+      }
+    }],
+    "react/button-has-type": ["error", {
+      "button": true,
+      "submit": true,
+      "reset": true
+    }]
+  }
+}

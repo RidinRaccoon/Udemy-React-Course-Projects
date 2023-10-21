@@ -1,0 +1,8 @@
+dist
+node_modules
+mocks
+webpack.config.js
+jest.config.json
+package.json
+package-lock.json
+tsconfig.json
