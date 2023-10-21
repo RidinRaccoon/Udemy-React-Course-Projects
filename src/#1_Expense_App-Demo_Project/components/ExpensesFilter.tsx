@@ -23,7 +23,7 @@ export function ExpensesFilter({ onFilterChange }: ExpensesFilterProps) {
     <div className="expenses-filter">
       <div className="expenses-filter__control">
         <label htmlFor="select">Filter by year</label>
-        <select id="select" onChange={filterChangeHandler} defaultValue={2022}>
+        <select id="select" onChange={filterChangeHandler} defaultValue="2022">
           <option value="2022">2022</option>
           <option value="2021">2021</option>
           <option value="2020">2020</option>
