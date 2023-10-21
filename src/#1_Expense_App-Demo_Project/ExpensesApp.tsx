@@ -34,7 +34,8 @@ const DUMMY_EXPENSES: Expense[] = [
 /**
  * [Udemy Course] React - The Complete Guide 2023 (incl. React Router & Redux) by Maximilian Schwarzmüller
  ** Instructional project developed during the course tutorials with some individual challenges sprinkled in
- ** This app shows a list of expenses with title, amount and date and allows the user to add new expenses.
+ ** This app shows a list of expenses with title, amount and date. The user can add new expenses and filter by year and add new expenses.
+ ** The app also provides a chart with the cost breakdown, per month, of the selected year.
  */
 export function ExpensesApp() {
   const [expenses, setExpenses] = useState(DUMMY_EXPENSES);

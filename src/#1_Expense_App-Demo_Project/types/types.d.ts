@@ -8,3 +8,12 @@ type Expense = {
   amount: number;
   date: Date;
 };
+
+/**
+ ** Chart related types
+ */
+
+type Point = {
+  value: number;
+  label: string;
+};
