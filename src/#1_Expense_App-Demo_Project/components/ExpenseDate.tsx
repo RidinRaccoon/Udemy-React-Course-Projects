@@ -19,11 +19,23 @@ export function ExpenseDate({ date, format }: ExpenseDateProps) {
   const formattedDate = format?.split('/').map((dateFormatItem) => {
     switch (dateFormatItem) {
       case 'dd':
-        return <div className="expense-date__day">{day}</div>;
+        return (
+          <div key="dd" className="expense-date__day">
+            {day}
+          </div>
+        );
       case 'mm':
-        return <div className="expense-date__month">{month}</div>;
+        return (
+          <div key="mm" className="expense-date__month">
+            {month}
+          </div>
+        );
       case 'yyyy':
-        return <div className="expense-date__year">{year}</div>;
+        return (
+          <div key="yyyy" className="expense-date__year">
+            {year}
+          </div>
+        );
       default:
         return '';
     }
