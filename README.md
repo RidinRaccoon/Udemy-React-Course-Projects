@@ -1,6 +1,6 @@
 <h1>Udemy Course Projects</h1> 
 <h2>React - The Complete Guide 2023 (incl. React Router & Redux) </h2>by Maximilian Schwarzmüller
- 
+<br>
 <br>
 <h2> #1 - Expenses App (Demo Project w/ Exercises) </h2>
 <strong>Folder:</strong> [src > #1_Expense_App-Demo_Project]
