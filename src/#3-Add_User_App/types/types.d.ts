@@ -1,5 +1,5 @@
 /*
- * User Related types
+ * User related types
  */
 
 type User = {
