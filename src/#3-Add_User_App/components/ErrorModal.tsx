@@ -3,13 +3,15 @@ import { Card } from './UI/Card';
 
 export type Error = {
   id: string;
-  message: string
+  message: string;
 };
 
 type ErrorModalProps = {
   title: string;
-  errors: Error[];
+  errors: any;
 };
+
+// TODO: Fix any types [ts]
 
 /**
  * Displays an error model with the selected title and list of errors.
@@ -18,7 +20,7 @@ type ErrorModalProps = {
  */
 export function ErrorModal({ title, errors }: ErrorModalProps) {
   useEffect(() => {
-    if (errors.length > 0) {
+    if (Object.keys(errors).length > 0) {
       document.querySelector('dialog')?.showModal();
     }
   }, [errors]);
@@ -30,8 +32,8 @@ export function ErrorModal({ title, errors }: ErrorModalProps) {
           <section>
             <h2>{title}</h2>
             <ul>
-              {errors.map((error) => (
-                <li key={error.id}>{error.message}</li>
+              {Object.keys(errors).map((key: any) => (
+                <li key={key}>{errors[key]}</li>
               ))}
             </ul>
           </section>
