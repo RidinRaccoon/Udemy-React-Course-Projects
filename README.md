@@ -21,6 +21,8 @@
 <h2> #3 - Add User List (Project 2) </h2>
 <strong>Folder:</strong> [src > #3-Add_User_App]
 <br><br>
+<p>Allows adding new users, through a form, which are then displayed in a list below the form.</p>
+<p>New user inputs must pass a validation before submission and if there are invalid inputs errors are shown in a modal window</p>
 
 
 <br><br>
