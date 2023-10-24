@@ -1,44 +1,37 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Card } from './UI/Card';
+import { Button } from './UI/Button';
+import styles from './ErrorModal.module.css';
 
 export type Error = {
-  id: string;
+  title: string;
   message: string;
 };
 
 type ErrorModalProps = {
-  title: string;
-  errors: any;
+  error: Error;
+  onClose: () => void;
 };
-
-// TODO: Fix any types [ts]
 
 /**
  * Displays an error model with the selected title and list of errors.
- * @prop {string} title - title of the modal window
- * @prop {Error[]} errors - list of errors
+ * @prop {Error} - Error object with title and message
  */
-export function ErrorModal({ title, errors }: ErrorModalProps) {
-  useEffect(() => {
-    if (Object.keys(errors).length > 0) {
-      document.querySelector('dialog')?.showModal();
-    }
-  }, [errors]);
-
+export function ErrorModal({ error, onClose }: ErrorModalProps) {
+  const closeModalHandler = () => {
+    onClose();
+  };
   return (
-    <React.StrictMode>
-      <dialog>
-        <Card className="error-modal">
-          <section>
-            <h2>{title}</h2>
-            <ul>
-              {Object.keys(errors).map((key: any) => (
-                <li key={key}>{errors[key]}</li>
-              ))}
-            </ul>
-          </section>
-        </Card>
-      </dialog>
-    </React.StrictMode>
+    <div className={`${styles.backdrop}`}>
+      <Card className={`${styles['error-modal']}`}>
+        <section className={`${styles.content}`}>
+          <h2>{error.title}</h2>
+          <p>{error.message}</p>
+        </section>
+        <section className={`${styles.options}`}>
+          <Button type="submit" text="Ok" onClick={closeModalHandler} />
+        </section>
+      </Card>
+    </div>
   );
 }

@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { Button } from './UI/Button';
 import { Card } from './UI/Card';
 import styles from './AddUserForm.module.css';
-import { ErrorModal } from './ErrorModal';
-import { useValidateInputs } from './hooks/useValidateInputs';
+import { ErrorModal, Error } from './ErrorModal';
+// import { useValidateInputs } from './hooks/useValidateInputs';
 
 type AddUserFormProps = {
   onUserSubmit: (userInput: User) => void;
@@ -16,14 +16,26 @@ type AddUserFormProps = {
  * @returns  {React.JSX.Element}
  */
 export function AddUserForm({ onUserSubmit }: AddUserFormProps) {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const { values, errors, handleInputChange } = useValidateInputs();
+  const [enteredName, setEnteredName] = useState('');
+  const [enteredAge, setEnteredAge] = useState('');
+  const [error, setError] = useState<Error>();
 
-  const nameInput = useRef<HTMLInputElement>(null);
-  const ageInput = useRef<HTMLInputElement>(null);
+  /**
+   * Updates enteredName state with value received from name input
+   * @param event - event with value from input element [id=name]
+   */
+  const enteredNameChangeHandler = (event: React.FormEvent<HTMLInputElement>) => {
+    setEnteredName(event.currentTarget.value);
+  };
 
-  useEffect(() => {
-  }, []);
+  /**
+   * Updates enteredName state with value received from name input
+   * @param event - event with value from input element [id=name]
+   */
+  const entereAgeChangeHandler = (event: React.FormEvent<HTMLInputElement>) => {
+    setEnteredAge((event.currentTarget.value));
+  };
+
   /**
    *  Validates user inputs and lifts the new user input to the parent component.
    ** Triggered by clicking the "Add User" button which submits the form
@@ -32,33 +44,42 @@ export function AddUserForm({ onUserSubmit }: AddUserFormProps) {
    */
   const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setIsSubmitting(true);
-
-    // Lift new User to parent component if all inputs are valid
-    if (Object.keys(values).length > 0 && Object.keys(errors).length === 0) {
-      // Create user object to be lifted
-      const newUser: User = {
-        name: values.name ? values.name : '',
-        age: values.age ? Number(values.age) : 0,
-        id: Math.random().toString(),
-      };
-
-      onUserSubmit(newUser);
+    // Validate User Inputs
+    if (enteredName?.length === 0 || enteredAge?.toString().length === 0) {
+      setError({ title: 'Missing fields', message: 'Name and age fields must be filled in before submitting.' });
+      return;
     }
+    if (enteredAge && Number(enteredAge) <= 0) {
+      setError({ title: 'Invalid input', message: 'Age must be bigger than 0' });
+      return;
+    }
+
+    // Submit new User
+    const newUser: User = {
+      id: Math.random().toString(),
+      name: enteredName,
+      age: Number(enteredAge),
+    };
+    onUserSubmit(newUser);
+
+    // Reset form values
+    setEnteredName('');
+    setEnteredAge('');
+  };
+
+  const resetError = () => {
+    setError(undefined);
   };
 
   return (
     <React.StrictMode>
-      {isSubmitting && Object.keys(errors).length !== 0 && <ErrorModal title="Invalid Input(s)" errors={errors} />}
-      {isSubmitting && Object.keys(values).length === 0 && (
-        <ErrorModal title="" errors={{ emptyForm: ['Fields must be filled before submitting.'] }} />
-      )}
+      {error && <ErrorModal error={error} onClose={resetError} />}
       <Card className={styles.inputs}>
         <form onSubmit={submitHandler}>
           <label htmlFor="name">Name:</label>
-          <input name="name" type="text" onChange={handleInputChange} ref={nameInput} />
+          <input name="name" type="text" value={enteredName} onChange={enteredNameChangeHandler} />
           <label htmlFor="age">Age (years):</label>
-          <input name="age" type="number" step={1} onChange={handleInputChange} ref={ageInput} />
+          <input name="age" type="number" step={1} value={enteredAge} onChange={entereAgeChangeHandler} />
           <Button type="submit" text="Add User" />
         </form>
       </Card>
