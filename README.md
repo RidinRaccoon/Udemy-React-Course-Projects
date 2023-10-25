@@ -9,8 +9,8 @@
 <strong>Folder:</strong> [src > #1_Course_Content > #1-React_Essentials-Demo_Project]
 <br><br>
 <p>Instructional project to get a better grasp of the core concepts of React development (components, jsx, props, state).</p>
-<p>This app renders a list that defines the main react concepts and and a menu that toggles examples for each concept.</p>
-
+<p>This app renders a list that defines the main react concepts and a menu that toggles examples for each concept.</p>
+<p>The information listed (Core concepts and examples) can be changed in the [data.tsx] file in the assets folder</p>
 
 
 

@@ -9,7 +9,8 @@ import './styles/index.css';
  * First Demo application created in the React course.
  *
  ** Created to get a better grasp of the core concepts of React development (components, jsx, props, state).
- ** This app renders a list that defines the main react concepts and and a menu that toggles examples for each concept.
+ ** This app renders a list that defines the main react concepts and a menu that toggles examples for each concept.
+ ** The information listed (Core concepts and examples) can be changed in the data.tsx file
  */
 export function ReactEssentialsApp() {
   // The selected topic in the examples section menu
@@ -42,6 +43,7 @@ export function ReactEssentialsApp() {
     <div>
       <Header />
       <main>
+        {/* Core Concepts section */}
         <section id="core-concepts">
           <h2>Core Concepts</h2>
           <ul>
@@ -56,6 +58,8 @@ export function ReactEssentialsApp() {
             ))}
           </ul>
         </section>
+
+        {/* Examples section */}
         <section id="examples">
           <h2>Examples</h2>
           <menu>

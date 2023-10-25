@@ -1,11 +1,11 @@
-/** Images for each Core concept */
+/** Images used in Core concept objects */
 import componentsImg from '../images/components.png';
 import propsImg from '../images/config.png';
 import jsxImg from '../images/jsx-ui.png';
 import stateImg from '../images/state-mgmt.png';
 
 /**
- * Data for "CoreConcept" components in the core concepts section of the "ReactEssentialsApp" component
+ * List of Core Concepts displayed in the core concepts section of the "ReactEssentialsApp" component
  */
 type CoreConcept = {
   title: string;
@@ -42,7 +42,7 @@ export const CORE_CONCEPTS: CoreConcept[] = [
 ];
 
 /**
- * Data for Examples displayed in the Examples section of "ReactEssentialsApp" component
+ * List of Examples displayed in the Examples section of "ReactEssentialsApp" component
  */
 type Example = {
   title: string;
