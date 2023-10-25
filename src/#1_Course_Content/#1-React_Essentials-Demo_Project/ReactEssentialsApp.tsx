@@ -40,7 +40,7 @@ export function ReactEssentialsApp() {
   };
 
   return (
-    <div>
+    <React.StrictMode>
       <Header />
       <main>
         {/* Core Concepts section */}
@@ -72,6 +72,6 @@ export function ReactEssentialsApp() {
           {tabContent}
         </section>
       </main>
-    </div>
+    </React.StrictMode>
   );
 }
