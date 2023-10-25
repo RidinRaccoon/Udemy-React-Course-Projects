@@ -2,14 +2,16 @@
 <h4>React - The Complete Guide 2023 (incl. React Router & Redux)   <a href="https://www.udemy.com/course/react-the-complete-guide-incl-redux/">[ Course Link ]</a></h4>
 <p>by Maximilian Schwarzmüller</p>
 
+
 <br>
 <h2> New Course Content [23 October 2023] </h2>
 
-<h3> #1 - Project Name </h3>
-<strong>Folder:</strong> [src > #1_Course_Content > #1_New_Course_Project]
+<h3> #1 - React Essentials (Demo Project) </h3>
+<strong>Folder:</strong> [src > #1_Course_Content > #1-React_Essentials-Demo_Project]
 <br><br>
-<p>Project description</p>
-
+<p>Instructional project to get a better grasp of the core concepts of React development (components, jsx, props, state).</p>
+<p>This app renders a list that defines the main react concepts and a menu that toggles examples for each concept.</p>
+<p>The information listed (Core concepts and examples) can be changed in the [data.tsx] file in the assets folder</p>
 
 
 

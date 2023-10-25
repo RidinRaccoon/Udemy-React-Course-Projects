@@ -10,13 +10,13 @@ import { createRoot } from 'react-dom/client';
 // import { xxxApp } from './#1_Course_Content/#x-New_Course_Project/newProjectApp';
 // import { xxxApp } from './#1_Course_Content/#x-New_Course_Project/newProjectApp';
 // import { xxxApp } from './#1_Course_Content/#x-New_Course_Project/newProjectApp';
-import { AddUserApp } from './#2_Old_Course_Content/#3-Add_User_App/AddUserApp';
+import { ReactEssentialsApp } from './#1_Course_Content/#1-React_Essentials-Demo_Project/ReactEssentialsApp';
 
 const container: HTMLElement = document.getElementById('root')!;
 const root = createRoot(container);
 
 /* Render Course Content */
-root.render(<AddUserApp />);
+root.render(<ReactEssentialsApp />);
 
 /* --------------------------*/
 /* Render Old Course Content */

@@ -23,16 +23,22 @@
     "max-len": "off",
     "import/prefer-default-export": "off",
     "implicit-arrow-linebreak": "off",
-    "jsx-a11y/label-has-associated-control": ["error", {
-      "required": {
-        "some": ["nesting", "id"]
+    "jsx-a11y/label-has-associated-control": [
+      "error",
+      {
+        "required": {
+          "some": ["nesting", "id"]
+        }
       }
-    }],
-    "react/button-has-type": ["error", {
-      "button": true,
-      "submit": true,
-      "reset": true
-    }]
+    ],
+    "react/button-has-type": [
+      "error",
+      {
+        "button": true,
+        "submit": true,
+        "reset": true
+      }
+    ],
+    "object-curly-newline": "off"
   }
 }
- 
