@@ -1,54 +1,71 @@
-/* eslint-disable global-require */
-import React from 'react';
-import logo from './assets/images/react-core-concepts.png';
+import React, { useState } from 'react';
+import { Header } from './components/Header';
+import { CoreConcept } from './components/CoreConcept';
+import { TabButton } from './components/TabButton';
+import { CORE_CONCEPTS, EXAMPLES } from './assets/data/data';
 import './styles/index.css';
-import { CORE_CONCEPTS } from './assets/data/data';
 
-const reactDescriptions = ['Fundamental', 'Crucial', 'Core'];
-function generateRandomInt(max: number) {
-  return Math.floor(Math.random() * (max + 1));
-}
-
-function Header() {
-  const descriptionStart = reactDescriptions[generateRandomInt(3)];
-  return (
-    <header>
-      <img src={logo} alt="Stylized atom" />
-      <h1>React Essentials</h1>
-      <p>{descriptionStart} React concepts you will need for almost any app you are going to build!</p>
-    </header>
-  );
-}
-
-type CoreConceptProps = {
-  title: string;
-  description: string;
-  src: string;
-  alt: string;
-};
-
-function CoreConcept({ title, description, src, alt }: CoreConceptProps) {
-  return (
-    <li>
-      <img src={src} alt={alt} />
-      <h3>{title}</h3>
-      <p>{description}</p>
-    </li>
-  );
-}
-
+/**
+ * First Demo application created in the React course.
+ *
+ ** Created to get a better grasp of the core concepts of React development (components, jsx, props, state).
+ ** This app renders a list that defines the main react concepts and and a menu that toggles examples for each concept.
+ */
 export function ReactEssentialsApp() {
+  // The selected topic in the examples section menu
+  const [selectedTopic, setselectedTopic] = useState<string>();
+
+  // Set the fallback text to be displayed in the examples section.
+  let tabContent = <p>Please select a topic.</p>;
+
+  // Set the tab content to match the selected topic in the menu buttons
+  if (selectedTopic && EXAMPLES[selectedTopic]) {
+    tabContent = (
+      <React.StrictMode>
+        <div id="tab-content">
+          <h3>{EXAMPLES[selectedTopic as keyof typeof EXAMPLES].title}</h3>
+          <p>{EXAMPLES[selectedTopic as keyof typeof EXAMPLES].description}</p>
+          <pre>
+            <code>{EXAMPLES[selectedTopic as keyof typeof EXAMPLES].code}</code>
+          </pre>
+        </div>
+      </React.StrictMode>
+    );
+  }
+
+  /** Handles the menu Toggle */
+  const handleSelect = (selectedButton: string) => {
+    setselectedTopic(selectedButton);
+  };
+
   return (
     <div>
       <Header />
       <main>
         <section id="core-concepts">
-          <h2>Time to get started!</h2>
+          <h2>Core Concepts</h2>
           <ul>
             {CORE_CONCEPTS.map((data) => (
-              <CoreConcept key={data.title} {...data} />
+              <CoreConcept
+                key={data.title}
+                title={data.title}
+                description={data.description}
+                src={data.src}
+                alt={data.alt}
+              />
             ))}
           </ul>
+        </section>
+        <section id="examples">
+          <h2>Examples</h2>
+          <menu>
+            {Object.keys(EXAMPLES).map((key) => (
+              <TabButton key={key} active={selectedTopic === key} onSelect={() => handleSelect(key)}>
+                {EXAMPLES[key].title}
+              </TabButton>
+            ))}
+          </menu>
+          {tabContent}
         </section>
       </main>
     </div>
