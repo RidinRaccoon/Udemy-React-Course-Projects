@@ -7,7 +7,7 @@ type TabButtonProps = {
 };
 
 /**
- * Renders a customizable button
+ * Renders list item with a customizable button
  * @prop {boolean} active - highlights the button
  * @prop {React.MouseEventHandler<HTMLButtonElement>} onSelect - onClick function
  * @prop {React.ReactNode} children - Text/JSX inside the button
