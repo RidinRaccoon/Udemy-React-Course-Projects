@@ -9,14 +9,15 @@ import { createRoot } from 'react-dom/client';
 /* Current/New Course Content [23 October 2023] | [src > #1_Course_Content] */
 // import { xxxApp } from './#1_Course_Content/#x-New_Course_Project/newProjectApp';
 // import { xxxApp } from './#1_Course_Content/#x-New_Course_Project/newProjectApp';
-// import { xxxApp } from './#1_Course_Content/#x-New_Course_Project/newProjectApp';
-import { ReactEssentialsApp } from './#1_Course_Content/#1-React_Essentials-Demo_Project/ReactEssentialsApp';
+// import { ReactEssentialsApp } from './#1_Course_Content/#1-React_Essentials-Demo_Project/ReactEssentialsApp';
+import { TicTacToeApp } from './#1_Course_Content/#2-Tic-Tac-Toe/TicTacToeApp';
 
 const container: HTMLElement = document.getElementById('root')!;
 const root = createRoot(container);
 
 /* Render Course Content */
-root.render(<ReactEssentialsApp />);
+// root.render(<ReactEssentialsApp />);
+root.render(<TicTacToeApp />);
 
 /* --------------------------*/
 /* Render Old Course Content */
