@@ -15,3 +15,9 @@ type GameTurn = {
   square: Square;
   player: PlayerSymbol;
 };
+
+/* Players types */
+type Players = {
+  X: string;
+  O: string;
+};
