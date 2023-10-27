@@ -14,6 +14,17 @@
 <p>The information listed (Core concepts and examples) can be changed in the [data.tsx] file in the assets folder</p>
 
 
+<br><br>
+<h3> #2 - Tic-Tac-Toe </h3>
+<strong>Folder:</strong> [src > #1_Course_Content > #2-Tic-Tac-Toe]
+<br><br>
+<p>Playable Tic-Tac-Toe game created to learn better design patterns and key concepts like managing and lifing the state, calculate values from state, etc.</p>
+<p>Mostly an instructional project but since it's a simple design and I already knew most of the concepts I tried to develop the features by myself, checking afterwards if they match the solutions provided and making adjustments to improve the code.</p>
+
+
+
+
+
 
 <br>
 <br>
