@@ -1,7 +1,12 @@
 import React from 'react';
-import GameLogo from '../assets/images/game-logo.png';
 import './Header.css';
+// IMAGES
+import GameLogo from '../assets/images/game-logo.png';
 
+/* ***** COMPONENT ***** */
+/**
+ * Renders the header section of the page
+ */
 export function Header() {
   return (
     <header>

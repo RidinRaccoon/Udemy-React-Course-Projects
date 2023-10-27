@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import './Player.css';
 
+/* ***** COMPONENT ***** */
 type PlayerProps = {
   initialName: string;
   symbol: 'X' | 'O';
+  isActive: boolean;
 };
-
 /**
  * Tic-Tac-Toe player list item (\<li>)
  ** Information be edited with the 'Edit' button
  */
-export function Player({ initialName, symbol }: PlayerProps) {
+export function Player({ initialName, symbol, isActive }: PlayerProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [playerName, setPlayerName] = useState(initialName);
 
@@ -32,7 +33,7 @@ export function Player({ initialName, symbol }: PlayerProps) {
   };
 
   return (
-    <li>
+    <li className={isActive ? 'active' : undefined}>
       {/* Show player information */}
       <span className="player">
         {editablePlayerName}
