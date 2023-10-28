@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import classes from './NewInvestmentForm.module.css';
 
 type NewInvestmentFormProps = {
-  onCalculate: (userInput: Investment) => void;
+  onCalculate: (userInput: InvestmentData) => void;
   onReset: () => void;
 };
 
@@ -25,7 +25,7 @@ export function NewInvestmentForm({ onCalculate, onReset }: NewInvestmentFormPro
    */
   const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const investment: Investment = {
+    const investment: InvestmentData = {
       currentSavings,
       yearlyContribution,
       expectedReturn,

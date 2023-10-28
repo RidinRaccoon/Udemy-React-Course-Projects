@@ -1,3 +1,5 @@
+import { Investment, AnnualReturns } from '../types/types';
+
 // This function expects a JS object as an argument
 // The object should contain the following properties
 // - initialInvestment: The initial investment amount
@@ -9,18 +11,18 @@ export function calculateInvestmentResults({
   annualInvestment,
   expectedReturn,
   duration,
-}) {
-  const annualData = [];
+}: Investment) {
+  const annualData: AnnualReturns = [];
   let investmentValue = initialInvestment;
 
-  for (let i = 0; i < duration; i++) {
-    const interestEarnedInYear = investmentValue * expectedReturn;
+  for (let i = 0; i < duration; i += 1) {
+    const interestEarnedInYear = investmentValue * (expectedReturn / 100);
     investmentValue += interestEarnedInYear + annualInvestment;
     annualData.push({
       year: i + 1, // year identifier
       interest: interestEarnedInYear, // the amount of interest earned in this year
       valueEndOfYear: investmentValue, // investment value at end of year
-      annualInvestment: annualInvestment, // investment added in this year
+      annualInvestment, // investment added in this year
     });
   }
 
