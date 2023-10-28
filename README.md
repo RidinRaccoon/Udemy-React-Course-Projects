@@ -22,7 +22,7 @@
 <p>Mostly an instructional project but since it's a simple design and I already knew most of the concepts I tried to develop the features by myself, checking afterwards if they match the solutions provided and making adjustments to improve the code.</p>
 
 <br><br>
-<h3> #2 - Investment Calculator (Project 1) [Old Course Content] </h3>
+<h3> #3 - Investment Calculator </h3>
 <strong>Folder:</strong> [src > #1_Course_Content > #2-Investment_Calculator]
 <br><br>
 <p>Allows the user to set investment information (yearly contribution, duration, expected returns, etc.) and calculates the investment results.</p>
