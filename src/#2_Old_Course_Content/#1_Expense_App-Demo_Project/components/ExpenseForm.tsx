@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import './ExpenseForm.scss';
+import './ExpenseForm.css';
+// TYPES
+import { Expense } from '../types/types';
 
 type ExpenseFormProps = {
   onSubmitExpenseData: (enteredExpenseData: Expense) => void;
@@ -8,8 +10,10 @@ type ExpenseFormProps = {
 
 /**
  * Renders an expense form.
- * @prop {function} onSubmitExpenseData - Propagates value to parent. ( "addNewExpenseDataHandler" function from parent NewExpense component )
- * @prop {function} onCancelNewExpenseData - Resets values and closes form. ( "cancelNewExpenseHandler" function from parent NewExpense component )
+ * @prop {function} onSubmitExpenseData - Propagates value to parent component. \
+ * `addNewExpenseDataHandler` function from parent `NewExpense` component
+ * @prop {function} onCancelNewExpenseData - Resets values and closes form. \
+ * `cancelNewExpenseHandler` function from parent `NewExpense` component
  */
 export function ExpenseForm({ onSubmitExpenseData, onCancelNewExpenseData }: ExpenseFormProps) {
   const [enteredTitle, setEnteredTitle] = useState('');

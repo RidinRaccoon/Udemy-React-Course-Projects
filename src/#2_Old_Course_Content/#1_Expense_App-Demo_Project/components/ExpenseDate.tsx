@@ -1,5 +1,5 @@
 import React from 'react';
-import './ExpenseDate.scss';
+import './ExpenseDate.css';
 
 type ExpenseDateProps = {
   date: Date;
@@ -8,8 +8,9 @@ type ExpenseDateProps = {
 
 /**
  * Renders a date container with month, year and day.
- * @prop {Date} date - date object
- * @prop {string} format - date in format ['dd/mm/yyyy', 'mm/yyyy/dd', ... ] | default="yyyy/dd/mm"
+ * @prop { Date}  date - date object
+ * @prop { string } format - date in format \
+ * `['dd/mm/yyyy', 'mm/yyyy/dd', ... ] default="yyyy/dd/mm" `
  */
 export function ExpenseDate({ date, format }: ExpenseDateProps) {
   const month = date.toLocaleString('en-US', { month: 'long' });

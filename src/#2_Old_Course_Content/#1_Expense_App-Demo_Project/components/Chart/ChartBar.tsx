@@ -1,5 +1,4 @@
 import React from 'react';
-
 import './ChartBar.css';
 
 type ChartBarProps = {
@@ -10,9 +9,9 @@ type ChartBarProps = {
 
 /**
  * Renders a chart bar, for a given month, inside the Chart component
- * @prop {string} label - The corresponding month
- * @prop {number} value - The total expenses for the given month
- * @prop {number} maxValue - The sum of all expenses in the current year
+ * @prop { string } label - The corresponding month
+ * @prop { number } value - The total expenses for the given month
+ * @prop { number } maxValue - The sum of all expenses in the current year
  */
 export function ChartBar({ label, value, maxValue }: ChartBarProps) {
   let barFillHeight = '0%';

@@ -2,7 +2,7 @@
  ** Expense related types
  */
 
-type Expense = {
+export type Expense = {
   id: string;
   title: string;
   amount: number;
@@ -13,7 +13,7 @@ type Expense = {
  ** Chart related types
  */
 
-type Point = {
+export type Point = {
   value: number;
   label: string;
 };

@@ -1,6 +1,9 @@
 import React from 'react';
 import { ExpenseDate } from './ExpenseDate';
-import './ExpenseItem.scss';
+// STYLES
+import './ExpenseItem.css';
+// TYPES
+import { Expense } from '../types/types';
 
 /**
  * Renders a list item with title, amount and date information

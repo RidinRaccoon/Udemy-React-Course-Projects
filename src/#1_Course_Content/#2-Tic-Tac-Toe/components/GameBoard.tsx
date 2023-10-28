@@ -1,14 +1,17 @@
 import React from 'react';
 import './GameBoard.css';
+// TYPES
+import { TGameBoard } from '../types/types';
 
 /* ***** COMPONENT ***** */
 type GameBoardProps = {
-  gameBoard: GameBoard;
+  gameBoard: TGameBoard;
   onSquareSelection: (rowIndex: number, colIndex: number) => void;
 };
 /**
  * Renders the Tic-Tac-Toe game board ( 3 x 3 grid )
- * @prop {function} onSquareSelection - updates the game turns using the 'squareSelectionHandler' function from parent 'TicTacToe' component
+ * @prop { TGameBoard } gameBoard - the current game board state
+ * @prop {function} onSquareSelection - updates the `gameTurns` state using the `squareSelectionHandler` function from parent `TicTacToe` component
  */
 export function GameBoard({ gameBoard, onSquareSelection }: GameBoardProps) {
   return (

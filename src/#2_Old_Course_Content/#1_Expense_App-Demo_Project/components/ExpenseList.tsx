@@ -1,6 +1,9 @@
 import React from 'react';
 import { ExpenseItem } from './ExpenseItem';
-import './ExpenseList.scss';
+// STYLES
+import './ExpenseList.css';
+// TYPES
+import { Expense } from '../types/types';
 
 type ExpenseListProps = {
   expenses: Expense[];
@@ -9,7 +12,6 @@ type ExpenseListProps = {
 /**
  * Renders an expense list from received expenses
  * @prop {Object[]} expenses - list of expenses
- * @returns list of ExpenseItem components wrapped by an unordered list (ul)
  */
 export function ExpenseList({ expenses }: ExpenseListProps) {
   // Show fallback for empty expenses array

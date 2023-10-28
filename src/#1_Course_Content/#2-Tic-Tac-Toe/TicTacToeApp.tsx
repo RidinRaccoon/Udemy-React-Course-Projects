@@ -4,17 +4,19 @@ import { GameOver } from './components/GameOver';
 import { Header } from './components/Header';
 import { Log } from './components/Log';
 import { Player } from './components/Player';
-// STYLES
-import './styles/index.css';
 // DATA
 import { MATRIX_LINES } from './data/matrix-lines';
+// STYLES
+import './styles/index.css';
+// TYPES
+import { Players, PlayerSymbol, TGameBoard, GameTurn } from './types/types';
 
 // Initialize Players and empty Tic-Tac-Toe game board (3 x 3 grid)
 const PLAYERS: Players = {
   X: 'Player 1',
   O: 'Player 2',
 };
-const INITIAL_GAME_BOARD: GameBoard = [
+const INITIAL_GAME_BOARD: TGameBoard = [
   [null, null, null],
   [null, null, null],
   [null, null, null],
@@ -39,7 +41,7 @@ function getActivePlayer(gameTurns: GameTurn[]) {
  * @param gameTurns - List of played turns
  */
 function mapGameBoard(gameTurns: GameTurn[]) {
-  const gameBoard: GameBoard = [...INITIAL_GAME_BOARD.map((innerRow) => [...innerRow])] as GameBoard;
+  const gameBoard: TGameBoard = [...INITIAL_GAME_BOARD.map((innerRow) => [...innerRow])] as TGameBoard;
   gameTurns.forEach((turn) => {
     // Update game board position
     const { square, player } = turn;
@@ -54,7 +56,7 @@ function mapGameBoard(gameTurns: GameTurn[]) {
  * @param gameBoard current game board state
  * @param playerNames current player names
  */
-function checkWinner(gameBoard: GameBoard, playerNames: Players) {
+function checkWinner(gameBoard: TGameBoard, playerNames: Players) {
   // Loop through all grid lines in the board (rows, columns and diagonals)
   for (let i = 0; i < MATRIX_LINES.length; i += 1) {
     // Save line values
@@ -84,7 +86,7 @@ export function TicTacToeApp() {
   // Set Current Player
   const activePlayer = getActivePlayer(gameTurns);
   // Set current game board
-  const gameBoard: GameBoard = mapGameBoard(gameTurns);
+  const gameBoard: TGameBoard = mapGameBoard(gameTurns);
 
   // Check if winning condition has been met or it's a draw
   const winner = checkWinner(gameBoard, playerNames);
@@ -93,6 +95,7 @@ export function TicTacToeApp() {
   /**
    * Updates the 'playerNames' state with the submitted player name
    * @param playerName - submitted player name
+   * @param symbol - the player's symbol
    */
   const onPlayerNameChangeHandler = (playerName: string, symbol: PlayerSymbol) => {
     setPlayerNames((prevNames) => ({ ...prevNames, [symbol]: playerName }));

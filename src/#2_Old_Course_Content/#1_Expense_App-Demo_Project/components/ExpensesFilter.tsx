@@ -1,5 +1,5 @@
 import React from 'react';
-import './ExpensesFilter.scss';
+import './ExpensesFilter.css';
 
 type ExpensesFilterProps = {
   onFilterChange: (filterValue: string) => void;
@@ -7,12 +7,12 @@ type ExpensesFilterProps = {
 
 /**
  * Displays a dropdown button that allows the user to select a year value and propagate it to the parent component for filtering
- * @prop { Function } onFilterChange - "filterChangeHandler" function from parent Expenses component.
+ * @prop { Function } onFilterChange - `filterChangeHandler` function from parent `Expenses` component.
  * @returns {jsx}
  */
 export function ExpensesFilter({ onFilterChange }: ExpensesFilterProps) {
   /**
-   * Propagates filter value to parent ExpensesList component when selected filter value changes
+   * Propagates filter value to parent `ExpensesList` component when selected filter value changes
    * @param event - onChange Event with the year value received from the select filter.
    */
   const filterChangeHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {

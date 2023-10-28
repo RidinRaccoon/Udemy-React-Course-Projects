@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import { Error, ErrorModal } from './ErrorModal';
 import { Button } from './UI/Button';
 import { Card } from './UI/Card';
+// STYLES
 import styles from './AddUserForm.module.css';
-import { ErrorModal, Error } from './ErrorModal';
-// import { useValidateInputs } from './hooks/useValidateInputs';
+// TYPES
+import { User } from '../types/types';
+
 
 type AddUserFormProps = {
   onUserSubmit: (userInput: User) => void;

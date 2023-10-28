@@ -1,5 +1,7 @@
 import React from 'react';
 import { Chart } from './Chart/Chart';
+// TYPES
+import { Expense } from '../types/types';
 
 type ExpensesChartProps = {
   expenses: Expense[];
@@ -8,8 +10,8 @@ type ExpensesChartProps = {
 /**
  * Calculates the chart data for the selected year
  ** list of months and corresponding expenses
- ** total expenses for the year)
- * @prop {Expense[]} expenses - The current filtered list of expenses
+ ** total expenses for the year
+ * @prop { Expense[] } expenses - `expenses` state from `Expenses` component
  */
 export function ExpensesChart({ expenses }: ExpensesChartProps) {
   const chartDataPoints = [

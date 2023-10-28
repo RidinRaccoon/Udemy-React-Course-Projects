@@ -1,23 +1,23 @@
 /* GameBoard types */
 type ValidValue = 'X' | 'O' | null;
 type GameBoardRow = [ValidValue, ValidValue, ValidValue];
-type GameBoard = [GameBoardRow, GameBoardRow, GameBoardRow];
+export type TGameBoard = [GameBoardRow, GameBoardRow, GameBoardRow];
 
 /* GameTurn types */
-type PlayerSymbol = 'X' | 'O';
+export type PlayerSymbol = 'X' | 'O';
 
 type Square = {
   row: number;
   col: number;
 };
 
-type GameTurn = {
+export type GameTurn = {
   square: Square;
   player: PlayerSymbol;
 };
 
 /* Players types */
-type Players = {
+export type Players = {
   X: string;
   O: string;
 };

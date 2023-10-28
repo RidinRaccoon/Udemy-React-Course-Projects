@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { ExpenseForm } from './ExpenseForm';
-import './NewExpense.scss';
+// STYLES
+import './NewExpense.css';
+// TYPES
+import { Expense } from '../types/types';
 
 type NewExpenseProps = {
   onAddExpense: (expense: Expense) => void;
@@ -8,7 +11,8 @@ type NewExpenseProps = {
 
 /**
  * Renders an expense form that can be toggled with the "Add New Expense" button and propagates new expenses to parent App component
- * @prop {function} onAddExpense - Propagates value to parent. ( "addNewExpenseHandler" function from parent App component )
+ * @prop {function} onAddExpense - Propagates value to parent. \
+ * `addNewExpenseHandler` function from parent App component
  */
 export function NewExpense({ onAddExpense }: NewExpenseProps) {
   const [showExpenseForm, setShowExpenseForm] = useState(false);
