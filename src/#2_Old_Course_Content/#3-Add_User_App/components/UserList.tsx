@@ -1,6 +1,9 @@
 import React from 'react';
 import { Card } from './UI/Card';
+// STYLES
 import styles from './UserList.module.css';
+// TYPES
+import { User } from '../types/types';
 
 type UserListProps = {
   users: User[];

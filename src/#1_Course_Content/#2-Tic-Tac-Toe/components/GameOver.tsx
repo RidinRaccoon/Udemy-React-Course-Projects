@@ -7,6 +7,8 @@ type GameOverProps = {
 };
 /**
  * Displays a Game Over screen when the game finishes
+ * @prop { string | null } winner - the winner name
+ * @prop { function } onRematch - `onRematchHandler` function from parent `TicTacToe` component
  */
 export function GameOver({ winner, onRematch }: GameOverProps) {
   // Set game over text

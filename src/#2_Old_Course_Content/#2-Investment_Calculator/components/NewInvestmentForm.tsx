@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-// import classes from './NewInvestmentForm.module.css';
 import classes from './NewInvestmentForm.module.css';
+import { InvestmentData } from '../types/types';
 
 type NewInvestmentFormProps = {
   onCalculate: (userInput: InvestmentData) => void;

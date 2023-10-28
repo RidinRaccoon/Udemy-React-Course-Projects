@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './Player.css';
+// TYPES
+import { PlayerSymbol } from '../types/types';
 
 /* ***** COMPONENT ***** */
 type PlayerProps = {

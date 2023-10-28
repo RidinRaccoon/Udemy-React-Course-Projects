@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { AddUserForm } from './components/AddUserForm';
 import { UserList } from './components/UserList';
-
 import './styles/index.css';
+// TYPES
+import { User } from './types/types';
 
 /**
  * [Udemy Course] React - The Complete Guide 2023 (incl. React Router & Redux) by Maximilian Schwarzmüller

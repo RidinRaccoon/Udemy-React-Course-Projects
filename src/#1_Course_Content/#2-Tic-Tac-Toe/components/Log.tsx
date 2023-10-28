@@ -1,5 +1,7 @@
 import React from 'react';
 import './Log.css';
+// TYPES
+import { GameTurn } from '../types/types';
 
 /* ***** COMPONENT ***** */
 type LogProps = {
@@ -7,7 +9,7 @@ type LogProps = {
 };
 /**
  * Displays a log with information about each game turn
- * @prop {GameTurn[ ]} gameTurns - list of turns
+ * @prop {GameTurn[ ]} gameTurns - list of turns ( `gameTurns` state from `TicTacToe` component )
  */
 export function Log({ gameTurns }: LogProps) {
   return (

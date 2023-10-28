@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { Header } from './components/Header';
 import { NewInvestmentForm } from './components/NewInvestmentForm';
 import { InvestmentsTable } from './components/InvestmentsTable';
-
 import './styles/index.css';
+// TYPES
+import { InvestmentData, YearlyReturns } from './types/types';
 
 /**
  * [Udemy Course] React - The Complete Guide 2023 (incl. React Router & Redux) by Maximilian Schwarzmüller

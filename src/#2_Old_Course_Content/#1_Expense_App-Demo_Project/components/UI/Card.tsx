@@ -1,5 +1,5 @@
 import React from 'react';
-import './Card.scss';
+import './Card.css';
 
 type CardProps = {
   className: string;
@@ -7,8 +7,8 @@ type CardProps = {
 };
 /**
  * Wrapper component
- * @prop className - CSS class added to the wrapper
- * @prop children - HTML/JSX elements wrapped by the function
+ * @prop { string } className - CSS class added to the wrapper
+ * @prop { JSX } children - HTML/JSX elements wrapped by the function
  */
 export function Card({ className, children }: CardProps) {
   const classes = `card ${className}`;

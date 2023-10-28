@@ -1,5 +1,7 @@
 import React from 'react';
 import classes from './InvestmentsTable.module.css';
+// TYPES
+import { YearlyReturns } from '../types/types';
 
 type InvestmentsTableProps = {
   investmentData: YearlyReturns;

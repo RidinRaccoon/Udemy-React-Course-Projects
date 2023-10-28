@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Expenses } from './components/Expenses';
 import { NewExpense } from './components/NewExpense';
-
 import './styles/index.css';
+// TYPES
+import { Expense } from './types/types';
 
 const DUMMY_EXPENSES: Expense[] = [
   {
@@ -42,7 +43,7 @@ export function ExpensesApp() {
 
   /**
    * Updates the expenses array state with a new expense object
-   * @param expense - Expense object submitted by the user in NewExpense component
+   * @param expense - Expense object submitted by the user in `NewExpense` component
    */
   const addNewExpenseHandler = (expense: Expense) => {
     setExpenses((prevExpenses) => [expense, ...prevExpenses]);
