@@ -16,16 +16,16 @@ import './styles/index.css';
 export function InvestmentCalculatorApp() {
   // Initial investment value is needed for calculations in InvestmentsTable component
   const [initialInvestment, setInitialInvestment] = useState(0);
-  const [investmentYearlyData, setInvestmentYearlyData] = useState<InvestmentData[]>([]);
+  const [investmentYearlyData, setInvestmentYearlyData] = useState<YearlyReturns>([]);
 
   /**
    * Triggered when form is submitted
    * @param userInput - Investment data obtained from the NewInvestmentForm component
    */
-  const calculateHandler = (userInput: Investment) => {
+  const calculateHandler = (userInput: InvestmentData) => {
     setInitialInvestment(userInput.currentSavings);
 
-    const yearlyData: InvestmentData[] = []; // per-year results
+    const yearlyData: YearlyReturns = []; // per-year results
 
     /*
      * NOTE: Investment calculations where already provided in the course files

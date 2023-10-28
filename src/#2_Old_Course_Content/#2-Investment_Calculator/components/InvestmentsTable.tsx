@@ -2,13 +2,13 @@ import React from 'react';
 import classes from './InvestmentsTable.module.css';
 
 type InvestmentsTableProps = {
-  investmentData: InvestmentData[];
+  investmentData: YearlyReturns;
   initialInvestment: number;
 };
 
 /**
  * Receives the investment data calculated by "calculateHandler" in App.tsx and maps the values to table rows
- * @prop {InvestmentData[]} investmentData - InvestmentData object with values calculated from form inputs
+ * @prop {YearlyReturns} investmentData - InvestmentData object with values calculated from form inputs
  * @prop {number} initialInvestment - InvestmentData object with values calculated from form inputs
  */
 export function InvestmentsTable({ investmentData, initialInvestment }: InvestmentsTableProps) {
