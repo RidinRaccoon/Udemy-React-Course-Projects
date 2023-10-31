@@ -1,0 +1,50 @@
+html {
+  box-sizing: border-box;
+  font-family: 'Quicksand', sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  box-sizing: border-box;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+ 
+}
+
+#root {
+  box-sizing: inherit;
+  display: flex;
+  height: 100%; 
+}
+
+aside, main {
+  margin-top: 3rem;
+}
+
+aside {
+  box-sizing: inherit;
+  width: 70%;
+  min-width: 200px;
+  max-width: 300px;
+  background-color: black;
+  border-top-right-radius: 15px;
+  padding: 2rem;
+}
+
+
+main {
+  box-sizing: inherit;
+  padding: 2rem 2.5rem;
+  padding-top: 1.5rem;
+}
+
+

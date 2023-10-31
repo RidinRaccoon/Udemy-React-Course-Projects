@@ -10,7 +10,7 @@ import { createRoot } from 'react-dom/client';
 // import { ReactEssentialsApp } from './#1_Course_Content/#1-React_Essentials-Demo_Project/ReactEssentialsApp';
 // import { TicTacToeApp } from './#1_Course_Content/#2-Tic-Tac-Toe/TicTacToeApp';
 // import { InvestmentCalculatorApp } from './#1_Course_Content/#3-Investment_Calculator/InvestmentCalculatorApp';
-import { ProjectManagementApp } from './#1_Course_Content/Practice_Projects/ProjectManagementApp';
+import { ProjectManagementApp } from './#1_Course_Content/Practice_Projects/#3-Project_Management_App/ProjectManagementApp';
 
 const container: HTMLElement = document.getElementById('root')!;
 const root = createRoot(container);
