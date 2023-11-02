@@ -10,9 +10,9 @@ export const DUMMY_PROJECTS: TProject[] = [
     startDate: new Date('October 1, 2023'),
     dueDate: new Date('January 25, 2024'),
     tasks: [
-      { id: 't1', title: 'Task1', completed: true },
-      { id: 't2', title: 'Task2', completed: false },
-      { id: 't3', title: 'Task3', completed: true },
+      { id: 't1', title: 'Task1', isCompleted: true },
+      { id: 't2', title: 'Task2', isCompleted: false },
+      { id: 't3', title: 'Task3', isCompleted: true },
     ],
   },
   {
@@ -23,8 +23,8 @@ export const DUMMY_PROJECTS: TProject[] = [
     startDate: new Date('November 1, 2023'),
     dueDate: new Date('December 17, 2023'),
     tasks: [
-      { id: 't1', title: 'Task1', completed: false },
-      { id: 't2', title: 'Task2', completed: true },
+      { id: 't1', title: 'Task1', isCompleted: false },
+      { id: 't2', title: 'Task2', isCompleted: true },
     ],
   },
 ];

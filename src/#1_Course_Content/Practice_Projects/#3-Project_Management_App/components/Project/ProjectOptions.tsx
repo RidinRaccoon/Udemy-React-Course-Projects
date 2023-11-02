@@ -2,18 +2,15 @@ import React from 'react';
 import './ProjectOptions.scss';
 
 type ProjectOptionsProps = {
-  onEdit: any;
-  onDelete: any;
+  onDelete: () => void;
 };
-/**
- * Renders the Project's option buttons
+/** Renders the Project's option buttons
+ * @prop { function } onDelete - Deletes the project in `projectsState` from `ProjectManagementApp` \
+ * [`onDeleteHandler` function from parent `Project` component ]
  */
-export function ProjectOptions({ onEdit, onDelete }: ProjectOptionsProps) {
+export function ProjectOptions({ onDelete }: ProjectOptionsProps) {
   return (
     <div id="Project-Options">
-      <button className="button-edit" type="button" onClick={onEdit}>
-        Edit
-      </button>
       <button className="button-delete" type="button" onClick={onDelete}>
         Delete
       </button>

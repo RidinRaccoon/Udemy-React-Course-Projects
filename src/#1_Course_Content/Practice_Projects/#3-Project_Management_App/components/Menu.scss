@@ -39,7 +39,7 @@
         display: block;
       }
 
-      &:hover {
+      &:hover, &.active {
         background-color: goldenrod;
         color: black;
       }

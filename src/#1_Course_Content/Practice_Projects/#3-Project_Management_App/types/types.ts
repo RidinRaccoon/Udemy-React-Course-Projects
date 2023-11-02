@@ -12,5 +12,5 @@ export type TProject = {
 export type TProjectTask = {
   id: string;
   title: string;
-  completed: boolean;
+  isCompleted: boolean;
 }

@@ -7,20 +7,12 @@
   .new-task-options {
     margin-top: 1.5rem;
 
-    input {
-      background-color: lightgrey;
-      border: none;
-      border-radius: 4px;
-      font-size: 1rem;
-      padding: 0.5rem;
-      min-width: 450px;
-
-      &:focus-visible {
-        //outline: 1px darkgoldenrod;
-        outline: goldenrod solid 1px;
-      }
+    label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
     }
-
     button {
       cursor: pointer;
       border: none;
