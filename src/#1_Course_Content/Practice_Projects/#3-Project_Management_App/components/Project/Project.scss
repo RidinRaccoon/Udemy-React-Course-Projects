@@ -1,0 +1,14 @@
+#Project {
+  width: 100%;
+  margin-top: 0.2rem; // Match sidebar title
+
+  header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .description {
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+  }
+}
