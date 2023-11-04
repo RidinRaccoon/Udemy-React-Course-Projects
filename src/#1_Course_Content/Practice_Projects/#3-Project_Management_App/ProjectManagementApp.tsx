@@ -51,12 +51,7 @@ export function ProjectManagementApp() {
   /** Removes the selected project from the `projectsState`  */
   const projectDeletionHandler = (projectID: string) => {
     setProjectsState((prevState) => {
-      const newProjects = copyProjects(prevState.projects);
-      for (let projectIndex = 0; projectIndex < newProjects.length; projectIndex += 1) {
-        if (newProjects[projectIndex].id === projectID) {
-          newProjects.splice(projectIndex, 1);
-        }
-      }
+      const newProjects = copyProjects(prevState.projects.filter((project) => project.id !== projectID));
       return { projects: newProjects, selectedProjectId: undefined, tasks: [] };
     });
   };
