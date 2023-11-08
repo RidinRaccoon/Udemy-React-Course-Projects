@@ -18,7 +18,8 @@ import { createRoot } from 'react-dom/client';
 // import { TicTacToeApp } from './Course_Content/Practice_Projects/1-Tic-Tac-Toe/TicTacToeApp';
 // import { InvestmentCalculatorApp } from './Course_Content/Practice_Projects/2-Investment_Calculator/InvestmentCalculatorApp';
 // import { ProjectManagementApp } from './Course_Content/Practice_Projects/3-Project_Management/ProjectManagementApp';
-import { AlmostFinalCountdownApp } from './Course_Content/Demo_Projects/2-Almost_Final_Countdown/AlmostFinalCountdownApp';
+// import { AlmostFinalCountdownApp } from './Course_Content/Demo_Projects/2-Almost_Final_Countdown/AlmostFinalCountdownApp';
+import { PlacePickerApp } from './Course_Content/Demo_Projects/3-PlacePicker/PlacePicker';
 
 const container: HTMLElement = document.getElementById('root')!;
 const root = createRoot(container);
@@ -30,8 +31,8 @@ const root = createRoot(container);
 // root.render(<TicTacToeApp />);
 // root.render(<InvestmentCalculatorApp />);
 // root.render(<ProjectManagementApp />);
-root.render(<AlmostFinalCountdownApp />)
-
+// root.render(<AlmostFinalCountdownApp />)
+root.render(<PlacePickerApp />)
 /* --------------------------*/
 /* Render Old Course Content */
 // root.render(<ExpensesApp />);
