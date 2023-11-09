@@ -1,16 +1,16 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 
-/* 
-* Old Course Content [ pre 23 October 2023] | [src > Old_Course_Content] 
-*/
+/*
+ * Old Course Content [ pre 23 October 2023] | [src > Old_Course_Content]
+ */
 // import { ExpensesApp } from './Old_Course_Content/1_Expense_App-Demo_Project/ExpensesApp';
 // import { InvestmentCalculatorApp } from './Old_Course_Content/2-Investment_Calculator/InvestmentCalculatorApp';
 // import { AddUserApp } from './Old_Course_Content/3-Add_User_App/AddUserApp';
 
-/* 
-* Current/New Course Content [23 October 2023] | [src > Course_Content] 
-*/
+/*
+ * Current/New Course Content [23 October 2023] | [src > Course_Content]
+ */
 // DEMO PROJECTS
 // import { ReactEssentialsApp } from './Course_Content/Demo_Projects/1-React_Essentials/ReactEssentialsApp';
 
@@ -32,7 +32,8 @@ const root = createRoot(container);
 // root.render(<InvestmentCalculatorApp />);
 // root.render(<ProjectManagementApp />);
 // root.render(<AlmostFinalCountdownApp />)
-root.render(<PlacePickerApp />)
+root.render(<PlacePickerApp />);
+
 /* --------------------------*/
 /* Render Old Course Content */
 // root.render(<ExpensesApp />);
