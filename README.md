@@ -2,6 +2,9 @@
 <h4>React - The Complete Guide 2023 (incl. React Router & Redux)   <a href="https://www.udemy.com/course/react-the-complete-guide-incl-redux/">[ Course Link ]</a></h4>
 <p>by Maximilian Schwarzmüller</p>
 
+<br>
+<h3>NOTE: Not up to date.</h3>
+<h4>Will be updated later</h4>
 
 <br>
 <h2> New Course Content [23 October 2023] </h2>
