@@ -7,8 +7,8 @@ import { Place, TPlace } from './Place';
 export function Places(props: {
   title: string;
   places: TPlace[];
-  fallbackText?: string | undefined;
-  onSelectPlace: (id: string) => void;
+  fallbackText?: string | null;
+  onSelectPlace(id: string): void;
 }) {
   const { title, places, fallbackText, onSelectPlace } = props;
   const hasPlaces = places.length > 0;
@@ -16,9 +16,9 @@ export function Places(props: {
   return (
     <section className="places-category">
       <h2>{title}</h2>
-      {fallbackText && !hasPlaces && (
-        <p className="fallback-text">{fallbackText}</p>
-      )}
+
+      {!hasPlaces && <p className="fallback-text">{fallbackText}</p>}
+
       {hasPlaces && (
         <ul className="places">
           {places.map((place: TPlace) => (
@@ -30,5 +30,5 @@ export function Places(props: {
   );
 }
 Places.defaultProps = {
-  fallbackText: undefined,
+  fallbackText: null,
 };

@@ -13,7 +13,7 @@ export type TPlace = {
 
 export function Place(props: {
   place: TPlace;
-  onSelectPlace: (id: string) => void;
+  onSelectPlace(id: string): void;
 }) {
   const { place, onSelectPlace } = props;
   const { id, title, image } = place;

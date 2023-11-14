@@ -5,10 +5,13 @@ import { Places } from './components/Places/_index';
 import { Header } from './components/_index';
 import { usePlaces } from './hooks/usePlaces';
 
-/** */
+/** PlacePicker
+ *  This application stores a list of places that the user would like to visit.
+ *  The places can be added or removed from a list of available places.
+ */
 export function PlacePickerApp() {
   const {
-    AVAILABLE_PLACES,
+    availablePlaces,
     selectedPlaces,
     addSelectedPlace,
     RemovalPromptModal,
@@ -29,7 +32,7 @@ export function PlacePickerApp() {
         <Places
           title="Available Places"
           fallbackText="No places available."
-          places={AVAILABLE_PLACES}
+          places={availablePlaces}
           onSelectPlace={addSelectedPlace}
         />
       </main>

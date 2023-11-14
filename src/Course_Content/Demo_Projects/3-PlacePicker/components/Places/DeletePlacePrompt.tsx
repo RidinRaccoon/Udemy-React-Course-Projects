@@ -1,13 +1,10 @@
 import * as React from 'react';
 import './DeletePlacePrompt.css';
-/* type DeleteConfirmationProps = {
-  onConfirm: () => void;
-  onCancel: () => void;
-}; */
+
 /** */
 export function DeletePlacePrompt(props: {
-  onConfirm: () => void;
-  onCancel: () => void;
+  onConfirm(): void;
+  onCancel(): void;
 }) {
   const { onConfirm, onCancel } = props;
   return (
