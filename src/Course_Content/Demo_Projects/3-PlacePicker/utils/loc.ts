@@ -4,6 +4,7 @@ function toRad(value: number) {
   return (value * Math.PI) / 180;
 }
 
+/** Calculates the distance between two pairs of coordinates */
 function calculateDistance(
   lat1: number,
   lng1: number,
@@ -24,6 +25,8 @@ function calculateDistance(
   return d;
 }
 
+/** Returns the received `places` sorted by the shortest distance 
+ * to the received coordinates [`lat` & `lon`] */
 export function sortPlacesByDistance(
   places: TPlace[],
   lat: number,

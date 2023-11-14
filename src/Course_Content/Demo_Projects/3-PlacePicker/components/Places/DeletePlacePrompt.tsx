@@ -1,7 +1,8 @@
 import * as React from 'react';
 import './DeletePlacePrompt.css';
 
-/** */
+/** `PlacePickerApp` \
+ * Delete prompt for the selected place */
 export function DeletePlacePrompt(props: {
   onConfirm(): void;
   onCancel(): void;

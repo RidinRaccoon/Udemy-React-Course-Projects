@@ -11,6 +11,8 @@ export type TPlace = {
   lon: number;
 };
 
+/** `PlacePickerApp` \
+ * List item with place information */
 export function Place(props: {
   place: TPlace;
   onSelectPlace(id: string): void;

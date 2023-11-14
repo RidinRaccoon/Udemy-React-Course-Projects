@@ -32,6 +32,7 @@ export function usePlaces() {
     });
   }, []);
 
+  /** Adds place to the `selectedPlaces` state */
   const addSelectedPlace = (id: string) => {
     setSelectedPlaces((prevPlaces) => {
       const alreadySelected = prevPlaces.some((place) => place.id === id);
@@ -43,13 +44,16 @@ export function usePlaces() {
     });
     storage.addToLocalStorage(id);
   };
+  /** Displays the `RemovalPromptModal` */
   const showRemovalPromptModal = (id: string) => {
     setOpenModal(true);
     selectedPlace.current = id;
   };
+  /** Closes the `RemovalPromptModal` */
   const cancelRemoval = () => {
     setOpenModal(false);
   };
+  /** Removes place from `selectedPlaces` state */
   const removePlace = () => {
     setSelectedPlaces((prevPlaces) =>
       prevPlaces.filter((place) => place.id !== selectedPlace.current),

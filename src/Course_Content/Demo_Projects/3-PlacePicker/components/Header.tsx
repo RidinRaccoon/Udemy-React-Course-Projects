@@ -3,6 +3,8 @@ import './Header.css';
 //
 import logoImg from '../assets/images/logo.png';
 
+/** `PlacePickerApp` \
+ * Renders the application's header */
 export function Header() {
   return (
     <header>
