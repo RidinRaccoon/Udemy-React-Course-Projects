@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { TQuestion } from '../data/questions';
+import { QuestionTimer } from './QuestionTimer';
 
 const ANSWER_KEYS = 'ABCDEFGH';
 const QUESTION_TIME = 15 * 1000;
@@ -9,11 +10,18 @@ const QUESTION_TIME = 15 * 1000;
 export function Question(props: {
   //
   question: TQuestion;
-  onAnswer(answer:number): void;
+  onAnswer(answer: number | null): void;
 }) {
   const { question, onAnswer } = props;
-  const { title, answers } = question;
-  const handleAnswer = (number: number) => () => onAnswer(number);
+  const { id, title, answers } = question;
+  const handleAnswer = (number: number) => () => {
+      
+    onAnswer(number)
+  };
+
+  const onTimeout = React.useCallback((answer: number | null) => {
+    onAnswer(answer);
+  }, []);
 
   return (
     <section>
@@ -25,11 +33,7 @@ export function Question(props: {
           </button>
         ))}
       </ol>
-      <progress
-        className="progress-bar"
-        max={QUESTION_TIME}
-        value={70000}
-      />
+      <QuestionTimer key={id} time={QUESTION_TIME} onTimeout={onTimeout} />
     </section>
   );
 }

@@ -3,9 +3,9 @@ import React from 'react';
 /** */
 export function Highscores(props: {
   // prettier-ignore
-  goBack(state: string): void
+  changeScreen(state: string): void
 }) {
-  const { goBack } = props;
+  const { changeScreen } = props;
   return (
     <section className="highscores-container">
       <ol>
@@ -14,7 +14,7 @@ export function Highscores(props: {
         <li>Player 3: score </li>
         <li>Player 4: score </li>
       </ol>
-      <button type="button" onClick={() => goBack('startMenu')}>
+      <button type="button" onClick={() => changeScreen('startMenu')}>
         Go back
       </button>
     </section>

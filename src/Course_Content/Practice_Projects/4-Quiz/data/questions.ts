@@ -15,7 +15,7 @@ export const QUESTIONS: TQuestion[] = [
       'A framework to build user interfaces with help of imperative code.',
       'A library used for building mobile applications only.',
     ],
-    solution: 1,
+    solution: 0,
   },
   {
     id: 'q2',
@@ -26,7 +26,7 @@ export const QUESTIONS: TQuestion[] = [
       'Handling errors within the application.',
       'Part of the Redux library for managing global state.',
     ],
-    solution: 1,
+    solution: 0,
   },
   {
     id: 'q3',
@@ -37,7 +37,7 @@ export const QUESTIONS: TQuestion[] = [
       'A specific HTML version that was explicitly created for React.',
       'A tool for making HTTP requests in a React application.',
     ],
-    solution: 1,
+    solution: 0,
   },
   {
     id: 'q4',
@@ -48,7 +48,7 @@ export const QUESTIONS: TQuestion[] = [
       'By creating a file with a .jsx extension.',
       'By using the "new" keyword followed by the component name.',
     ],
-    solution: 1,
+    solution: 0,
   },
   {
     id: 'q5',
@@ -59,7 +59,7 @@ export const QUESTIONS: TQuestion[] = [
       'The overall status of a React application, including all props and components.',
       'A library for managing global state in React applications.',
     ],
-    solution: 1,
+    solution: 0,
   },
   {
     id: 'q6',
@@ -70,7 +70,7 @@ export const QUESTIONS: TQuestion[] = [
       'By using the forEach() method to iterate over an array of data and returning JSX.',
       'By using the loop() method to iterate over an array of data and returning JSX.',
     ],
-    solution: 1,
+    solution: 0,
   },
   {
     id: 'q7',
@@ -81,6 +81,6 @@ export const QUESTIONS: TQuestion[] = [
       'Using the && operator.',
       'Using an if-else statement.',
     ],
-    solution: 1,
+    solution: 0,
   },
 ];
