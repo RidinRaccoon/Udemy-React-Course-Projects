@@ -1,23 +1,16 @@
 import React from 'react';
 import './ProjectTask.scss';
-// TYPES
-import { TProjectTask } from '../../types/types';
+import { type TProjectTask } from '../../types/types';
+import { ProjectsContext } from '../../store/ProjectsContext';
 
-type ProjectTaskProps = {
-  task: TProjectTask;
-  onTaskCompletionChange: (taskId: string, isCompleted: boolean) => void;
-};
-/** Renders a project task as a list item
- * @prop { TProjectTask } task - Selected project's task list
- * @prop { function } onTaskCompletionChange - Updates task in `projectsState` from `ProjectManagamentApp` \
- * [ `onTaskCompletionChange` function from parent `ProjectTasks` component ]
- */
-export function ProjectTask({ task, onTaskCompletionChange }: ProjectTaskProps) {
+/** Renders a project task as a list item */
+export function ProjectTask(props: { task: TProjectTask }) {
+  const { task } = props;
   const { id, title, isCompleted } = task;
+  const { updateTask } = React.useContext(ProjectsContext);
 
-  /** Triggers the `onTaskCompletionChange` function to update the task in `projects` state */
   const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    onTaskCompletionChange(id, event.currentTarget.checked);
+    updateTask(id, event.currentTarget.checked);
   };
 
   return (

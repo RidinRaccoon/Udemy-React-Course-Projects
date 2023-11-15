@@ -1,54 +1,34 @@
 import React from 'react';
+import './Project.scss';
 import { ProjectTasks } from '../Tasks/ProjectTasks';
 import { ProjectHeaderInfo } from './ProjectHeaderInfo';
 import { ProjectOptions } from './ProjectOptions';
-// TYPES
-import { TProject, TProjectTask } from '../../types/types';
-// STYLES
-import './Project.scss';
+import { ProjectsContext } from '../../store/ProjectsContext';
 
-type ProjectProps = {
-  project: TProject;
-  tasks: TProjectTask[];
-  onProjectDeletion: (projectId: string) => void;
-  onAddTask: (projectId: string, newTask: TProjectTask) => void;
-  onTaskCompletionChange: (taskId: string, isCompleted: boolean) => void;
-};
-/** Displays information for the selected project
- * @prop { TProject } project - Displayed project
- * @prop { TProjectTask[] } tasks - List of displayed project tasks
- * @prop { function } onProjectDeletion - Deletes the project in `projectsState` from `ProjectManagementApp` \
- * [ `projectDeletionHandler` function from `ProjectManagementApp` ]
- * @prop { function } onAddTask - Adds the new task to the `projectsState` from `ProjectManagementApp` \
- * [ `onAddTaskHandler` function from `ProjectManagementApp` ]
- * @prop { function } onTaskCompletionChange - Updates task in `projectsState` from `ProjectManagamentApp` \
- * [ `onTaskCompletionChangeHandler` function from `ProjectManagementApp` ]
- */
-export function Project({ project, tasks, onProjectDeletion, onAddTask, onTaskCompletionChange }: ProjectProps) {
+/** Displays information for the selected project */
+export function Project() {
+  const { state, removeProject } = React.useContext(ProjectsContext);
+  const { selectedProjectId, projects } = state;
+  const project = projects.find((proj) => proj.id === selectedProjectId);
+
+  if (!project) return null;
+
   const { id, title, dueDate, startDate, description } = project;
-
-  /** Deletes the project in `projectsState` from `ProjectManagementApp` */
-  const onDeleteHandler = () => {
-    onProjectDeletion(project.id);
-  };
-  /** Adds the new task to the `projectsState` from `ProjectManagementApp` */
-  const onAddTaskHandler = (newTask: TProjectTask) => {
-    onAddTask(id, newTask);
-  };
-  /** Updates task completion in `projectsState` from `ProjectManagementApp` */
-  const onTaskCompletionChangeHandler = (taskId: string, isCompleted: boolean) => {
-    onTaskCompletionChange(taskId, isCompleted);
-  };
 
   return (
     <section id="Project">
       <header>
-        <ProjectHeaderInfo id={id} title={title} startDate={startDate} dueDate={dueDate} />
-        <ProjectOptions onDelete={onDeleteHandler} />
+        <ProjectHeaderInfo
+          id={id}
+          title={title}
+          startDate={startDate}
+          dueDate={dueDate}
+        />
+        <ProjectOptions onDelete={() => removeProject(id)} />
       </header>
       <p className="description">{description}</p>
       <hr />
-      <ProjectTasks tasks={tasks} onTaskCompletionChange={onTaskCompletionChangeHandler} onAddTask={onAddTaskHandler} />
+      <ProjectTasks key={id} />
     </section>
   );
 }

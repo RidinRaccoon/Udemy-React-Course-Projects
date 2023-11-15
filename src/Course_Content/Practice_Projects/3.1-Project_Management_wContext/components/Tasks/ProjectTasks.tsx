@@ -1,28 +1,15 @@
 import React, { useState } from 'react';
 import { ProjectTask } from './ProjectTask';
 import './ProjectTasks.scss';
-// TYPES
-import { TProjectTask } from '../../types/types';
+import { type TProjectTask } from '../../types/types';
+import { ProjectsContext } from '../../store/ProjectsContext';
 
-type ProjectTasksProps = {
-  tasks: TProjectTask[];
-  onAddTask: (newTask: TProjectTask) => void;
-  onTaskCompletionChange: (taskId: string, isComplete: boolean) => void;
-};
-/** Renders the project's task list in the `Project` component
- * @prop { TProjectTask[] } tasks - List of project tasks for the selected project
- * @prop { function } onAddTask - Adds the new task to the `projectsState` from `ProjectManagementApp` \
- * [ `onAddTaskHandler` function from `Project` component ]
- * @prop { function } onTaskCompletionChange - Updates task in `projectsState` from `ProjectManagementApp` component \
- * [ `onTaskCompletionChangeHandler` function from `Project` component ]
- */
-export function ProjectTasks({ tasks, onAddTask, onTaskCompletionChange }: ProjectTasksProps) {
+/** Renders the project's task list in the `Project` component */
+export function ProjectTasks() {
   const [newTaskName, setNewTaskName] = useState('');
+  const { state, addTask } = React.useContext(ProjectsContext);
+  const { tasks } = state;
 
-  /** Updates task completion in `projectsState` from `ProjectManagementApp` */
-  const onTaskCompletionChangeHandler = (taskId: string, isCompleted: boolean) => {
-    onTaskCompletionChange(taskId, isCompleted);
-  };
   /** Adds task to the `projectsState` from `ProjectManagementApp`  */
   const addTaskHandler = () => {
     if (newTaskName !== '') {
@@ -31,7 +18,7 @@ export function ProjectTasks({ tasks, onAddTask, onTaskCompletionChange }: Proje
         title: newTaskName,
         isCompleted: false,
       };
-      onAddTask(newTask);
+      addTask(state.selectedProjectId, newTask);
       setNewTaskName('');
     }
   };
@@ -40,9 +27,9 @@ export function ProjectTasks({ tasks, onAddTask, onTaskCompletionChange }: Proje
     <section className="tasks-container">
       <h1>Tasks</h1>
       <div className="new-task-options">
-        <label htmlFor='new-task-name'>NEW TASK NAME</label>
+        <label htmlFor="new-task-name">NEW TASK NAME</label>
         <input
-          name="new-task-name"
+          id="new-task-name"
           type="text"
           value={newTaskName}
           onChange={(event) => setNewTaskName(event.currentTarget.value)}
@@ -55,7 +42,7 @@ export function ProjectTasks({ tasks, onAddTask, onTaskCompletionChange }: Proje
       </div>
       <ol className="tasks">
         {tasks.map((task) => (
-          <ProjectTask key={task.id} task={task} onTaskCompletionChange={onTaskCompletionChangeHandler} />
+          <ProjectTask key={task.id} task={task} />
         ))}
       </ol>
     </section>

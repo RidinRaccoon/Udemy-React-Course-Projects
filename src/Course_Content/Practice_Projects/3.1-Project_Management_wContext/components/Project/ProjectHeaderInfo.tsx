@@ -1,5 +1,5 @@
 import React from 'react';
-import './ProjectHeaderInfo.scss'
+import './ProjectHeaderInfo.scss';
 
 /** Formats the received date ( Ex.: Oct, 29 2023 ) */
 function formatDate(date: Date) {
@@ -8,19 +8,14 @@ function formatDate(date: Date) {
   return `${month} ${day}, ${date.getFullYear()}`;
 }
 
-type ProjectHeaderProps = {
+/** Renders the project header */
+export function ProjectHeaderInfo(props: {
   id: string;
   title: string;
   startDate: Date;
   dueDate: Date;
-};
-/** Renders the project header
- * @prop { string } id - Project's id
- * @prop { string } title - Project's title
- * @prop { Date } startDate - Project's start date
- * @prop { Date } dueDate - Project's end date
- */
-export function ProjectHeaderInfo({ id, title, startDate, dueDate }: ProjectHeaderProps) {
+}) {
+  const { id, title, startDate, dueDate } = props;
   const formattedStartDate = formatDate(startDate);
   const formattedDueDate = formatDate(dueDate);
 
@@ -29,7 +24,9 @@ export function ProjectHeaderInfo({ id, title, startDate, dueDate }: ProjectHead
       <h1>
         {title} <span>#{id}</span>
       </h1>
-      <p className="date">{formattedStartDate} - {formattedDueDate} </p>
+      <p className="date">
+        {formattedStartDate} - {formattedDueDate}{' '}
+      </p>
     </div>
   );
 }

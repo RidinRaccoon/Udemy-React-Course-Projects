@@ -1,12 +1,12 @@
 import React from 'react';
 import './ProjectOptions.scss';
+// import { ProjectsContext } from '../../store/ProjectsContextProvider';
 
 type ProjectOptionsProps = {
   onDelete: () => void;
 };
 /** Renders the Project's option buttons
- * @prop { function } onDelete - Deletes the project in `projectsState` from `ProjectManagementApp` \
- * [`onDeleteHandler` function from parent `Project` component ]
+ * @prop { function } onDelete - Removes project from context  \
  */
 export function ProjectOptions({ onDelete }: ProjectOptionsProps) {
   return (
