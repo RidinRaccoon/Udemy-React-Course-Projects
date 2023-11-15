@@ -1,0 +1,21 @@
+#Project-Options {
+  display: flex;
+  align-self: start;
+  gap: 15px;
+  margin-top: 0.4rem;
+
+  button {
+    border: none;
+    padding: 0.2rem 0.5rem;
+    background-color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    color: gray;
+    cursor: pointer;
+
+    &:hover {
+      color: goldenrod;
+      text-decoration: underline;
+    }
+  }
+}
