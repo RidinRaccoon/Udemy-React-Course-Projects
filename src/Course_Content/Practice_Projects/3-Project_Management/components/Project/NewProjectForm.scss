@@ -1,0 +1,56 @@
+#New-Project-Form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 500px;
+  max-width: 768px;
+  margin-top: 0.2rem;
+  
+
+  .form-options {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    gap: 15px;
+
+    button {
+      cursor: pointer;
+      border: none;
+      padding: 0.2rem 0.5rem;
+      background-color: white;
+      font-size: 1rem;
+      font-weight: 600;
+      color: gray;
+
+      &:hover {
+        color: goldenrod;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1.5rem;
+
+    label {
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    label.invalid {
+      color: red;
+      &::after {
+        content: "*";
+      }
+    }
+    textarea {
+      resize: none;
+      height: 10rem;
+    }
+
+    .error-message {
+      color: red;
+    }
+  }
+}
