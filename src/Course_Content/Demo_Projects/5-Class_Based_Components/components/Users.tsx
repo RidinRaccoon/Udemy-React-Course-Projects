@@ -8,28 +8,36 @@ const DUMMY_USERS = [
   { id: 'u3', name: 'Julie' },
 ];
 
-// eslint-disable-next-line react/function-component-definition
-export const Users = () => {
-  const [showUsers, setShowUsers] = React.useState(true);
+type TUserProps = {};
+type TUserState = { showUsers: boolean };
+/** Renders an unordered list of users */
+export class Users extends React.Component<TUserProps, TUserState> {
+  constructor(props: TUserProps) {
+    super(props);
+    this.state = { showUsers: true };
+  }
 
-  const toggleUsersHandler = () => {
-    setShowUsers((curState) => !curState);
-  };
+  toggleUsersHandler() {
+    this.setState((curState) => ({ showUsers: !curState.showUsers }));
+  }
 
-  const usersList = (
-    <ul>
-      {DUMMY_USERS.map((user) => (
-        <User key={user.id} name={user.name} />
-      ))}
-    </ul>
-  );
+  render() {
+    const usersList = (
+      <ul>
+        {DUMMY_USERS.map((user) => (
+          <User key={user.id} name={user.name} />
+        ))}
+      </ul>
+    );
 
-  return (
-    <div className={classes.users}>
-      <button type="button" onClick={toggleUsersHandler}>
-        {showUsers ? 'Hide' : 'Show'} Users
-      </button>
-      {showUsers && usersList}
-    </div>
-  );
-};
+    const { showUsers } = this.state;
+    return (
+      <div className={classes.users}>
+        <button type="button" onClick={this.toggleUsersHandler.bind(this)}>
+          {showUsers ? 'Hide' : 'Show'} Users
+        </button>
+        {showUsers && usersList}
+      </div>
+    );
+  }
+}
