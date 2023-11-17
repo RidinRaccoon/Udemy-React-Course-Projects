@@ -10,10 +10,11 @@ export function log(
 ) {
   let styling = 'padding: 0.15rem; background: #04406b; color: #fcfabd';
 
-  if (type === 'other')
-    styling = 'padding: 015rem; background: #210957; color: #ede6b2';
+  if (type === 'other') 
+  styling = 'padding: 0.15rem; background: #210957; color: #ede6b2';
 
   const indent = '- '.repeat(level);
 
+  // eslint-disable-next-line no-console
   console.log(`%c${indent}${message}`, styling);
 }

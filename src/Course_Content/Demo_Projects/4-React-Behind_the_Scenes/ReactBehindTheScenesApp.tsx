@@ -1,37 +1,28 @@
 import React from 'react';
-import './styles/index.css';
-import { Counter } from './components/Counter/_index';
 import { Header } from './components/Header';
+import { Counter, ConfigureCounter } from './components/Counter/_index';
 import { log } from './utils/logger';
+import './styles/index.css';
 
-/** */
+/** Renders two counters with separate history. \
+ * The value for the first counter can be set by the user. */
 export function ReactBehindTheScenesApp() {
   log('<App /> rendered');
 
-  const [enteredNumber, setEnteredNumber] = React.useState(0);
-  const [chosenCount, setChosenCount] = React.useState(0);
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
-    setEnteredNumber(+event.target.value);
-
-  const handleSetClick = () => {
-    setChosenCount(enteredNumber);
-    setEnteredNumber(0);
-  };
-
+  const [counterValue, setcounterValue] = React.useState(0);
+  const handleSetCount = React.useCallback(
+    (newCounterValue: number) => setcounterValue(newCounterValue),
+    [],
+  );
   return (
-    <React.StrictMode>
+    <>
       <Header />
       <main>
-        <section id="configure-counter">
-          <h2>Set Counter</h2>
-          <input type="number" onChange={handleChange} value={enteredNumber} />
-          <button type="button" onClick={handleSetClick}>
-            Set
-          </button>
-        </section>
-        <Counter initialCount={chosenCount} />
+        <ConfigureCounter onSet={handleSetCount} />
+        <Counter initialValue={counterValue} />
+        <Counter initialValue={counterValue} />
+        <Counter initialValue={0} />
       </main>
-    </React.StrictMode>
+    </>
   );
 }

@@ -1,31 +1,53 @@
 import React from 'react';
 import { log } from '../../utils/logger';
 
-/** */
-function HistoryItem(props: { count: number }) {
+export type THistoryItem = {
+  id: string;
+  value: number;
+};
+
+/** Creates a new item for the `<CounterHistory />` list */
+export function createHistoryItem(value: number) {
+  const item: THistoryItem = { id: String(Math.random()), value };
+  return item;
+}
+
+/** Renders a `CounterHistory` row */
+function HistoryItem(props: { value: number }) {
   log('<HistoryItem /> rendered', 3);
 
   const [selected, setSelected] = React.useState(false);
-  const { count } = props;
-
-  const handleClick = () => setSelected((prevSelected) => !prevSelected);
+  const { value } = props;
+  const handleClick = () => {
+    setSelected((prevSelected) => !prevSelected);
+  };
 
   return (
-    <li onClick={handleClick} className={selected ? 'selected' : 'undefined'}>
-      {count}
-    </li>
+    <tr>
+      <td onClick={handleClick} className={selected ? 'selected' : 'undefined'}>
+        {value}
+      </td>
+    </tr>
   );
 }
 
-export function CounterHistory(props: { history: number[] }) {
+/** Renders a table with the counter input history. \
+ * The initial value is not rendered. */
+export function CounterHistory(props: { history: THistoryItem[] }) {
   log('<CounterHistory /> rendered', 2);
   const { history } = props;
+
   return (
-    <ol>
-      {history.map((count, index) => (
-        // eslint-disable-next-line react/no-array-index-key
-        <HistoryItem key={index} count={count} />
-      ))}
-    </ol>
+    <table>
+      <tbody>
+        {history.map(
+          (count, index) =>
+            // Skip initial counter value
+            index < history.length - 1 && (
+              <HistoryItem key={count.id} value={count.value} />
+            ),
+        )}
+      </tbody>
+    </table>
   );
 }

@@ -129,32 +129,28 @@ section {
   color: #f3a6a6;
 }
 
-.counter ol {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
+.counter table {
   justify-content: center;
   align-items: center;
   margin: 0 auto;
   padding: 0;
-  list-style: none;
-  text-align: center;
 }
 
-.counter li {
+.counter td {
   width: 2rem;
   margin-left: 0.5rem;
   color: #8eb6b3;
-  padding: 0.2rem;
+  padding: 0.2rem 0.5rem;
+  text-align: right;
 }
 
-.counter li:first-child {
+.counter tr:first-child td {
   color: #87f0e9;
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
 }
 
-.counter li.selected {
+.counter td.selected {
   background-color: #335453;
   color: #d9f7f6;
   border-radius: 4px;
