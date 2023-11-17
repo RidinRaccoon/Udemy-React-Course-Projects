@@ -4,7 +4,7 @@
 
 <br>
 <h3>NOTE: Not up to date.</h3>
-<h4>Will be updated later</h4>
+<h4>Will be updated later.</h4>
 
 <br>
 <h2> New Course Content [23 October 2023] </h2>
