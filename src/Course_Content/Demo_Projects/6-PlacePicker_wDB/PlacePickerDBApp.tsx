@@ -8,7 +8,7 @@ import './styles/index.css';
  *  This application stores a list of places that the user would like to visit.
  *  The places can be added or removed from a list of available places.
  */
-export function PlacePickerApp() {
+export function PlacePickerDBApp() {
   const {
     availablePlaces,
     selectedPlaces,
