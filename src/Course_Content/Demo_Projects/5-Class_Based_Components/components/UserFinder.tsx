@@ -37,7 +37,6 @@ export class UserFinder extends React.Component<
 
   componentDidMount(): void {
     const { users } = this.context;
-    console.log(this.context);
     this.setState({ filteredUsers: users });
   }
 
