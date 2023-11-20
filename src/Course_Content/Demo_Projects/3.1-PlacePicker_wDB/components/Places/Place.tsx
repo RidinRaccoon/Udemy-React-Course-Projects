@@ -11,6 +11,8 @@ export type TPlace = {
   lon: number;
 };
 
+const backendURL = 'http://localhost:3001/'
+
 /** `PlacePickerApp` \
  * List item with place information */
 export function Place(props: {
@@ -20,11 +22,11 @@ export function Place(props: {
   const { place, onSelectPlace } = props;
   const { id, title, image } = place;
   const clickHandler = () => onSelectPlace(id);
-
+  const imgURL = backendURL + image.src;
   return (
     <li className="place-item">
       <button type="button" onClick={clickHandler}>
-        <img src={image.src} alt={image.alt} />
+        <img src={imgURL} alt={image.alt} />
         <h3>{title}</h3>
       </button>
     </li>
