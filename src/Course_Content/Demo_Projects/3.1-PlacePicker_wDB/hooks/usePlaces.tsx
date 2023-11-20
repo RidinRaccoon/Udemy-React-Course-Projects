@@ -1,7 +1,6 @@
 import React from 'react';
 import { Modal } from '../components/UI/Modal';
 import { DeletePlacePrompt, TPlace } from '../components/Places/_index';
-// import { AVAILABLE_PLACES } from '../data/data';
 import { sortPlacesByDistance } from '../utils/loc';
 import * as storage from '../utils/placesStorage';
 
@@ -17,7 +16,6 @@ export function usePlaces() {
     fetch('http://localhost:3001/places')
       .then((response) => response.json())
       .then((responseData: { places: TPlace[] }) => {
-        // setAvailablePlaces(responseData.places);
         // Sort by user location ( closest )
         navigator.geolocation.getCurrentPosition((position) => {
           const userLoc = position.coords;

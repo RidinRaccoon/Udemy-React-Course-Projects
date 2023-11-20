@@ -2,8 +2,8 @@ import React from 'react';
 import { Place, TPlace } from './Place';
 import './Places.css';
 
-/** `PlacePickerApp` \
- *  Renders a list of `Place` components */
+/** Renders a list of `Place` components \
+ * `PlacePickerApp` */
 export function Places(props: {
   title: string;
   places: TPlace[];

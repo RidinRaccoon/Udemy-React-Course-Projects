@@ -2,8 +2,8 @@ import * as React from 'react';
 import logoImg from '../assets/images/logo.png';
 import './Header.css';
 
-/** `PlacePickerApp` \
- * Renders the application's header */
+/** Renders the application's header \
+ * `PlacePickerApp` */
 export function Header() {
   return (
     <header>
