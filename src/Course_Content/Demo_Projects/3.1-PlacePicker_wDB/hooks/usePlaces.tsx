@@ -4,7 +4,8 @@ import { DeletePlacePrompt, TPlace } from '../components/Places/_index';
 import { sortPlacesByDistance } from '../utils/loc';
 import * as storage from '../utils/placesStorage';
 
-/** Imports the available places data and manages the selected places state */
+/** Imports the available places data and manages the selected places state 
+ * `PlacePickerDBApp` */
 export function usePlaces() {
   const [availablePlaces, setAvailablePlaces] = React.useState<TPlace[]>([]);
   const [selectedPlaces, setSelectedPlaces] = React.useState<TPlace[]>([]);

@@ -3,7 +3,7 @@ import { Place, TPlace } from './Place';
 import './Places.css';
 
 /** Renders a list of `Place` components \
- * `PlacePickerApp` */
+ * `PlacePickerDBApp` */
 export function Places(props: {
   title: string;
   places: TPlace[];

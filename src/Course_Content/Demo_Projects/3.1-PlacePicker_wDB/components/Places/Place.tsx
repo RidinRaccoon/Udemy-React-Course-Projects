@@ -14,7 +14,7 @@ export type TPlace = {
 const backendURL = 'http://localhost:3001/'
 
 /** List item with place information \
- * `PlacePickerApp` */
+ * `PlacePickerDBApp` */
 export function Place(props: {
   place: TPlace;
   onSelectPlace(id: string): void;

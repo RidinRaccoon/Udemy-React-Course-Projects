@@ -3,7 +3,7 @@ import logoImg from '../assets/images/logo.png';
 import './Header.css';
 
 /** Renders the application's header \
- * `PlacePickerApp` */
+ * `PlacePickerDBApp` */
 export function Header() {
   return (
     <header>

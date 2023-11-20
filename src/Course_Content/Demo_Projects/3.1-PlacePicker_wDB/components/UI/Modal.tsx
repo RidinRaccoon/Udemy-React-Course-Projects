@@ -7,7 +7,7 @@ export type ModalHandler = {
 };
 
 /** UI Modal component \
-* `PlacePickerApp` */
+* `PlacePickerDBApp` */
 export function Modal(props: {
   open: boolean;
   onClose(): void;

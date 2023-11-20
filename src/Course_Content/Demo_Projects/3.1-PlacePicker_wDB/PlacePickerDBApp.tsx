@@ -4,9 +4,10 @@ import { Header } from './components/_index';
 import { usePlaces } from './hooks/usePlaces';
 import './styles/index.css';
 
-/** PlacePicker
- *  This application stores a list of places that the user would like to visit.
- *  The places can be added or removed from a list of available places.
+/** PlacePicker with Database \
+ *  Refactored to use a dummy backend API instead of a data file. \
+ **  This application stores a list of places that the user would like to visit.
+ **  The places can be added or removed from a list of available places.
  */
 export function PlacePickerDBApp() {
   const {
