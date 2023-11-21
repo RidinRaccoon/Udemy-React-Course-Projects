@@ -8,24 +8,27 @@ export function Places(props: {
   title: string;
   places: TPlace[];
   fallbackText?: string | null;
+  isLoading: boolean;
+  loadingText: string;
   onSelectPlace(id: string): void;
 }) {
   const { title, places, fallbackText, onSelectPlace } = props;
+  const { isLoading, loadingText } = props;
   const hasPlaces = places.length > 0;
+
+  const placeList = places.map((place: TPlace) => (
+    <Place key={place.id} place={place} onSelectPlace={onSelectPlace} />
+  ));
+  
+  const fallBackMsg = (
+    <p className="fallback-text">{isLoading ? loadingText : fallbackText}</p>
+  );
 
   return (
     <section className="places-category">
       <h2>{title}</h2>
-
-      {!hasPlaces && <p className="fallback-text">{fallbackText}</p>}
-
-      {hasPlaces && (
-        <ul className="places">
-          {places.map((place: TPlace) => (
-            <Place key={place.id} place={place} onSelectPlace={onSelectPlace} />
-          ))}
-        </ul>
-      )}
+      {(isLoading || !hasPlaces) && fallBackMsg}
+      {!isLoading && hasPlaces && <ul className="places">{placeList}</ul>}
     </section>
   );
 }

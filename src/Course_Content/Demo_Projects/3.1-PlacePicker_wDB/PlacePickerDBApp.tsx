@@ -14,6 +14,7 @@ export function PlacePickerDBApp() {
     availablePlaces,
     selectedPlaces,
     addSelectedPlace,
+    isFetching,
     RemovalPromptModal,
     showRemovalPromptModal,
   } = usePlaces();
@@ -25,14 +26,18 @@ export function PlacePickerDBApp() {
       <main>
         <Places
           title="I'd like to visit ..."
-          fallbackText="Select the places you would like to visit below"
           places={selectedPlaces}
+          isLoading={isFetching}
+          loadingText="Loading places ..."
+          fallbackText="Select the places you would like to visit below"
           onSelectPlace={showRemovalPromptModal}
         />
         <Places
           title="Available Places"
-          fallbackText="No places available."
           places={availablePlaces}
+          isLoading={isFetching}
+          loadingText="Loading selected places ..."
+          fallbackText="No places available."
           onSelectPlace={addSelectedPlace}
         />
       </main>

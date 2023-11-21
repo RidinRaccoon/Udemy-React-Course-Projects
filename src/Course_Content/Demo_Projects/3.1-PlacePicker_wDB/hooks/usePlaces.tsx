@@ -4,37 +4,54 @@ import { DeletePlacePrompt, TPlace } from '../components/Places/_index';
 import { sortPlacesByDistance } from '../utils/loc';
 import * as storage from '../utils/placesStorage';
 
-/** Imports the available places data and manages the selected places state 
+/** Imports the available places data and manages the selected places state
  * `PlacePickerDBApp` */
 export function usePlaces() {
   const [availablePlaces, setAvailablePlaces] = React.useState<TPlace[]>([]);
   const [selectedPlaces, setSelectedPlaces] = React.useState<TPlace[]>([]);
-  const selectedPlace = React.useRef('');
   const [openModal, setOpenModal] = React.useState(false);
+  const [isFetching, setIsFetching] = React.useState(false);
+  const selectedPlace = React.useRef('');
 
-  // Get available places from backend
+  // Get the available and selected places from backend
   React.useEffect(() => {
-    fetch('http://localhost:3001/places')
-      .then((response) => response.json())
-      .then((responseData: { places: TPlace[] }) => {
-        // Sort by user location ( closest )
-        navigator.geolocation.getCurrentPosition((position) => {
-          const userLoc = position.coords;
-          const sortedPlaces = sortPlacesByDistance(
-            responseData.places,
-            userLoc.latitude,
-            userLoc.longitude,
-          );
-          setAvailablePlaces(sortedPlaces);
-        });
-
-        // Get stored place IDs from local storage
-        const storedPlaceIds = storage.getStoredPlaces();
-        const storedPlaces = responseData.places.filter(
-          (place: TPlace) => storedPlaceIds.indexOf(place.id) >= 0,
+    /** Get select place IDs from the backend */
+    async function fetchPlaces() {
+      const response = await fetch('http://localhost:3001/places');
+      const responseData = await response.json();
+      return responseData.places;
+    }
+    /** Get available places from the backend */
+    async function fetchSelectedPlaces(/* placeList: any */) {
+      const response = await fetch('http://localhost:3001/user-places');
+      const responseData = await response.json();
+      return responseData.selectedPlaceIDs;
+    }
+    /** Updates available and selected places with received data */
+    async function setPlaceInformation() {
+      setIsFetching(true);
+      const places = await fetchPlaces().then();
+      // Sort by user location ( closest )
+      navigator.geolocation.getCurrentPosition((position) => {
+        const userLoc = position.coords;
+        const sortedPlaces = sortPlacesByDistance(
+          places,
+          userLoc.latitude,
+          userLoc.longitude,
         );
-        setSelectedPlaces(storedPlaces);
+        setAvailablePlaces(sortedPlaces);
       });
+      // Update the selected places
+      const storedIDs = await fetchSelectedPlaces().then((value) => value);
+      const storedPlaces = places.filter(
+        (place: TPlace) => storedIDs.indexOf(place.id) >= 0,
+      );
+      setSelectedPlaces(storedPlaces);
+      setIsFetching(false);
+    }
+
+    
+    setPlaceInformation();
   }, []);
 
   /** Adds place to the `selectedPlaces` state */
@@ -78,6 +95,7 @@ export function usePlaces() {
     availablePlaces,
     selectedPlaces,
     addSelectedPlace,
+    isFetching,
     RemovalPromptModal,
     showRemovalPromptModal,
   };
