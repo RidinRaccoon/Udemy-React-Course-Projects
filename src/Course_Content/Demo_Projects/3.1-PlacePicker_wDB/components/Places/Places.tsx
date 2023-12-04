@@ -16,13 +16,13 @@ export function Places(props: {
   const { isLoading, loadingText } = props;
   const hasPlaces = places.length > 0;
 
-  const placeList = places.map((place: TPlace) => (
-    <Place key={place.id} place={place} onSelectPlace={onSelectPlace} />
-  ));
-  
   const fallBackMsg = (
     <p className="fallback-text">{isLoading ? loadingText : fallbackText}</p>
   );
+
+  const placeList = places.map((place: TPlace) => (
+    <Place key={place.id} place={place} onSelectPlace={onSelectPlace} />
+  ));
 
   return (
     <section className="places-category">

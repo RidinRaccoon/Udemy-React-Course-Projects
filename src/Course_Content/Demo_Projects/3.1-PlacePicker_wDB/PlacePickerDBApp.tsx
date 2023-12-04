@@ -10,18 +10,18 @@ import './styles/index.css';
  **  The places can be added or removed from a list of available places.
  */
 export function PlacePickerDBApp() {
-  const {
-    availablePlaces,
-    selectedPlaces,
-    addSelectedPlace,
-    isFetching,
-    RemovalPromptModal,
-    showRemovalPromptModal,
-  } = usePlaces();
+  const data = usePlaces();
+  const hasError = 'Error' in data;
+  if (hasError) {
+    const { Error } = data;
+    return Error;
+  }
 
+  const { places, modal } = data;
+  const { isFetching, availablePlaces, selectedPlaces } = places;
   return (
     <React.StrictMode>
-      {RemovalPromptModal}
+      {modal.component}
       <Header />
       <main>
         <Places
@@ -30,7 +30,7 @@ export function PlacePickerDBApp() {
           isLoading={isFetching}
           loadingText="Loading places ..."
           fallbackText="Select the places you would like to visit below"
-          onSelectPlace={showRemovalPromptModal}
+          onSelectPlace={modal.show}
         />
         <Places
           title="Available Places"
@@ -38,7 +38,7 @@ export function PlacePickerDBApp() {
           isLoading={isFetching}
           loadingText="Loading selected places ..."
           fallbackText="No places available."
-          onSelectPlace={addSelectedPlace}
+          onSelectPlace={places.addSelectedPlace}
         />
       </main>
     </React.StrictMode>

@@ -1,8 +1,9 @@
 import React from 'react';
 import { Modal } from '../components/UI/Modal';
 import { DeletePlacePrompt, TPlace } from '../components/Places/_index';
-import { sortPlacesByDistance } from '../utils/loc';
+import * as loc from '../utils/loc';
 import * as storage from '../utils/placesStorage';
+import { Error as ErrorComponent } from '../components/Error/Error';
 
 /** Imports the available places data and manages the selected places state
  * `PlacePickerDBApp` */
@@ -11,21 +12,42 @@ export function usePlaces() {
   const [selectedPlaces, setSelectedPlaces] = React.useState<TPlace[]>([]);
   const [openModal, setOpenModal] = React.useState(false);
   const [isFetching, setIsFetching] = React.useState(false);
+  const [error, setError] = React.useState<Error>();
   const selectedPlace = React.useRef('');
 
   // Get the available and selected places from backend
   React.useEffect(() => {
     /** Get select place IDs from the backend */
+    // eslint-disable-next-line consistent-return
     async function fetchPlaces() {
-      const response = await fetch('http://localhost:3001/places');
-      const responseData = await response.json();
-      return responseData.places;
+      try {
+        const response = await fetch('http://localhost:3001/places');
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch places.');
+        }
+        const responseData = await response.json();
+        return responseData.places;
+        //
+      } catch (newError) {
+        setError(newError);
+      }
     }
     /** Get available places from the backend */
+    // eslint-disable-next-line consistent-return
     async function fetchSelectedPlaces(/* placeList: any */) {
-      const response = await fetch('http://localhost:3001/user-places');
-      const responseData = await response.json();
-      return responseData.selectedPlaceIDs;
+      try {
+        const response = await fetch('http://localhost:3001/user-places');
+        const responseData = await response.json();
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch selected places.');
+        }
+        return responseData.selectedPlaceIDs;
+        //
+      } catch (error2) {
+        setError(error2);
+      }
     }
     /** Updates available and selected places with received data */
     async function setPlaceInformation() {
@@ -34,7 +56,7 @@ export function usePlaces() {
       // Sort by user location ( closest )
       navigator.geolocation.getCurrentPosition((position) => {
         const userLoc = position.coords;
-        const sortedPlaces = sortPlacesByDistance(
+        const sortedPlaces = loc.sortPlacesByDistance(
           places,
           userLoc.latitude,
           userLoc.longitude,
@@ -50,7 +72,6 @@ export function usePlaces() {
       setIsFetching(false);
     }
 
-    
     setPlaceInformation();
   }, []);
 
@@ -84,6 +105,18 @@ export function usePlaces() {
     storage.removeFromLocalStorage(selectedPlace.current);
   };
 
+  if (error) {
+    return {
+      Error: (
+        <ErrorComponent
+          title="An error occured"
+          message={error.message}
+          onConfirm={() => {}}
+        />
+      ),
+    };
+  }
+
   /** Modal window for place removal prompt */
   const RemovalPromptModal = (
     <Modal open={openModal} onClose={cancelRemoval}>
@@ -92,11 +125,19 @@ export function usePlaces() {
   );
 
   return {
-    availablePlaces,
-    selectedPlaces,
-    addSelectedPlace,
-    isFetching,
-    RemovalPromptModal,
-    showRemovalPromptModal,
+    places: {
+      isFetching,
+      availablePlaces,
+      selectedPlaces,
+      addSelectedPlace,
+    },
+    modal: {
+      component: RemovalPromptModal,
+      show: showRemovalPromptModal,
+    },
+    // isFetching,
+    // addSelectedPlace,
+    // RemovalPromptModal,
+    // showRemovalPromptModal,
   };
 }
