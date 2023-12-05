@@ -1,5 +1,5 @@
- // @ts-nocheck
- import fs from 'node:fs/promises';
+// @ts-nocheck
+import fs from 'node:fs/promises';
 import bodyParser from 'body-parser';
 import express from 'express';
 

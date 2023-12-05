@@ -2,8 +2,9 @@ import React from 'react';
 import { Modal } from '../components/UI/Modal';
 import { DeletePlacePrompt, TPlace } from '../components/Places/_index';
 import * as loc from '../utils/loc';
-import * as storage from '../utils/placesStorage';
+// import * as storage from '../utils/placesStorage';
 import { Error as ErrorComponent } from '../components/Error/Error';
+import * as DBUtils from '../utils/DBUtils';
 
 /** Imports the available places data and manages the selected places state
  * `PlacePickerDBApp` */
@@ -14,11 +15,9 @@ export function usePlaces() {
   const [isFetching, setIsFetching] = React.useState(false);
   const [error, setError] = React.useState<Error>();
   const selectedPlace = React.useRef('');
-
   // Get the available and selected places from backend
   React.useEffect(() => {
     /** Get select place IDs from the backend */
-    // eslint-disable-next-line consistent-return
     async function fetchPlaces() {
       try {
         const response = await fetch('http://localhost:3001/places');
@@ -29,26 +28,30 @@ export function usePlaces() {
         const responseData = await response.json();
         return responseData.places;
         //
-      } catch (newError) {
-        setError(newError);
+      } catch (err) {
+        setError(err);
+        return [];
       }
     }
     /** Get available places from the backend */
-    // eslint-disable-next-line consistent-return
-    async function fetchSelectedPlaces(/* placeList: any */) {
+    async function fetchSelectedPlaces() {
       try {
         const response = await fetch('http://localhost:3001/user-places');
         const responseData = await response.json();
 
         if (!response.ok) {
-          throw new Error('Failed to fetch selected places.');
+          // return new Error('Failed to fetch selected places.');
         }
+
         return responseData.selectedPlaceIDs;
+
         //
-      } catch (error2) {
-        setError(error2);
+      } catch (err) {
+        setError(err);
+        return [];
       }
     }
+
     /** Updates available and selected places with received data */
     async function setPlaceInformation() {
       setIsFetching(true);
@@ -77,16 +80,27 @@ export function usePlaces() {
 
   /** Adds place to the `selectedPlaces` state */
   const addSelectedPlace = (id: string) => {
-    setSelectedPlaces((prevPlaces) => {
-      const alreadySelected = prevPlaces.some((place) => place.id === id);
-      if (!alreadySelected) {
-        const selected = availablePlaces.find((place) => place.id === id);
-        if (selected) return [selected, ...prevPlaces];
+    const alreadySelected = selectedPlaces.some((place) => place.id === id);
+    if (alreadySelected) return;
+
+    const selected = availablePlaces.find((place) => place.id === id);
+    if (selected) {
+      setSelectedPlaces((prevPlaces) => [selected, ...prevPlaces]);
+
+      try {
+        const update = [
+          selected.id,
+          ...selectedPlaces.map((place: TPlace) => place.id),
+        ];
+        DBUtils.updateSelectedPlaces(update);
+        //
+      } catch (err) {
+        setError(err);
+        setSelectedPlaces(selectedPlaces);
       }
-      return prevPlaces;
-    });
-    storage.addToLocalStorage(id);
+    }
   };
+
   /** Displays the `RemovalPromptModal` */
   const showRemovalPromptModal = (id: string) => {
     setOpenModal(true);
@@ -101,8 +115,19 @@ export function usePlaces() {
     setSelectedPlaces((prevPlaces) =>
       prevPlaces.filter((place) => place.id !== selectedPlace.current),
     );
+
+    try {
+      const update = [
+        ...selectedPlaces
+          .filter((place: TPlace) => place.id !== selectedPlace.current)
+          .map((place: TPlace) => place.id),
+      ];
+      DBUtils.updateSelectedPlaces(update);
+    } catch (e) {
+      setError(e);
+      setSelectedPlaces(selectedPlaces);
+    }
     setOpenModal(false);
-    storage.removeFromLocalStorage(selectedPlace.current);
   };
 
   if (error) {
@@ -135,9 +160,5 @@ export function usePlaces() {
       component: RemovalPromptModal,
       show: showRemovalPromptModal,
     },
-    // isFetching,
-    // addSelectedPlace,
-    // RemovalPromptModal,
-    // showRemovalPromptModal,
   };
 }
