@@ -17,7 +17,8 @@ import { createRoot } from 'react-dom/client';
 // import { PlacePickerApp } from './Course_Content/Demo_Projects/3-PlacePicker/PlacePicker';
 // import { ReactBehindTheScenesApp } from './Course_Content/Demo_Projects/4-React-Behind_the_Scenes/ReactBehindTheScenesApp';
 // import { ClassBasedComponentsApp } from './Course_Content/Demo_Projects/5-Class_Based_Components/ClassBasedComponentsApp';
-import { PlacePickerDBApp } from './Course_Content/Demo_Projects/3.1-PlacePicker_wDB/PlacePickerDBApp';
+// import { PlacePickerDBApp } from './Course_Content/Demo_Projects/3.1-PlacePicker_wDB/PlacePickerDBApp';
+import { WorkingWithFormsApp } from './Course_Content/Demo_Projects/6-Working_with_Forms/WorkingWithFormsApp';
 
 // PRACTICE PROJECTS
 // import { TicTacToeApp } from './Course_Content/Practice_Projects/1-Tic-Tac-Toe/TicTacToeApp';
@@ -35,7 +36,8 @@ const root = createRoot(container);
 // root.render(<PlacePickerApp />);
 // root.render(<ReactBehindTheScenesApp />);
 // root.render(<ClassBasedComponentsApp />);
-root.render(<PlacePickerDBApp />)
+// root.render(<PlacePickerDBApp />)
+root.render(<WorkingWithFormsApp />);
 
 // PRACTICE PROJECTS
 // root.render(<TicTacToeApp />);
