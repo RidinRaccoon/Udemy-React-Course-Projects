@@ -1,5 +1,7 @@
 import * as React from 'react';
+import './styles/index.css';
+import { Counter } from './components/Counter';
 
 export function ReduxApp() {
-  return <h1>Redux App</h1>;
+  return <Counter />;
 }
