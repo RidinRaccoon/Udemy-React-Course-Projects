@@ -18,7 +18,7 @@ import { createRoot } from 'react-dom/client';
 // import { ReactBehindTheScenesApp } from './Course_Content/Demo_Projects/4-React-Behind_the_Scenes/ReactBehindTheScenesApp';
 // import { ClassBasedComponentsApp } from './Course_Content/Demo_Projects/5-Class_Based_Components/ClassBasedComponentsApp';
 // import { PlacePickerDBApp } from './Course_Content/Demo_Projects/3.1-PlacePicker_wDB/PlacePickerDBApp';
-import { ReduxApp } from './Course_Content/Demo_Projects/7-Redux/ReduxApp';
+import { ReduxAppWithProvider } from './Course_Content/Demo_Projects/7-Redux/ReduxAppWithProvider';
 
 // PRACTICE PROJECTS
 // import { TicTacToeApp } from './Course_Content/Practice_Projects/1-Tic-Tac-Toe/TicTacToeApp';
@@ -37,7 +37,7 @@ const root = createRoot(container);
 // root.render(<ReactBehindTheScenesApp />);
 // root.render(<ClassBasedComponentsApp />);
 // root.render(<PlacePickerDBApp />)
-root.render(<ReduxApp />);
+root.render(<ReduxAppWithProvider />);
 
 // PRACTICE PROJECTS
 // root.render(<TicTacToeApp />);

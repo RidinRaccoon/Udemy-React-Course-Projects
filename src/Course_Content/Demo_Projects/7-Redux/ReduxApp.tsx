@@ -1,14 +1,22 @@
 import * as React from 'react';
-import './styles/index.css';
 import * as ReactRedux from 'react-redux';
-import store from './store/index';
+import './styles/index.css';
+import { TState } from './store/index';
 import { Counter } from './components/Counter';
+import { Header } from './components/Header';
+import { Auth } from './components/Auth';
+import { UserProfile } from './components/UserProfile';
 
 export function ReduxApp() {
+  const isAuth = ReactRedux.useSelector(
+    (state: TState) => state.auth.isAuthenticated,
+  );
   return (
-    <ReactRedux.Provider store={store}>
-      <h1>Test</h1>
+    <React.StrictMode>
+      <Header />
+      {!isAuth && <Auth />}
+      {isAuth && <UserProfile />}
       <Counter />
-    </ReactRedux.Provider>
+    </React.StrictMode>
   );
 }
