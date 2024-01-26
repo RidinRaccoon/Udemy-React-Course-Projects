@@ -1,33 +1,34 @@
 import * as React from 'react';
 import * as ReactRedux from 'react-redux';
 import classes from './Counter.module.css';
-import * as Store from '../store/index';
+// import * as Store from '../store/index';
+import { counterSlice, TCounterState } from '../store/counter';
 
 export function Counter() {
   const dispatch = ReactRedux.useDispatch();
   const counter = ReactRedux.useSelector(
-    (state: Store.TState) => state.counter.counter,
+    (state: TCounterState) => state.counter.counter,
   );
   const show = ReactRedux.useSelector(
-    (state: Store.TState) => state.counter.showCounter,
+    (state: TCounterState) => state.counter.showCounter,
   );
 
   const incrementHandler = () => {
     // dispatch({ type: 'increment' });
-    dispatch(Store.counterActions.increment());
+    dispatch(counterSlice.actions.increment());
   };
   const decrementHandler = () => {
     // dispatch({ type: 'decrement' });
-    dispatch(Store.counterActions.decrement());
+    dispatch(counterSlice.actions.decrement());
   };
   const increaseHandler = () => {
     // dispatch({ type: 'increase', payload: { amount: 5 } });
-    dispatch(Store.counterActions.increase(5));
+    dispatch(counterSlice.actions.increase(5));
   };
 
   const toggleCounterHandler = () => {
     // dispatch({ type: 'toggle' });
-    dispatch(Store.counterActions.toggleCounter());
+    dispatch(counterSlice.actions.toggleCounter());
   };
 
   return (

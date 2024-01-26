@@ -1,12 +1,17 @@
 import * as React from 'react';
 import * as ReactRedux from 'react-redux';
-import { TState } from '../store/index';
+import { authSlice, TAuthState } from '../store/auth';
 import classes from './Header.module.css';
 
 export function Header() {
+  const dispatch = ReactRedux.useDispatch();
   const isAuth = ReactRedux.useSelector(
-    (state: TState) => state.auth.isAuthenticated,
+    (state: TAuthState) => state.auth.isAuthenticated,
   );
+
+  const logoutHandler = () => {
+    dispatch(authSlice.actions.logout());
+  };
   return (
     <header className={classes.header}>
       <h1>Redux Auth</h1>
@@ -20,7 +25,9 @@ export function Header() {
               <a href="/">My Sales</a>
             </li>
             <li>
-              <button type="button">Logout</button>
+              <button type="button" onClick={logoutHandler}>
+                Logout
+              </button>
             </li>
           </ul>
         </nav>
