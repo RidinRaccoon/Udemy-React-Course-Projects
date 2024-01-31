@@ -1,14 +1,31 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import * as React from 'react';
+import * as RR from 'react-redux';
+import { cartActions } from '../../store/cart-slice';
 import classes from './ProductItem.module.css';
 import { Card } from '../UI/Card';
 
 type TProductItemProps = {
+  id: string;
   title: string;
   price: number;
   description: string;
 };
+
 export function ProductItem(props: TProductItemProps) {
-  const { title, price, description } = props;
+  const { title, price, description, id } = props;
+
+  const dispatch = RR.useDispatch();
+
+  const addToCartHandler = () => {
+    dispatch(
+      cartActions.addItemToCart({
+        id,
+        title,
+        price,
+      }),
+    );
+  };
 
   return (
     <li className={classes.item}>
@@ -19,7 +36,9 @@ export function ProductItem(props: TProductItemProps) {
         </header>
         <p>{description}</p>
         <div className={classes.actions}>
-          <button type="button">Add to Cart</button>
+          <button type="button" onClick={addToCartHandler}>
+            Add to Cart
+          </button>
         </div>
       </Card>
     </li>
