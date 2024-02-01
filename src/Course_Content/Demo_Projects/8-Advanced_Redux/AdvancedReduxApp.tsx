@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import * as React from 'react';
-import { useAppDispatch, useAppSelector } from './hooks/redux';
-import { sendCartData } from './store/cart-slice';
+import { useAppDispatch, useAppSelector } from './hooks/useRedux';
+import { fetchCartData, sendCartData } from './store/cart-actions';
 
 import './styles/index.css';
 import { Cart } from './components/Cart/Cart';
@@ -19,17 +19,23 @@ export function AdvancedReduxApp() {
   const dispatch = useAppDispatch();
 
   React.useEffect(() => {
+    dispatch(fetchCartData());
+  }, [dispatch]);
+
+  React.useEffect(() => {
     if (isInitialLoad) {
       isInitialLoad = false;
       return;
     }
 
-    dispatch(sendCartData(cart));
+    if (cart.changed) {
+      dispatch(sendCartData(cart));
+    }
   }, [cart, dispatch]);
 
   return (
     <React.StrictMode>
-      {notification && (
+      {notification.status && (
         <Notification
           status={notification.status}
           title={notification.title}

@@ -2,8 +2,6 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable import/no-extraneous-dependencies */
 import * as RTK from '@reduxjs/toolkit';
-import { uiActions } from './ui-slice';
-import { AppDispatch } from './index';
 
 type TItem = {
   id: string;
@@ -15,17 +13,23 @@ type TItem = {
 export type TCartState = {
   items: TItem[];
   totalQuantity: number;
+  changed: boolean;
 };
 
 const initialState: TCartState = {
   items: [],
   totalQuantity: 0,
+  changed: false,
 };
 
 export const cartSlice = RTK.createSlice({
   name: 'cart',
   initialState,
   reducers: {
+    replaceCart(state, action: RTK.PayloadAction<TCartState>) {
+      state.totalQuantity = action.payload.totalQuantity;
+      state.items = action.payload.items;
+    },
     addItemToCart(
       state,
       action: RTK.PayloadAction<{ id: string; title: string; price: number }>,
@@ -33,6 +37,7 @@ export const cartSlice = RTK.createSlice({
       const newItem = action.payload;
       const existingItem = state.items.find((item) => item.id === newItem.id);
       state.totalQuantity += 1;
+      state.changed = true;
       if (!existingItem) {
         state.items.push({
           id: newItem.id,
@@ -50,6 +55,7 @@ export const cartSlice = RTK.createSlice({
       const id = action.payload;
       const existingItem = state.items.find((item) => item.id === id);
       state.totalQuantity -= 1;
+      state.changed = true;
       if (existingItem) {
         if (existingItem.quantity === 1) {
           state.items = state.items.filter((item) => item.id !== id);
@@ -63,49 +69,3 @@ export const cartSlice = RTK.createSlice({
 });
 
 export const cartActions = cartSlice.actions;
-export function sendCartData(cart: TCartState) {
-  return async (dispatch: AppDispatch) => {
-    dispatch(
-      uiActions.showNotification({
-        status: 'ending',
-        title: 'Sending',
-        message: 'Sending cart data.',
-      }),
-    );
-
-    async function sendRequest() {
-      const endpoint =
-        'https://react-course---advanced-redux-default-rtdb' +
-        '.europe-west1.firebasedatabase.app/cart.json';
-
-      const response = await fetch(endpoint, {
-        method: 'PUT',
-        body: JSON.stringify(cart),
-      });
-
-      if (!response.ok) {
-        throw new Error('Sending cart data failed.');
-      }
-    }
-
-    try {
-      await sendRequest();
-
-      dispatch(
-        uiActions.showNotification({
-          status: 'success',
-          title: 'Sucess',
-          message: 'Cart data sent successfully.',
-        }),
-      );
-    } catch (error) {
-      dispatch(
-        uiActions.showNotification({
-          status: 'error',
-          title: 'Error',
-          message: 'Failed to send cart data.',
-        }),
-      );
-    }
-  };
-}
