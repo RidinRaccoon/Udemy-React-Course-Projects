@@ -6,21 +6,26 @@ type TNotification = {
   status: string;
   title: string;
   message: string;
-} | null;
+};
 
 export type TUIState = {
   cartIsVisible: boolean;
   notification: TNotification;
 };
 
+const initialState: TUIState = {
+  cartIsVisible: false,
+  notification: { status: '', title: '', message: '' },
+};
+
 export const uiSlice = RTK.createSlice({
   name: 'ui',
-  initialState: { cartIsVisible: false, notification: null } as TUIState,
+  initialState,
   reducers: {
     toogle(state) {
       state.cartIsVisible = !state.cartIsVisible;
     },
-    showNotification(state, action) {
+    showNotification(state, action: RTK.PayloadAction<TNotification>) {
       state.notification = {
         status: action.payload.status,
         title: action.payload.title,

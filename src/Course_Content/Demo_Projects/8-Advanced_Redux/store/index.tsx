@@ -11,3 +11,9 @@ export type TStoreState = {
 export const store = RTK.configureStore({
   reducer: { ui: uiSlice.reducer, cart: cartSlice.reducer },
 });
+
+// https://redux.js.org/tutorials/typescript-quick-start
+// Infer the 'RootState' and 'AppDispatch' types from the store iteslf
+export type RootState = ReturnType<typeof store.getState>;
+// Inferred type: {ui: uiState, cart: cartstate}
+export type AppDispatch = typeof store.dispatch;
