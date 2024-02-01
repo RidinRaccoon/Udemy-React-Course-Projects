@@ -14,7 +14,6 @@ type TProductItemProps = {
 
 export function ProductItem(props: TProductItemProps) {
   const { title, price, description, id } = props;
-
   const dispatch = RR.useDispatch();
 
   const addToCartHandler = () => {
