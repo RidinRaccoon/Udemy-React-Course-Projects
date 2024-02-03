@@ -5,39 +5,71 @@ import { ProductItem } from './ProductItem';
 const DUMMY_PRODUCTS = [
   {
     id: 'p1',
-    price: 6,
-    title: 'My First Book',
-    description: 'The first book I ever wrote',
+    price: 9.99,
+    title: 'Photocopies',
+    author: 'John Berger',
+    description: (
+      <span>
+        Book description of <em>Photocopies</em> by John Berger.
+      </span>
+    ),
   },
   {
     id: 'p2',
-    price: 5,
-    title: 'My Second Book',
-    description: 'The second book I ever wrote',
+    price: 10.99,
+    title: 'Thinking with Type',
+    author: 'Ellen Lupton',
+    description: (
+      <span>
+        Book description of <em>Thinking with Type</em> by Ellen Lupton.
+      </span>
+    ),
   },
   {
     id: 'p3',
-    price: 5,
-    title: 'My Third Book',
-    description: 'The third book I ever wrote',
+    price: 11.99,
+    title: 'The Design of Everyday Things',
+    author: 'Don Norman',
+    description: (
+      <span>
+        Book description of <em>The Design of Everyday Things</em> by Don
+        Norman.
+      </span>
+    ),
   },
   {
     id: 'p4',
-    price: 5,
-    title: 'My Fourth Book',
-    description: 'The fourth book I ever wrote',
+    price: 9.99,
+    title: 'The Stranger',
+    author: 'Albert Camus',
+    description: (
+      <span>
+        Book description of <em>The Stranger</em> by Albert Camus.
+      </span>
+    ),
   },
   {
     id: 'p5',
-    price: 5,
-    title: 'My Fifth Book',
-    description: 'The fifth book I ever wrote',
+    price: 10.99,
+    title: 'The Golden Temple',
+    author: 'Yukio Mishima',
+    description: (
+      <span>
+        Book description of <em>The Golden Temple</em> by Yukio Mishima.
+      </span>
+    ),
   },
   {
     id: 'p6',
-    price: 5,
-    title: 'My Sixth Book',
-    description: 'The sixth book I ever wrote',
+    price: 9.99,
+    title: 'Encounter: Essays',
+    author: 'Milan Kundera',
+
+    description: (
+      <span>
+        Book description of <em>Encounter: Essays</em> by Milan Kundera.
+      </span>
+    ),
   },
 ];
 

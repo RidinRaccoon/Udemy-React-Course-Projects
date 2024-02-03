@@ -1,6 +1,6 @@
 import { uiActions } from './ui-slice';
 import { AppDispatch } from './index';
-import { TCartState, cartActions } from './cart-slice';
+import { cartActions, TCartState } from './cart-slice';
 
 const endpoint =
   'https://react-course---advanced-redux-default-rtdb' +
@@ -18,12 +18,19 @@ export function fetchCartData() {
     };
 
     try {
-      const cartData = await fetchData();
+      const cartData: TCartState = await fetchData();
+      const cartItems = cartData.items || [];
+      const cartTotal = cartItems.reduce(
+        (accum, item) => accum + item.price * item.quantity,
+        0,
+      );
+
       dispatch(
         cartActions.replaceCart({
-          items: cartData.items || [],
+          items: cartItems,
           totalQuantity: cartData.totalQuantity,
           changed: false,
+          cartTotal,
         }),
       );
     } catch (error) {
@@ -53,6 +60,7 @@ export function sendCartData(cart: TCartState) {
         method: 'PUT',
         body: JSON.stringify({
           items: cart.items,
+          totalPrice: cart.cartTotal,
           totalQuantity: cart.totalQuantity,
         }),
       });

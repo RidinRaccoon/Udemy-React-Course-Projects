@@ -6,12 +6,17 @@ import { Card } from '../UI/Card';
 import { CartItem } from './CartItem';
 
 export function Cart() {
-  const cartItems = useAppSelector((state) => state.cart.items);
+  const cart = useAppSelector((state) => state.cart);
+  const { items, cartTotal } = cart;
   return (
     <Card className={classes.cart}>
-      <h2>Your shopping Cart</h2>
+      <header>
+        <h2>Your shopping Cart</h2>
+        <p>Total: ${cartTotal.toFixed(2)}</p>
+      </header>
+
       <ul>
-        {cartItems.map((item) => (
+        {items.map((item) => (
           <CartItem
             key={item.id}
             item={{

@@ -4,9 +4,16 @@ section.cart {
   color: white;
 }
 
-.cart h2 {
+.cart header {
+  display: flex;
+  justify-content: space-between;
+}
+.cart header h2 {
   font-size: 1.25rem;
   margin: 0.5rem 0;
+}
+.cart header p {
+  margin-right: 1rem;
 }
 
 .cart ul {

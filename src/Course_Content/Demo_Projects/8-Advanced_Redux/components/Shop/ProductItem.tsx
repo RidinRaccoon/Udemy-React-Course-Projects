@@ -9,7 +9,7 @@ type TProductItemProps = {
   id: string;
   title: string;
   price: number;
-  description: string;
+  description: React.JSX.Element;
 };
 
 export function ProductItem(props: TProductItemProps) {

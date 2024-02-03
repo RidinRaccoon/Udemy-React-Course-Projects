@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 /* eslint-disable no-param-reassign */
 /* eslint-disable import/no-extraneous-dependencies */
 import * as RTK from '@reduxjs/toolkit';
@@ -18,6 +17,7 @@ type TAddItem = {
 export type TCartState = {
   items: TItem[];
   totalQuantity: number;
+  cartTotal: number;
   changed: boolean;
 };
 
@@ -25,6 +25,7 @@ const initialState: TCartState = {
   items: [],
   totalQuantity: 0,
   changed: false,
+  cartTotal: 0,
 };
 
 export const cartSlice = RTK.createSlice({
@@ -34,6 +35,7 @@ export const cartSlice = RTK.createSlice({
     replaceCart(state, action: RTK.PayloadAction<TCartState>) {
       state.totalQuantity = action.payload.totalQuantity;
       state.items = action.payload.items;
+      state.cartTotal = action.payload.cartTotal;
     },
     addItemToCart(state, action: RTK.PayloadAction<TAddItem>) {
       const newItem = action.payload;
@@ -50,6 +52,8 @@ export const cartSlice = RTK.createSlice({
         existingItem.quantity += 1;
         existingItem.totalPrice += newItem.price;
       }
+      const newTotal = (state.cartTotal + newItem.price).toFixed(2);
+      state.cartTotal = Number(newTotal);
       state.totalQuantity += 1;
       state.changed = true;
     },
@@ -63,6 +67,8 @@ export const cartSlice = RTK.createSlice({
           existingItem.quantity -= 1;
           existingItem.totalPrice -= existingItem.price;
         }
+        const newTotal = (state.cartTotal - existingItem.price).toFixed(2)
+        state.cartTotal = Number(newTotal);
         state.totalQuantity -= 1;
         state.changed = true;
       }
