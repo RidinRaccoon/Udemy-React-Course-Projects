@@ -10,6 +10,11 @@ type TItem = {
   quantity: number;
   totalPrice: number;
 };
+type TAddItem = {
+  id: string;
+  title: string;
+  price: number;
+};
 export type TCartState = {
   items: TItem[];
   totalQuantity: number;
@@ -30,14 +35,9 @@ export const cartSlice = RTK.createSlice({
       state.totalQuantity = action.payload.totalQuantity;
       state.items = action.payload.items;
     },
-    addItemToCart(
-      state,
-      action: RTK.PayloadAction<{ id: string; title: string; price: number }>,
-    ) {
+    addItemToCart(state, action: RTK.PayloadAction<TAddItem>) {
       const newItem = action.payload;
       const existingItem = state.items.find((item) => item.id === newItem.id);
-      state.totalQuantity += 1;
-      state.changed = true;
       if (!existingItem) {
         state.items.push({
           id: newItem.id,
@@ -50,12 +50,12 @@ export const cartSlice = RTK.createSlice({
         existingItem.quantity += 1;
         existingItem.totalPrice += newItem.price;
       }
+      state.totalQuantity += 1;
+      state.changed = true;
     },
     removeItemFromCart(state, action: RTK.PayloadAction<string>) {
       const id = action.payload;
       const existingItem = state.items.find((item) => item.id === id);
-      state.totalQuantity -= 1;
-      state.changed = true;
       if (existingItem) {
         if (existingItem.quantity === 1) {
           state.items = state.items.filter((item) => item.id !== id);
@@ -63,6 +63,8 @@ export const cartSlice = RTK.createSlice({
           existingItem.quantity -= 1;
           existingItem.totalPrice -= existingItem.price;
         }
+        state.totalQuantity -= 1;
+        state.changed = true;
       }
     },
   },

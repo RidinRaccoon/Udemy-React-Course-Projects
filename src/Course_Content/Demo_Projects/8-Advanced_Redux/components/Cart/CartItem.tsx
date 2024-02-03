@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import * as React from 'react';
-import * as RR from 'react-redux';
+import { useAppDispatch } from '../../hooks/useRedux';
 import { cartActions } from '../../store/cart-slice';
 import classes from './CartItem.module.css';
 
@@ -17,7 +17,7 @@ type TCartItemProps = {
 export function CartItem(props: TCartItemProps) {
   const { item } = props;
   const { title, quantity, total, price, id } = item;
-  const dispatch = RR.useDispatch();
+  const dispatch = useAppDispatch();
 
   const increaseQuantity = () => {
     dispatch(cartActions.addItemToCart({ id, title, price }));

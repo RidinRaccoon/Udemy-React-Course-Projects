@@ -2,7 +2,6 @@
 import * as React from 'react';
 import { useAppDispatch, useAppSelector } from './hooks/useRedux';
 import { fetchCartData, sendCartData } from './store/cart-actions';
-
 import './styles/index.css';
 import { Cart } from './components/Cart/Cart';
 import { Layout } from './components/Layout/Layout';
@@ -35,6 +34,10 @@ export function AdvancedReduxApp() {
 
   return (
     <React.StrictMode>
+      <Layout>
+        {showCart && <Cart />}
+        <Products />
+      </Layout>
       {notification.status && (
         <Notification
           status={notification.status}
@@ -42,10 +45,6 @@ export function AdvancedReduxApp() {
           message={notification.message}
         />
       )}
-      <Layout>
-        {showCart && <Cart />}
-        <Products />
-      </Layout>
     </React.StrictMode>
   );
 }

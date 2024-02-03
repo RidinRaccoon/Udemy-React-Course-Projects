@@ -1,15 +1,16 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import * as React from 'react';
-import * as RR from 'react-redux';
+import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
 import classes from './CartButton.module.css';
 import { uiActions } from '../../store/ui-slice';
 import { TStoreState } from '../../store';
 
 export function CartButton() {
-  const dispatch = RR.useDispatch();
-  const cartQuantity = RR.useSelector(
+  const cartQuantity = useAppSelector(
     (state: TStoreState) => state.cart.totalQuantity,
   );
+
+  const dispatch = useAppDispatch();
   const toggleCartHandler = () => {
     dispatch(uiActions.toogle());
   };

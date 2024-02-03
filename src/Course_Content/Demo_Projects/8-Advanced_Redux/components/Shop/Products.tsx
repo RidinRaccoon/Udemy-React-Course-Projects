@@ -15,9 +15,33 @@ const DUMMY_PRODUCTS = [
     title: 'My Second Book',
     description: 'The second book I ever wrote',
   },
+  {
+    id: 'p3',
+    price: 5,
+    title: 'My Third Book',
+    description: 'The third book I ever wrote',
+  },
+  {
+    id: 'p4',
+    price: 5,
+    title: 'My Fourth Book',
+    description: 'The fourth book I ever wrote',
+  },
+  {
+    id: 'p5',
+    price: 5,
+    title: 'My Fifth Book',
+    description: 'The fifth book I ever wrote',
+  },
+  {
+    id: 'p6',
+    price: 5,
+    title: 'My Sixth Book',
+    description: 'The sixth book I ever wrote',
+  },
 ];
 
-export function Products(/* props: TProductsProps */) {
+export function Products() {
   return (
     <section className={classes.products}>
       <h2>Buy your favorite products</h2>

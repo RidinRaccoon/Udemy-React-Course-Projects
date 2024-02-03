@@ -7,5 +7,3 @@ import type { RootState, AppDispatch } from '../store/index';
 export const useAppDispatch: () => AppDispatch = RR.useDispatch;
 export const useAppSelector: RR.TypedUseSelectorHook<RootState> =
   RR.useSelector;
-
-
