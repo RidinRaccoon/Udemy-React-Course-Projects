@@ -1,5 +1,10 @@
 import * as React from 'react';
+import * as RRD from 'react-router-dom';
 import classes from './MainNavigation.module.css';
+
+function addLinkClasses(isActive: boolean) {
+  return isActive ? classes.active : undefined;
+}
 
 export function MainNavigation() {
   return (
@@ -7,10 +12,20 @@ export function MainNavigation() {
       <nav>
         <ul className={classes.list}>
           <li>
-            <a href="/">Home</a>
+            <RRD.NavLink
+              to="/"
+              className={({ isActive }) => addLinkClasses(isActive)}
+            >
+              Home
+            </RRD.NavLink>
           </li>
           <li>
-            <a href="/">Events</a>
+            <RRD.NavLink
+              to="/events"
+              className={({ isActive }) => addLinkClasses(isActive)}
+            >
+              Events
+            </RRD.NavLink>
           </li>
         </ul>
       </nav>
