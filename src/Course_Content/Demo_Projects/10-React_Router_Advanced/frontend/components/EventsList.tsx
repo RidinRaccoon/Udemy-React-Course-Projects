@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as RRD from 'react-router-dom';
 import classes from './EventsList.module.css';
 // Components / Types
 import { TEvent } from './EventItem';
@@ -11,13 +12,13 @@ export function EventsList(props: { events: TEvent[] }) {
       <ul className={classes.list}>
         {events.map((event) => (
           <li key={event.id} className={classes.item}>
-            <a href="...">
+            <RRD.Link to={`/events/${event.id}`}>
               <img src={event.image} alt={event.title} />
               <div className={classes.content}>
                 <h2>{event.title}</h2>
                 <time>{event.date}</time>
               </div>
-            </a>
+            </RRD.Link>
           </li>
         ))}
       </ul>

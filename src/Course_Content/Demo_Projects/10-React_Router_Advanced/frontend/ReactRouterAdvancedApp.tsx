@@ -4,7 +4,6 @@ import './styles/index.css';
 // Components
 import * as Pages from './pages/_index';
 
-
 const router = RRD.createBrowserRouter([
   {
     path: '/',
@@ -12,10 +11,16 @@ const router = RRD.createBrowserRouter([
     errorElement: <Pages.ErrorPage />,
     children: [
       { path: '/', element: <Pages.HomePage /> },
-      { path: '/events', element: <Pages.EventsPage /> },
-      { path: '/events/:id', element: <Pages.EventDetailPage /> },
-      { path: '/events/new', element: <Pages.NewEventPage /> },
-      { path: '/events/:id/edit', element: <Pages.EditEventPage /> },
+      {
+        path: '/events',
+        element: <Pages.EventsLayout />,
+        children: [
+          { path: '/events/', element: <Pages.EventsPage /> },
+          { path: '/events/:id', element: <Pages.EventDetailPage /> },
+          { path: '/events/new', element: <Pages.NewEventPage /> },
+          { path: '/events/:id/edit', element: <Pages.EditEventPage /> },
+        ],
+      },
     ],
   },
 ]);
