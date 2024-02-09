@@ -12,7 +12,7 @@ export function EventsList(props: { events: TEvent[] }) {
       <ul className={classes.list}>
         {events.map((event) => (
           <li key={event.id} className={classes.item}>
-            <RRD.Link to={`/events/${event.id}`}>
+            <RRD.Link to={event.id}>
               <img src={event.image} alt={event.title} />
               <div className={classes.content}>
                 <h2>{event.title}</h2>

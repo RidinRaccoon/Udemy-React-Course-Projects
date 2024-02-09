@@ -15,6 +15,7 @@ export function MainNavigation() {
             <RRD.NavLink
               to="/"
               className={({ isActive }) => addLinkClasses(isActive)}
+              end
             >
               Home
             </RRD.NavLink>
