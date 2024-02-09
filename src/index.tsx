@@ -18,7 +18,8 @@ import { createRoot } from 'react-dom/client';
 // import { ReactBehindTheScenesApp } from './Course_Content/Demo_Projects/4-React-Behind_the_Scenes/ReactBehindTheScenesApp';
 // import { ClassBasedComponentsApp } from './Course_Content/Demo_Projects/5-Class_Based_Components/ClassBasedComponentsApp';
 // import { PlacePickerDBApp } from './Course_Content/Demo_Projects/3.1-PlacePicker_wDB/PlacePickerDBApp';
-import { ReactRouterApp } from './Course_Content/Demo_Projects/9-React_Router/ReactRouterApp';
+// import { ReactRouterApp } from './Course_Content/Demo_Projects/9-React_Router_Basics/ReactRouterApp';
+import { ReactRouterAdvancedApp } from './Course_Content/Demo_Projects/10-React_Router_Advanced/frontend/ReactRouterAdvancedApp';
 
 // PRACTICE PROJECTS
 // import { TicTacToeApp } from './Course_Content/Practice_Projects/1-Tic-Tac-Toe/TicTacToeApp';
@@ -37,7 +38,8 @@ const root = createRoot(container);
 // root.render(<ReactBehindTheScenesApp />);
 // root.render(<ClassBasedComponentsApp />);
 // root.render(<PlacePickerDBApp />)
-root.render(<ReactRouterApp />);
+// root.render(<ReactRouterApp />);
+root.render(<ReactRouterAdvancedApp />);
 
 // PRACTICE PROJECTS
 // root.render(<TicTacToeApp />);
