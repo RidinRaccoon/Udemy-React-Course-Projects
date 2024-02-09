@@ -1,12 +1,12 @@
 import * as React from 'react';
 import * as RRD from 'react-router-dom';
 // Components
-import { MainNavigation } from '../components/MainNavigation';
+import { EventsNavigation } from '../../components/_index';
 
-export function RootLayout() {
+export function EventsLayout() {
   return (
     <React.StrictMode>
-      <MainNavigation />
+      <EventsNavigation />
       <main>
         <RRD.Outlet />
       </main>

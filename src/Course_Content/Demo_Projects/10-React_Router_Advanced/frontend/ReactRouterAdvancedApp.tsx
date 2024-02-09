@@ -10,12 +10,12 @@ const router = RRD.createBrowserRouter([
     element: <Pages.RootLayout />,
     errorElement: <Pages.ErrorPage />,
     children: [
-      { path: '/', element: <Pages.HomePage /> },
+      { index: true, element: <Pages.HomePage /> },
       {
         path: '/events',
         element: <Pages.EventsLayout />,
         children: [
-          { path: '/events/', element: <Pages.EventsPage /> },
+          { index: true, element: <Pages.EventsPage /> },
           { path: '/events/:id', element: <Pages.EventDetailPage /> },
           { path: '/events/new', element: <Pages.NewEventPage /> },
           { path: '/events/:id/edit', element: <Pages.EditEventPage /> },

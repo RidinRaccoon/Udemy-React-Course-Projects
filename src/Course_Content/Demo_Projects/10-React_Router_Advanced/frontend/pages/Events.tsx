@@ -1,7 +1,6 @@
 import * as React from 'react';
-import * as RRD from 'react-router-dom';
 // Components / Types
-import { EventsList, EventsNavigation, TEvent } from '../components/_index';
+import { EventsList, TEvent } from '../components/_index';
 
 const DUMMY_EVENTS: TEvent[] = [
   {
@@ -34,16 +33,6 @@ const DUMMY_EVENTS: TEvent[] = [
   },
 ];
 
-export function EventsLayout() {
-  return (
-    <React.StrictMode>
-      <EventsNavigation />
-      <main>
-        <RRD.Outlet />
-      </main>
-    </React.StrictMode>
-  );
-}
 export function EventsPage() {
   return <EventsList events={DUMMY_EVENTS} />;
 }

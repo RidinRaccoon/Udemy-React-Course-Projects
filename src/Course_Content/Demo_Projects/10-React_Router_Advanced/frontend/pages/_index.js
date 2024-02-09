@@ -1,7 +1,10 @@
-export { RootLayout } from './Root';
+// LAYOUTS
+export { RootLayout } from './layouts/Root';
+export { EventsLayout } from './layouts/Events';
+// PAGES
 export { HomePage } from './Home';
 export { ErrorPage } from './Error';
-export { EventsLayout, EventsPage } from './Events';
+export { EventsPage } from './Events';
 export { EventDetailPage } from './EventDetail';
 export { NewEventPage } from './NewEvent';
 export { EditEventPage } from './EditEvent';
