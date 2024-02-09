@@ -17,6 +17,7 @@ module.exports = {
     filename: 'bundle[contenthash].js',
     clean: true,
     assetModuleFilename: '[name][ext]',
+    publicPath: '/',
   },
   devtool: 'source-map',
   devServer: {
@@ -62,4 +63,3 @@ module.exports = {
     ],
   },
 };
- 
