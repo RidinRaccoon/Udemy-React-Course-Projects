@@ -1,26 +1,21 @@
 import * as React from 'react';
 import * as RRD from 'react-router-dom';
 import './styles/index.css';
-// Pages
-import { RootLayout } from './pages/Root';
-import { ErrorPage } from './pages/Error';
-import { HomePage } from './pages/Home';
-import { EventsPage } from './pages/Events';
-import { EventDetailPage } from './pages/EventDetail';
-import { NewEventPage } from './pages/NewEvent';
-import { EditEventPage } from './pages/EditEvent';
+// Components
+import * as Pages from './pages/_index';
+
 
 const router = RRD.createBrowserRouter([
   {
     path: '/',
-    element: <RootLayout />,
-    errorElement: <ErrorPage />,
+    element: <Pages.RootLayout />,
+    errorElement: <Pages.ErrorPage />,
     children: [
-      { path: '/', element: <HomePage /> },
-      { path: '/events', element: <EventsPage /> },
-      { path: '/events/:id', element: <EventDetailPage /> },
-      { path: '/events/new', element: <NewEventPage /> },
-      { path: '/events/:id/edit', element: <EditEventPage /> },
+      { path: '/', element: <Pages.HomePage /> },
+      { path: '/events', element: <Pages.EventsPage /> },
+      { path: '/events/:id', element: <Pages.EventDetailPage /> },
+      { path: '/events/new', element: <Pages.NewEventPage /> },
+      { path: '/events/:id/edit', element: <Pages.EditEventPage /> },
     ],
   },
 ]);
