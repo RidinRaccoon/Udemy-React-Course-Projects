@@ -1,5 +1,10 @@
 import * as React from 'react';
+import * as RRD from 'react-router-dom';
 import classes from './EventsNavigation.module.css';
+
+function addLinkClasses(isActive: boolean) {
+  return isActive ? classes.active : undefined;
+}
 
 export function EventsNavigation() {
   return (
@@ -7,10 +12,21 @@ export function EventsNavigation() {
       <nav>
         <ul className={classes.list}>
           <li>
-            <a href="/events">All Events</a>
+            <RRD.NavLink
+              to="/events"
+              className={({ isActive }) => addLinkClasses(isActive)}
+              end
+            >
+              All Events
+            </RRD.NavLink>
           </li>
           <li>
-            <a href="/events/new">New Event</a>
+            <RRD.NavLink
+              to="/events/new"
+              className={({ isActive }) => addLinkClasses(isActive)}
+            >
+              New Event
+            </RRD.NavLink>
           </li>
         </ul>
       </nav>
