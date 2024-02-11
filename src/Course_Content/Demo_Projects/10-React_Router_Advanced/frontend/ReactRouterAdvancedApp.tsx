@@ -15,10 +15,28 @@ const router = RRD.createBrowserRouter([
         path: '/events',
         element: <Pages.EventsLayout />,
         children: [
-          { index: true, element: <Pages.EventsPage /> },
-          { path: '/events/:id', element: <Pages.EventDetailPage /> },
-          { path: '/events/new', element: <Pages.NewEventPage /> },
-          { path: '/events/:id/edit', element: <Pages.EditEventPage /> },
+          {
+            index: true,
+            element: <Pages.EventsPage />,
+            loader: Pages.eventsLoader,
+          },
+          {
+            path: ':id',
+            id: 'event-detail',
+            loader: Pages.eventDetailLoader,
+            children: [
+              {
+                index: true,
+                element: <Pages.EventDetailPage />,
+              },
+              { path: 'edit', element: <Pages.EditEventPage /> },
+            ],
+          },
+          {
+            path: '/events/new',
+            element: <Pages.NewEventPage />,
+            action: Pages.newEventAction,
+          },
         ],
       },
     ],

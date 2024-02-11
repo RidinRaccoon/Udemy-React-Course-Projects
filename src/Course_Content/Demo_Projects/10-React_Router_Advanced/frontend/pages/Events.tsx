@@ -1,38 +1,40 @@
 import * as React from 'react';
+import * as RRD from 'react-router-dom';
 // Components / Types
 import { EventsList, TEvent } from '../components/_index';
 
-const DUMMY_EVENTS: TEvent[] = [
-  {
-    id: 'ev01',
-    title: 'Event 1',
-    image: '',
-    date: '2024/02/09',
-    description: 'Event 1 description',
-  },
-  {
-    id: 'ev02',
-    title: 'Event 2',
-    image: '',
-    date: '2024/02/24',
-    description: 'Event 2 description',
-  },
-  {
-    id: 'ev03',
-    title: 'Event 3',
-    image: '',
-    date: '2024/03/10',
-    description: 'Event 3 description',
-  },
-  {
-    id: 'ev04',
-    title: 'Event 4',
-    image: '',
-    date: '2024/02/13',
-    description: 'Event 4 description',
-  },
-];
+export type TLoaderData =
+  | { events: TEvent[] }
+  | {
+      isError: boolean;
+      message: string;
+    };
 
 export function EventsPage() {
-  return <EventsList events={DUMMY_EVENTS} />;
+  // const events = RRD.useLoaderData() as TEvent[];
+  const data = RRD.useLoaderData() as TLoaderData;
+  if ('isError' in data) {
+    return <p>{data.message}</p>;
+  }
+  const { events } = data;
+
+  return (
+    <React.StrictMode>
+      {events && <EventsList events={events} />}
+    </React.StrictMode>
+  );
+}
+
+export async function loader() {
+  const response = await fetch('http://localhost:3001/events');
+  if (!response.ok) {
+    // const body = JSON.stringify({ message: "Couldn't fetch events." });
+    // throw new Response(body, { status: 500 });
+    // eslint-disable-next-line @typescript-eslint/no-throw-literal
+    throw RRD.json({ message: "Couldn't fetch events," }, { status: 500 });
+  }
+  return response;
+
+  /*   const data: TEventData = await response.json();
+  return data.events; */
 }

@@ -1,6 +1,11 @@
 // LAYOUTS
 export { RootLayout } from './layouts/Root';
 export { EventsLayout } from './layouts/Events';
+// LOADERS
+export { loader as eventsLoader } from './Events';
+export { loader as eventDetailLoader } from './EventDetail';
+// ACTIONS
+export { action as newEventAction } from './NewEvent';
 // PAGES
 export { HomePage } from './Home';
 export { ErrorPage } from './Error';

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as RRD from 'react-router-dom';
 import classes from './EventItem.module.css';
 
 export type TEvent = {
@@ -12,7 +13,7 @@ export type TEvent = {
 export function EventItem(props: { event: TEvent }) {
   const { event } = props;
   const { title, image, date, description } = event;
-  
+
   function startDeleteHandler() {
     // ...
   }
@@ -24,7 +25,7 @@ export function EventItem(props: { event: TEvent }) {
       <time>{date}</time>
       <p>{description}</p>
       <menu className={classes.actions}>
-        <a href="edit">Edit</a>
+        <RRD.Link to="edit">Edit</RRD.Link>
         <button type="button" onClick={startDeleteHandler}>
           Delete
         </button>

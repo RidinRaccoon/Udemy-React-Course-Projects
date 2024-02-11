@@ -9,38 +9,55 @@ export function EventForm(props: {
 }) {
   const navigate = RRD.useNavigate();
   const { method, event } = props;
+  const { title, image, date, description } = event;
 
   function cancelHandler() {
     navigate('..');
   }
-
   console.log(method);
-  console.log(event);
 
   return (
-    <form className={classes.form}>
+    <RRD.Form method="post" className={classes.form}>
       <p>
         <label htmlFor="title">Title</label>
-        <input id="title" type="text" name="title" required />
+        <input
+          required
+          id="title"
+          type="text"
+          name="title"
+          defaultValue={title}
+        />
       </p>
       <p>
         <label htmlFor="image">Image</label>
-        <input id="image" type="url" name="image" required />
+        <input
+          required
+          id="image"
+          type="url"
+          name="image"
+          defaultValue={image}
+        />
       </p>
       <p>
         <label htmlFor="date">Date</label>
-        <input id="date" type="date" name="date" required />
+        <input required id="date" type="date" name="date" defaultValue={date} />
       </p>
       <p>
         <label htmlFor="description">Description</label>
-        <textarea id="description" name="description" rows={5} required />
+        <textarea
+          required
+          id="description"
+          name="description"
+          rows={5}
+          defaultValue={description}
+        />
       </p>
       <div className={classes.actions}>
         <button type="button" onClick={cancelHandler}>
           Cancel
         </button>
-        <button type="button">Save</button>
+        <button type="submit">Save</button>
       </div>
-    </form>
+    </RRD.Form>
   );
 }
