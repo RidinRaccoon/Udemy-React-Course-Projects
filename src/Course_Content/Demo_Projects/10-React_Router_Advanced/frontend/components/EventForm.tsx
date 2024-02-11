@@ -7,15 +7,18 @@ export function EventForm(props: {
   method: any;
   event: any;
 }) {
-  const navigate = RRD.useNavigate();
   const { method, event } = props;
   const { title, image, date, description } = event;
+  const navigate = RRD.useNavigate();
+  const navigation = RRD.useNavigation();
 
   function cancelHandler() {
     navigate('..');
   }
-  console.log(method);
 
+  const isSubmitting = navigation.state === 'submitting';
+
+  console.log(method);
   return (
     <RRD.Form method="post" className={classes.form}>
       <p>
@@ -53,10 +56,12 @@ export function EventForm(props: {
         />
       </p>
       <div className={classes.actions}>
-        <button type="button" onClick={cancelHandler}>
+        <button type="button" onClick={cancelHandler} disabled={isSubmitting}>
           Cancel
         </button>
-        <button type="submit">Save</button>
+        <button type="submit" disabled={isSubmitting}>
+          {isSubmitting ? 'Submitting...' : 'Save'}
+        </button>
       </div>
     </RRD.Form>
   );
