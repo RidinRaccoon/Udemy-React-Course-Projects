@@ -28,6 +28,7 @@ const router = RRD.createBrowserRouter([
               {
                 index: true,
                 element: <Pages.EventDetailPage />,
+                action: Pages.deleteEventAction,
               },
               { path: 'edit', element: <Pages.EditEventPage /> },
             ],

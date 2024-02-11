@@ -14,8 +14,14 @@ export function EventItem(props: { event: TEvent }) {
   const { event } = props;
   const { title, image, date, description } = event;
 
+  const submit = RRD.useSubmit();
   function startDeleteHandler() {
-    // ...
+    // eslint-disable-next-line no-alert
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const proceed = window.confirm('Are you sure?');
+    if (proceed) {
+      submit(null, { method: 'delete' });
+    }
   }
 
   return (
