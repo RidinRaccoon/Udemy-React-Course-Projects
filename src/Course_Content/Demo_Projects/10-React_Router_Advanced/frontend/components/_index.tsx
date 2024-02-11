@@ -5,5 +5,6 @@ export { EventsList } from './EventsList';
 export { EventItem } from './EventItem';
 export { EventForm } from './EventForm';
 export { PageContent } from './PageContent';
-// TYPES
-export type { TEvent } from './EventItem';
+
+// ROUTER ACTIONS
+export { action as manipulateEventAction } from './EventForm';

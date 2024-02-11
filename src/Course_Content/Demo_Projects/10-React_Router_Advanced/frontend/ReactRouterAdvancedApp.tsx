@@ -3,6 +3,7 @@ import * as RRD from 'react-router-dom';
 import './styles/index.css';
 // Components
 import * as Pages from './pages/_index';
+import { manipulateEventAction } from './components/_index';
 
 const router = RRD.createBrowserRouter([
   {
@@ -30,13 +31,17 @@ const router = RRD.createBrowserRouter([
                 element: <Pages.EventDetailPage />,
                 action: Pages.deleteEventAction,
               },
-              { path: 'edit', element: <Pages.EditEventPage /> },
+              {
+                path: 'edit',
+                element: <Pages.EditEventPage />,
+                action: manipulateEventAction,
+              },
             ],
           },
           {
             path: '/events/new',
             element: <Pages.NewEventPage />,
-            action: Pages.newEventAction,
+            action: manipulateEventAction,
           },
         ],
       },

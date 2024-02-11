@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as RRD from 'react-router-dom';
 import classes from './EventsList.module.css';
 // Components / Types
-import { TEvent } from './EventItem';
+import { TEvent } from '../types/_index';
 
 export function EventsList(props: { events: TEvent[] }) {
   const { events } = props;

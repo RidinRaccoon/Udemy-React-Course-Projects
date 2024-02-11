@@ -1,18 +1,12 @@
 import * as React from 'react';
 import * as RRD from 'react-router-dom';
 // Components / Types
-import { EventsList, TEvent } from '../components/_index';
-
-export type TLoaderData =
-  | { events: TEvent[] }
-  | {
-      isError: boolean;
-      message: string;
-    };
+import { TEventsLoaderData } from '../types/_index';
+import { EventsList } from '../components/_index';
 
 export function EventsPage() {
   // const events = RRD.useLoaderData() as TEvent[];
-  const data = RRD.useLoaderData() as TLoaderData;
+  const data = RRD.useLoaderData() as TEventsLoaderData;
   if ('isError' in data) {
     return <p>{data.message}</p>;
   }

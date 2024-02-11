@@ -1,14 +1,8 @@
 import * as React from 'react';
 import * as RRD from 'react-router-dom';
 import classes from './EventItem.module.css';
-
-export type TEvent = {
-  id: string;
-  image: string;
-  title: string;
-  date: string;
-  description: string;
-};
+// Components & Types
+import { TEvent } from '../types/_index';
 
 export function EventItem(props: { event: TEvent }) {
   const { event } = props;
@@ -17,7 +11,6 @@ export function EventItem(props: { event: TEvent }) {
   const submit = RRD.useSubmit();
   function startDeleteHandler() {
     // eslint-disable-next-line no-alert
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     const proceed = window.confirm('Are you sure?');
     if (proceed) {
       submit(null, { method: 'delete' });

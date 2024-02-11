@@ -5,7 +5,7 @@ export { EventsLayout } from './layouts/Events';
 export { loader as eventsLoader } from './Events';
 export { loader as eventDetailLoader } from './EventDetail';
 // ACTIONS
-export { action as newEventAction } from './NewEvent';
+// export { action as newEventAction } from './NewEvent';
 export { action as deleteEventAction } from './EventDetail';
 // PAGES
 export { HomePage } from './Home';

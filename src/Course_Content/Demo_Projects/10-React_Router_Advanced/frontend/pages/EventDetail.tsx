@@ -1,12 +1,11 @@
 import * as React from 'react';
 import * as RRD from 'react-router-dom';
 // Components
-import { EventItem, TEvent } from '../components/_index';
-
-export type TLoaderData = { event: TEvent };
+import { TEventDetailLoaderData } from '../types/_index';
+import { EventItem } from '../components/_index';
 
 export function EventDetailPage() {
-  const data = RRD.useRouteLoaderData('event-detail') as TLoaderData;
+  const data = RRD.useRouteLoaderData('event-detail') as TEventDetailLoaderData;
   const { event } = data;
   return <EventItem event={event} />;
 }
