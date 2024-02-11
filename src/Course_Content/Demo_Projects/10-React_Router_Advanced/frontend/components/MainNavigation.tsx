@@ -1,6 +1,8 @@
 import * as React from 'react';
 import * as RRD from 'react-router-dom';
 import classes from './MainNavigation.module.css';
+// Components
+import {NewsletterSignup} from './NewsletterSignup'
 
 function addLinkClasses(isActive: boolean) {
   return isActive ? classes.active : undefined;
@@ -28,8 +30,17 @@ export function MainNavigation() {
               Events
             </RRD.NavLink>
           </li>
+          <li>
+            <RRD.NavLink
+              to="newsletter"
+              className={({ isActive }) => addLinkClasses(isActive)}
+            >
+              Newsletter
+            </RRD.NavLink>
+          </li>
         </ul>
       </nav>
+      <NewsletterSignup />
     </header>
   );
 }

@@ -45,6 +45,11 @@ const router = RRD.createBrowserRouter([
           },
         ],
       },
+      {
+        path: 'newsletter',
+        element: <Pages.NewsletterPage />,
+        action: Pages.newsletterAction,
+      },
     ],
   },
 ]);
