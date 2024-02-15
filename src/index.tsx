@@ -15,10 +15,13 @@ import { createRoot } from 'react-dom/client';
 // import { ReactEssentialsApp } from './Course_Content/Demo_Projects/1-React_Essentials/ReactEssentialsApp';
 // import { AlmostFinalCountdownApp } from './Course_Content/Demo_Projects/2-Almost_Final_Countdown/AlmostFinalCountdownApp';
 // import { PlacePickerApp } from './Course_Content/Demo_Projects/3-PlacePicker/PlacePicker';
+// import { PlacePickerDBApp } from './Course_Content/Demo_Projects/3.1-PlacePicker_wDB/PlacePickerDBApp';
 // import { ReactBehindTheScenesApp } from './Course_Content/Demo_Projects/4-React-Behind_the_Scenes/ReactBehindTheScenesApp';
 // import { ClassBasedComponentsApp } from './Course_Content/Demo_Projects/5-Class_Based_Components/ClassBasedComponentsApp';
-// import { PlacePickerDBApp } from './Course_Content/Demo_Projects/3.1-PlacePicker_wDB/PlacePickerDBApp';
-import { WorkingWithFormsApp } from './Course_Content/Demo_Projects/6-Working_with_Forms/WorkingWithFormsApp';
+// import { WorkingWithFormsApp } from './Course_Content/Demo_Projects/6-Working_with_Forms/WorkingWithFormsApp';
+// import { ReactRouterApp } from './Course_Content/Demo_Projects/9-React_Router_Basics/ReactRouterApp';
+import { ReactRouterAdvancedApp } from './Course_Content/Demo_Projects/10-React_Router_Advanced/frontend/ReactRouterAdvancedApp';
+
 
 // PRACTICE PROJECTS
 // import { TicTacToeApp } from './Course_Content/Practice_Projects/1-Tic-Tac-Toe/TicTacToeApp';
@@ -34,10 +37,12 @@ const root = createRoot(container);
 // root.render(<ReactEssentialsApp />);
 // root.render(<AlmostFinalCountdownApp />)
 // root.render(<PlacePickerApp />);
+// root.render(<PlacePickerDBApp />)
 // root.render(<ReactBehindTheScenesApp />);
 // root.render(<ClassBasedComponentsApp />);
-// root.render(<PlacePickerDBApp />)
-root.render(<WorkingWithFormsApp />);
+// root.render(<WorkingWithFormsApp />);
+// root.render(<ReactRouterApp />);
+root.render(<ReactRouterAdvancedApp />);
 
 // PRACTICE PROJECTS
 // root.render(<TicTacToeApp />);
