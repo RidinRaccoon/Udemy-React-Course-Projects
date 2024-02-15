@@ -1,3 +1,4 @@
+// NEW EVENT
 export type TNewEventFields = {
   title: string;
   image: string;
@@ -7,3 +8,8 @@ export type TNewEventFields = {
 export type TNewEventError = { message: string; errors: TNewEventFields };
 
 export type TNewEventActionData = TNewEventFields | TNewEventError;
+
+// NEWSLETTER
+export type TNewsletterActionData = {
+  message: string;
+};

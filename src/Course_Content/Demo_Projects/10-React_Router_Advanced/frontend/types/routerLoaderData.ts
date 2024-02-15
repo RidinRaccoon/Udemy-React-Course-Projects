@@ -1,6 +1,6 @@
 import { TEvent } from './events';
 
-export type TEventDetailLoaderData = { event: TEvent };
+export type TEventDetailLoaderData = { event: TEvent; events: TEvent[] };
 
 export type TEventsLoaderData =
   | { events: TEvent[] }
