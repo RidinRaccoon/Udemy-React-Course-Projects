@@ -20,8 +20,11 @@ import { createRoot } from 'react-dom/client';
 // import { ClassBasedComponentsApp } from './Course_Content/Demo_Projects/5-Class_Based_Components/ClassBasedComponentsApp';
 // import { WorkingWithFormsApp } from './Course_Content/Demo_Projects/6-Working_with_Forms/WorkingWithFormsApp';
 // import { ReduxAppWithProvider } from './Course_Content/Demo_Projects/7-Redux/ReduxAppWithProvider';
+// import { AdvancedReduxAppProvider } from './Course_Content/Demo_Projects/8-Advanced_Redux/AdvancedReduxAppProvider';
 // import { ReactRouterApp } from './Course_Content/Demo_Projects/9-React_Router_Basics/ReactRouterApp';
 import { ReactRouterAdvancedApp } from './Course_Content/Demo_Projects/10-React_Router_Advanced/frontend/ReactRouterAdvancedApp';
+
+
 
 // PRACTICE PROJECTS
 // import { TicTacToeApp } from './Course_Content/Practice_Projects/1-Tic-Tac-Toe/TicTacToeApp';
@@ -42,6 +45,7 @@ const root = createRoot(container);
 // root.render(<ClassBasedComponentsApp />);
 // root.render(<WorkingWithFormsApp />);
 // root.render(<ReduxAppWithProvider />);
+// root.render(<AdvancedReduxAppProvider />)
 // root.render(<ReactRouterApp />);
 root.render(<ReactRouterAdvancedApp />);
 
