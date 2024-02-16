@@ -23,7 +23,8 @@ import { createRoot } from 'react-dom/client';
 // import { AdvancedReduxAppProvider } from './Course_Content/Demo_Projects/8-Advanced_Redux/AdvancedReduxAppProvider';
 // import { ReactRouterApp } from './Course_Content/Demo_Projects/9-React_Router_Basics/ReactRouterApp';
 // import { ReactRouterAdvancedApp } from './Course_Content/Demo_Projects/10-React_Router_Advanced/frontend/ReactRouterAdvancedApp';
-import { AuthenticationApp } from './Course_Content/Demo_Projects/11_Authentication/frontend/AuthenticationApp';
+// import { AuthenticationApp } from './Course_Content/Demo_Projects/11_Authentication/frontend/AuthenticationApp';
+import { DeploymentBasicsApp } from './Course_Content/Demo_Projects/12_Deployment+LazyLoading/DeploymentBasicsApp';
 
 // PRACTICE PROJECTS
 // import { TicTacToeApp } from './Course_Content/Practice_Projects/1-Tic-Tac-Toe/TicTacToeApp';
@@ -47,7 +48,8 @@ const root = createRoot(container);
 // root.render(<AdvancedReduxAppProvider />)
 // root.render(<ReactRouterApp />);
 // root.render(<ReactRouterAdvancedApp />);
-root.render(<AuthenticationApp />);
+// root.render(<AuthenticationApp />);
+root.render(<DeploymentBasicsApp />);
 
 // PRACTICE PROJECTS
 // root.render(<TicTacToeApp />);
