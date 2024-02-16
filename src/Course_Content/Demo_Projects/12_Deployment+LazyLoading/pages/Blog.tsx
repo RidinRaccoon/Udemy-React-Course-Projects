@@ -13,3 +13,5 @@ export function BlogPage() {
 export function loader() {
   return fetch('https://jsonplaceholder.typicode.com/posts');
 }
+
+// TODO: Add Error page and error handling
