@@ -9,6 +9,8 @@ function addLinkClasses(isActive: boolean) {
 }
 
 export function MainNavigation() {
+  const token = RRD.useRouteLoaderData('root') as string;
+  // console.log('Token: ' + token);
   return (
     <header className={classes.header}>
       <nav>
@@ -38,14 +40,23 @@ export function MainNavigation() {
               Newsletter
             </RRD.NavLink>
           </li>
-          <li>
-            <RRD.NavLink
-              to="/auth?mode=login"
-              className={({ isActive }) => addLinkClasses(isActive)}
-            >
-              Authentication
-            </RRD.NavLink>
-          </li>
+          {!token && (
+            <li>
+              <RRD.NavLink
+                to="/auth?mode=login"
+                className={({ isActive }) => addLinkClasses(isActive)}
+              >
+                Authentication
+              </RRD.NavLink>
+            </li>
+          )}
+          {token && (
+            <li>
+              <RRD.Form action="/logout" method="POST">
+                <button type="submit">Logout</button>
+              </RRD.Form>
+            </li>
+          )}
         </ul>
       </nav>
       <NewsletterSignup />

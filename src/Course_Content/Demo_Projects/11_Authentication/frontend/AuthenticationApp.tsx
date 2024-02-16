@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as RRD from 'react-router-dom';
+import * as authUtils from './util/auth';
 import './styles/index.css';
 // Components
 import * as Pages from './pages/_index';
@@ -10,6 +11,8 @@ const router = RRD.createBrowserRouter([
     path: '/',
     element: <Pages.RootLayout />,
     errorElement: <Pages.ErrorPage />,
+    id: 'root',
+    loader: authUtils.tokenLoader,
     children: [
       { index: true, element: <Pages.HomePage /> },
       {
@@ -55,6 +58,7 @@ const router = RRD.createBrowserRouter([
         element: <Pages.NewsletterPage />,
         action: Pages.newsletterAction,
       },
+      { path: 'logout', action: Pages.logoutAction },
     ],
   },
 ]);
