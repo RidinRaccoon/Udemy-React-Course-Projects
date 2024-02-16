@@ -42,13 +42,15 @@ const router = RRD.createBrowserRouter([
               {
                 path: 'edit',
                 element: <Pages.EditEventPage />,
+                loader: authUtils.checkAuthLoader,
                 action: manipulateEventAction,
               },
             ],
           },
           {
-            path: '/events/new',
+            path: 'new',
             element: <Pages.NewEventPage />,
+            loader: authUtils.checkAuthLoader,
             action: manipulateEventAction,
           },
         ],
