@@ -7,6 +7,8 @@ function addLinkClasses(isActive: boolean) {
 }
 
 export function EventsNavigation() {
+  const authToken = RRD.useRouteLoaderData('root') as string;
+
   return (
     <header className={classes.header}>
       <nav>
@@ -20,14 +22,16 @@ export function EventsNavigation() {
               All Events
             </RRD.NavLink>
           </li>
-          <li>
-            <RRD.NavLink
-              to="/events/new"
-              className={({ isActive }) => addLinkClasses(isActive)}
-            >
-              New Event
-            </RRD.NavLink>
-          </li>
+          {authToken && (
+            <li>
+              <RRD.NavLink
+                to="/events/new"
+                className={({ isActive }) => addLinkClasses(isActive)}
+              >
+                New Event
+              </RRD.NavLink>
+            </li>
+          )}
         </ul>
       </nav>
     </header>

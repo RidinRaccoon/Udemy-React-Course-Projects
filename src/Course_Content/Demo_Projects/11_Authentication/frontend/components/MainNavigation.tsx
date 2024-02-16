@@ -9,8 +9,8 @@ function addLinkClasses(isActive: boolean) {
 }
 
 export function MainNavigation() {
-  const token = RRD.useRouteLoaderData('root') as string;
-  // console.log('Token: ' + token);
+  const authToken = RRD.useRouteLoaderData('root') as string;
+
   return (
     <header className={classes.header}>
       <nav>
@@ -40,7 +40,7 @@ export function MainNavigation() {
               Newsletter
             </RRD.NavLink>
           </li>
-          {!token && (
+          {!authToken && (
             <li>
               <RRD.NavLink
                 to="/auth?mode=login"
@@ -50,7 +50,7 @@ export function MainNavigation() {
               </RRD.NavLink>
             </li>
           )}
-          {token && (
+          {authToken && (
             <li>
               <RRD.Form action="/logout" method="POST">
                 <button type="submit">Logout</button>

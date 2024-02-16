@@ -5,7 +5,6 @@ import { TEventsLoaderData } from '../types/_index';
 import { EventsList } from '../components/_index';
 
 export function EventsPage() {
-  // const events = RRD.useLoaderData() as TEvent[];
   const data = RRD.useLoaderData() as TEventsLoaderData;
   const fallback = <p style={{ textAlign: 'center' }}>Loading...</p>;
 

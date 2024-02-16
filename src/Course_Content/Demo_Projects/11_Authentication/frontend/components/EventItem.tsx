@@ -5,6 +5,7 @@ import classes from './EventItem.module.css';
 import { TEvent } from '../types/_index';
 
 export function EventItem(props: { event: TEvent }) {
+  const authToken = RRD.useRouteLoaderData('root') as string;
   const { event } = props;
   const { title, image, date, description } = event;
 
@@ -23,12 +24,14 @@ export function EventItem(props: { event: TEvent }) {
       <h1>{title}</h1>
       <time>{date}</time>
       <p>{description}</p>
-      <menu className={classes.actions}>
-        <RRD.Link to="edit">Edit</RRD.Link>
-        <button type="button" onClick={startDeleteHandler}>
-          Delete
-        </button>
-      </menu>
+      {authToken && (
+        <menu className={classes.actions}>
+          <RRD.Link to="edit">Edit</RRD.Link>
+          <button type="button" onClick={startDeleteHandler}>
+            Delete
+          </button>
+        </menu>
+      )}
     </article>
   );
 }
