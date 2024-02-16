@@ -13,3 +13,7 @@ export type TNewEventActionData = TNewEventFields | TNewEventError;
 export type TNewsletterActionData = {
   message: string;
 };
+
+// AUTHENTICATION
+export type TAuthError = { message: string; errors: { [key: string]: string } };
+export type TAuthActionData = TAuthError;

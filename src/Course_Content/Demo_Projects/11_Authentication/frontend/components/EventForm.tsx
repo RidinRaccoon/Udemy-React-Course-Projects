@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as RRD from 'react-router-dom';
+import * as authUtils from '../util/auth';
 import classes from './EventForm.module.css';
 // Components / Types
 import { TEvent, TNewEventActionData } from '../types/_index';
@@ -76,9 +77,7 @@ export function EventForm(props: {
   );
 }
 
-/**
- * Submits new event data from `EventForm` to the backend
- */
+// Edit/Create New Event action
 export async function action({ request, params }: RRD.ActionFunctionArgs) {
   const { method } = request;
   const data = await request.formData();
@@ -93,9 +92,11 @@ export async function action({ request, params }: RRD.ActionFunctionArgs) {
   let url = 'http://localhost:3001/events';
   if (method === 'PATCH') url += `/${params.id}`;
 
+  const authToken = authUtils.getAuthToken();
   const response = await fetch(url, {
     method,
     headers: {
+      'Authorization': `Bearer ${authToken}`,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(eventData),

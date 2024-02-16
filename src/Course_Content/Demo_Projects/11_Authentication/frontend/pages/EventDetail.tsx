@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as RRD from 'react-router-dom';
+import * as authUtils from '../util/auth';
 // Components
 import { TEventDetailLoaderData } from '../types/_index';
 import { EventItem, EventsList } from '../components/_index';
@@ -63,8 +64,13 @@ export async function loader({ params }: RRD.LoaderFunctionArgs<any>) {
 // Delete event action
 export async function action({ params, request }: RRD.ActionFunctionArgs) {
   const eventId = params.id;
+  
+  const authToken = authUtils.getAuthToken();
   const response = await fetch(`http://localhost:3001/events/${eventId}`, {
     method: request.method,
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+    },
   });
 
   if (!response.ok) {

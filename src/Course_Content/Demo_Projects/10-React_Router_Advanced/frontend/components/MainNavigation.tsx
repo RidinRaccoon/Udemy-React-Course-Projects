@@ -32,7 +32,7 @@ export function MainNavigation() {
           </li>
           <li>
             <RRD.NavLink
-              to="newsletter"
+              to="/newsletter"
               className={({ isActive }) => addLinkClasses(isActive)}
             >
               Newsletter

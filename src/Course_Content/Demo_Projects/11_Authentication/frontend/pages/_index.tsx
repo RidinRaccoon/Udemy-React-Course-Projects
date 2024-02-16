@@ -5,6 +5,7 @@ export { EventsLayout } from './layouts/Events';
 export { loader as eventsLoader } from './Events';
 export { loader as eventDetailLoader } from './EventDetail';
 // ACTIONS
+export { action as authAction } from './Authentication';
 export { action as deleteEventAction } from './EventDetail';
 export { action as newsletterAction } from './Newsletter';
 // PAGES
