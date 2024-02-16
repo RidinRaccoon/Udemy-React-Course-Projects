@@ -8,6 +8,7 @@ export { loader as eventDetailLoader } from './EventDetail';
 export { action as deleteEventAction } from './EventDetail';
 export { action as newsletterAction } from './Newsletter';
 // PAGES
+export { AuthenticationPage } from './Authentication';
 export { HomePage } from './Home';
 export { ErrorPage } from './Error';
 export { EventsPage } from './Events';

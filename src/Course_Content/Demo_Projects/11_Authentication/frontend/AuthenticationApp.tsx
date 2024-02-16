@@ -12,6 +12,7 @@ const router = RRD.createBrowserRouter([
     errorElement: <Pages.ErrorPage />,
     children: [
       { index: true, element: <Pages.HomePage /> },
+      { path: '/auth', element: <Pages.AuthenticationPage /> },
       {
         path: '/events',
         element: <Pages.EventsLayout />,
