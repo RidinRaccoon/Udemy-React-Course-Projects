@@ -16,8 +16,8 @@ export function NewEventsSection() {
 
       if (!response.ok) {
         const newError = new Error('An error occured while fecthing events.');
-        error.code = response.status;
-        error.info = await response.json();
+        newError.code = response.status;
+        newError.info = await response.json();
         throw newError;
       }
 
