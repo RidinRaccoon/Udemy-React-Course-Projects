@@ -11,6 +11,7 @@ export function Events() {
   return (
     <>
       <RRD.Outlet />
+      <div id="modal" /> {/* New Event Modal */}
       <Header>
         <RRD.Link to="/events/new" className="button">
           New Event
