@@ -1,50 +1,33 @@
 // @ts-nocheck
+/* eslint-disable import/no-extraneous-dependencies */
 import * as React from 'react';
+import * as tsq from '@tanstack/react-query';
+import * as httpUtils from '../../utils/http';
 // Components
 import { LoadingIndicator, ErrorBlock } from '../UI/_index';
 import { EventItem } from './EventItem';
 
 export function NewEventsSection() {
-  const [data, setData] = React.useState();
-  const [error, setError] = React.useState();
-  const [isLoading, setIsLoading] = React.useState(false);
+  const queryResults = tsq.useQuery({
+    queryKey: ['events'],
+    queryFn: httpUtils.fetchEvents,
+    staleTime: 5000,
+  });
 
-  React.useEffect(() => {
-    async function fetchEvents() {
-      setIsLoading(true);
-      const response = await fetch('http://localhost:3001/events');
-
-      if (!response.ok) {
-        const newError = new Error('An error occured while fecthing events.');
-        newError.code = response.status;
-        newError.info = await response.json();
-        throw newError;
-      }
-
-      const { events } = await response.json();
-      return events;
-    }
-
-    fetchEvents()
-      .then((events) => {
-        setData(events);
-      })
-      .catch((err) => {
-        setError(err);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }, []);
-
+  const { data, isPending, isError, error } = queryResults;
   let content;
 
-  if (isLoading) content = <LoadingIndicator />;
-  if (error) {
+  if (isPending) content = <LoadingIndicator />;
+
+  if (isError) {
     content = (
-      <ErrorBlock title="An error occurred" message="Failed to fetch events" />
+      <ErrorBlock
+        title="An error occurred"
+        message={error.info?.message || 'Failed to fetch events'}
+      />
     );
   }
+
   if (data) {
     content = (
       <ul className="events-list">

@@ -1,11 +1,48 @@
 // @ts-nocheck
+/* eslint-disable import/no-extraneous-dependencies */
 import * as React from 'react';
+import * as tsq from '@tanstack/react-query';
+import * as httpUtils from '../../utils/http';
+// Components
+import { ErrorBlock, LoadingIndicator } from '../UI/_index';
+import { EventItem } from './EventItem';
 
 export function FindEventSection() {
-  const searchElement = React.useRef(null);
+  const searchElement = React.useRef<HTMLInputElement>(null);
+  const [searchTerm, setSearchTerm] = React.useState<string>();
 
-  function handleSubmit(event) {
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    setSearchTerm(searchElement.current?.value || '');
+  }
+
+  const queryResults = tsq.useQuery({
+    queryKey: ['events', { searchTerm }],
+    queryFn: ({ signal }) => httpUtils.fetchEvents({ signal, searchTerm }),
+    enabled: searchTerm !== undefined,
+  });
+
+  const { data, isLoading, isError, error } = queryResults;
+  let content = <p>Please enter a search term to find events.</p>;
+
+  if (isLoading) content = <LoadingIndicator />;
+
+  if (isError) {
+    const errorTitle = 'An error occurred';
+    const errorMsg = error.info?.message || 'Failed to fetch events.';
+    content = <ErrorBlock title={errorTitle} message={errorMsg} />;
+  }
+
+  if (data) {
+    content = (
+      <ul className="events-list">
+        {data.map((event) => (
+          <li key={event.id}>
+            <EventItem event={event} />
+          </li>
+        ))}
+      </ul>
+    );
   }
 
   return (
@@ -15,13 +52,14 @@ export function FindEventSection() {
         <form onSubmit={handleSubmit} id="search-form">
           <input
             type="search"
-            placeholder="Search events"
             ref={searchElement}
+            defaultValue={searchTerm}
+            placeholder="Search events"
           />
-          <button type="button">Search</button>
+          <button type="submit">Search</button>
         </form>
       </header>
-      <p>Please enter a search term and to find events.</p>
+      {content}
     </section>
   );
 }
