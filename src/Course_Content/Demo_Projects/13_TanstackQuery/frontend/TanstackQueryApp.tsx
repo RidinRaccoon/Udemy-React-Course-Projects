@@ -1,7 +1,8 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import * as React from 'react';
-import * as rrd from 'react-router-dom';
-import * as tsq from '@tanstack/react-query';
+import * as RRD from 'react-router-dom';
+import * as RQ from '@tanstack/react-query';
+import * as httpUtils from './utils/http';
 import './styles/index.css';
 // Components
 import {
@@ -11,10 +12,10 @@ import {
   EditEvent,
 } from './components/Events/_index';
 
-const router = rrd.createBrowserRouter([
+const router = RRD.createBrowserRouter([
   {
     path: '/',
-    element: <rrd.Navigate to="/events" />,
+    element: <RRD.Navigate to="/events" />,
   },
   {
     path: '/events',
@@ -33,12 +34,11 @@ const router = rrd.createBrowserRouter([
   },
 ]);
 
-const queryClient = new tsq.QueryClient();
 
 export function TanstackQueryApp() {
   return (
-    <tsq.QueryClientProvider client={queryClient}>
-      <rrd.RouterProvider router={router} />
-    </tsq.QueryClientProvider>
+    <RQ.QueryClientProvider client={httpUtils.queryClient}>
+      <RRD.RouterProvider router={router} />
+    </RQ.QueryClientProvider>
   );
 }

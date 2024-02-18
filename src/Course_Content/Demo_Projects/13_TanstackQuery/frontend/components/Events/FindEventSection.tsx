@@ -1,7 +1,7 @@
 // @ts-nocheck
 /* eslint-disable import/no-extraneous-dependencies */
 import * as React from 'react';
-import * as tsq from '@tanstack/react-query';
+import * as RQ from '@tanstack/react-query';
 import * as httpUtils from '../../utils/http';
 // Components
 import { ErrorBlock, LoadingIndicator } from '../UI/_index';
@@ -16,7 +16,7 @@ export function FindEventSection() {
     setSearchTerm(searchElement.current?.value || '');
   }
 
-  const queryResults = tsq.useQuery({
+  const queryResults = RQ.useQuery({
     queryKey: ['events', { searchTerm }],
     queryFn: ({ signal }) => httpUtils.fetchEvents({ signal, searchTerm }),
     enabled: searchTerm !== undefined,

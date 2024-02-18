@@ -1,9 +1,13 @@
-/* eslint-disable react/jsx-no-bind */
 // @ts-nocheck
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable react/jsx-no-bind */
 import * as React from 'react';
+import * as RQ from '@tanstack/react-query';
+import * as httpUtils from '../../utils/http';
 // Components & Types
 import { TImage } from '../../types/types';
 import { ImagePicker } from '../ImagePicker';
+import { ErrorBlock } from '../UI/ErrorBlock';
 
 export function EventForm(
   props: {
@@ -27,6 +31,13 @@ export function EventForm(
     onSubmit({ ...data, image: selectedImage });
   }
 
+  const queryResults = RQ.useQuery({
+    queryKey: ['event-images'],
+    queryFn: httpUtils.fetchSelectableImages,
+  });
+
+  const { data, isPending, isError } = queryResults;
+
   return (
     <form id="event-form" onSubmit={handleSubmit}>
       <p className="control">
@@ -39,13 +50,22 @@ export function EventForm(
         />
       </p>
 
-      <div className="control">
-        <ImagePicker
-          images={[]}
-          onSelect={handleSelectImage}
-          selectedImage={selectedImage}
+      {isPending && <p>Loading selectable images...</p>}
+      {isError && (
+        <ErrorBlock
+          title="Failed to load selectable images"
+          message="Please try again later."
         />
-      </div>
+      )}
+      {data && (
+        <div className="control">
+          <ImagePicker
+            images={data}
+            onSelect={handleSelectImage}
+            selectedImage={selectedImage}
+          />
+        </div>
+      )}
 
       <p className="control">
         <label htmlFor="description">Description</label>
