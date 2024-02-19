@@ -63,3 +63,61 @@ export async function fetchSelectableImages(params: { signal: AbortSignal }) {
   const { images } = await response.json();
   return images;
 }
+
+/** Gets the event details from the backend */
+export async function fetchEvent(params: { id: string; signal: AbortSignal }) {
+  const { id, signal } = params;
+  const response = await fetch(`http://localhost:3001/events/${id}`, {
+    signal,
+  });
+
+  if (!response.ok) {
+    const error = new Error(
+      'An error occurred while fetching the event details',
+    );
+    error.code = response.status;
+    error.info = await response.json();
+    throw error;
+  }
+
+  const { event } = await response.json();
+  return event;
+}
+
+/** Deletes the corresponding event from the backend */
+export async function deleteEvent(params: { id: string }) {
+  const { id } = params;
+  const response = await fetch(`http://localhost:3001/events/${id}`, {
+    method: 'DELETE',
+  });
+
+  if (!response.ok) {
+    const error = new Error('An error occorred while deleting the event');
+    error.code = response.status;
+    error.info = await response.json();
+    throw error;
+  }
+
+  return response.json();
+}
+
+/** Updates the corresponding event details in the backend */
+export async function updateEvent(params: { id: string; event: any }) {
+  const { id, event } = params;
+
+  const response = await fetch(`http://localhost:3001/events/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify({ event }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  if (!response.ok) {
+    const error = new Error('An error occurred while updating the event');
+    error.code = response.status;
+    error.info = await response.json();
+    throw error;
+  }
+  return response.json();
+}

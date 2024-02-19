@@ -34,7 +34,6 @@ const router = RRD.createBrowserRouter([
   },
 ]);
 
-
 export function TanstackQueryApp() {
   return (
     <RQ.QueryClientProvider client={httpUtils.queryClient}>

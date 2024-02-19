@@ -1,6 +1,5 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-
 /*
  * Old Course Content [ pre 23 October 2023] | [src > Old_Course_Content]
  */

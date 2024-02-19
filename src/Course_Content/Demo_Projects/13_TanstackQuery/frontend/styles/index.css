@@ -237,6 +237,11 @@ ul {
   object-fit: cover;
 }
 
+#event-details .error-block-container {
+  margin: 0 2rem;
+  
+} 
+
 #event-details header {
   width: 40rem;
   margin: 2rem auto;
@@ -368,9 +373,10 @@ ul {
   color: #7c184c;
 }
 
+
 .error-block {
   background-color: #f0d9e5;
-  margin: 1rem 0;
+  margin: 2rem 0;
   padding: 1rem;
   border-radius: 4px;
   color: #890b35;
