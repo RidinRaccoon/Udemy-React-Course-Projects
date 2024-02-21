@@ -10,6 +10,8 @@ import {
   EventDetails,
   NewEvent,
   EditEvent,
+  editEventLoader,
+  editEventAction,
 } from './components/Events/_index';
 
 const router = RRD.createBrowserRouter([
@@ -29,6 +31,8 @@ const router = RRD.createBrowserRouter([
       {
         path: '/events/:id/edit',
         element: <EditEvent />,
+        loader: editEventLoader,
+        action: editEventAction,
       },
     ],
   },

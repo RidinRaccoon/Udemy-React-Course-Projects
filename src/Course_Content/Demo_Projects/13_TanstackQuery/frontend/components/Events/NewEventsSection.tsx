@@ -9,8 +9,9 @@ import { EventItem } from './EventItem';
 
 export function NewEventsSection() {
   const queryResults = RQ.useQuery({
-    queryKey: ['events'],
-    queryFn: httpUtils.fetchEvents,
+    queryKey: ['events', { max: 3 }],
+    queryFn: ({ signal, queryKey }) =>
+      httpUtils.fetchEvents({ signal, ...queryKey[1] }),
     staleTime: 5000,
   });
 

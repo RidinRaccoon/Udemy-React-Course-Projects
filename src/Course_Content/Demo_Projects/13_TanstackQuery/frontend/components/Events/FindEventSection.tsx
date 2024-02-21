@@ -18,7 +18,8 @@ export function FindEventSection() {
 
   const queryResults = RQ.useQuery({
     queryKey: ['events', { searchTerm }],
-    queryFn: ({ signal }) => httpUtils.fetchEvents({ signal, searchTerm }),
+    queryFn: ({ signal, queryKey }) =>
+      httpUtils.fetchEvents({ signal, ...queryKey[1] }),
     enabled: searchTerm !== undefined,
   });
 

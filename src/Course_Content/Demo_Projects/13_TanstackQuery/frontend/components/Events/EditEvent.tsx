@@ -4,66 +4,40 @@ import * as RRD from 'react-router-dom';
 import * as RQ from '@tanstack/react-query';
 import * as httpUtils from '../../utils/http';
 // Components
-import { ErrorBlock, LoadingIndicator, Modal } from '../UI/_index';
+import { ErrorBlock, Modal } from '../UI/_index';
 import { EventForm } from './EventForm';
 
 export function EditEvent() {
   const navigate = RRD.useNavigate();
+  const { state } = RRD.useNavigation();
+  const submit = RRD.useSubmit();
   const { id } = RRD.useParams();
 
+  // TODO: Validate data
   // if(!id) return
 
-  const mutationResults = RQ.useMutation({
-    mutationFn: httpUtils.updateEvent,
-    onMutate: async (data) => {
-      const queryKey = ['events', id];
-      const newDetails = data.event;
-      const prevDetails = httpUtils.queryClient.getQueryData(queryKey);
+ 
 
-      await httpUtils.queryClient.cancelQueries({ queryKey });
-      httpUtils.queryClient.setQueryData(queryKey, newDetails);
-
-      return { queryKey, prevDetails };
-    },
-    onError: (error, data, context) => {
-      httpUtils.queryClient.setQueryData(
-        context?.queryKey,
-        context?.prevDetails,
-      );
-    },
-    onSettled: () => {
-      httpUtils.queryClient.invalidateQueries(['events', id]);
-    },
-  });
-
-  const { mutate } = mutationResults;
   const handleSubmit = React.useCallback(
     (formData) => {
-      mutate({ id, event: formData });
-      navigate('../');
+      submit(formData, { method: 'PUT' });
     },
-    [id, mutate, navigate],
+    [submit],
   );
 
   const handleClose = React.useCallback(() => {
     navigate('../');
   }, [navigate]);
 
+  // Get cached data from loader
   const queryResults = RQ.useQuery({
     queryKey: ['events', id],
     queryFn: ({ signal }) => httpUtils.fetchEvent({ id, signal }),
+    staleTime: 10000, // ms
   });
 
-  const { data, isPending, isError, error } = queryResults;
+  const { data, isError, error } = queryResults;
   let content;
-
-  if (isPending) {
-    content = (
-      <div className="center">
-        <LoadingIndicator />
-      </div>
-    );
-  }
 
   if (isError) {
     content = (
@@ -85,15 +59,40 @@ export function EditEvent() {
   if (data) {
     content = (
       <EventForm inputData={data} onSubmit={handleSubmit}>
-        <RRD.Link to="../" className="button-text">
-          Cancel
-        </RRD.Link>
-        <button type="submit" className="button">
-          Update
-        </button>
+        {state === 'submitting' ? (
+          <p>Sending data...</p>
+        ) : (
+          <>
+            <RRD.Link to="../" className="button-text">
+              Cancel
+            </RRD.Link>
+            <button type="submit" className="button">
+              Update
+            </button>
+          </>
+        )}
       </EventForm>
     );
   }
 
   return <Modal onClose={handleClose}>{content}</Modal>;
+}
+
+// Get event details
+export function loader({ params }) {
+  const { id } = params;
+  return httpUtils.queryClient.fetchQuery({
+    queryKey: ['events', id],
+    queryFn: ({ signal }) => httpUtils.fetchEvent({ id, signal }),
+  });
+}
+
+// Update event details
+export async function action({ request, params }) {
+  const { id } = params;
+  const formData = await request.formData();
+  const updatedEventData = Object.fromEntries(formData);
+  await httpUtils.updateEvent({ id, event: updatedEventData });
+  await httpUtils.queryClient.invalidateQueries(['events']);
+  return RRD.redirect('../');
 }

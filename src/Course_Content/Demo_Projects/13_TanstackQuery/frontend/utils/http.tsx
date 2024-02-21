@@ -8,10 +8,13 @@ export const queryClient = new RQ.QueryClient();
 export async function fetchEvents(params: {
   signal: AbortSignal;
   searchTerm: string;
+  max: number;
 }) {
   let url = 'http://localhost:3001/events';
-  const { searchTerm } = params;
-  if (searchTerm) url += `?search=${searchTerm}`;
+  const { searchTerm, max } = params;
+  if (searchTerm && max) url += `?search=${searchTerm}&max=${max}`;
+  else if (searchTerm) url += `?search=${searchTerm}`;
+  else if (max) url += `?max=${max}`;
 
   const response = await fetch(url);
   if (!response.ok) {
