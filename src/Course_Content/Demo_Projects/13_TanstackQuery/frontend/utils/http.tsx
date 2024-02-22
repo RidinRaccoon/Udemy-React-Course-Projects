@@ -1,14 +1,14 @@
-// @ts-nocheck
-/* eslint-disable import/no-extraneous-dependencies */
 import * as RQ from '@tanstack/react-query';
+// Types
+import { TEventImage, TEvent, TFormEventData, TCustomError } from '../types';
 
 export const queryClient = new RQ.QueryClient();
 
 /** Gets events from the backend */
 export async function fetchEvents(params: {
   signal: AbortSignal;
-  searchTerm: string;
-  max: number;
+  searchTerm?: string | undefined;
+  max?: number;
 }) {
   let url = 'http://localhost:3001/events';
   const { searchTerm, max } = params;
@@ -18,35 +18,40 @@ export async function fetchEvents(params: {
 
   const response = await fetch(url);
   if (!response.ok) {
-    const error = new Error('An error occured while fecthing events.');
+    const error = new Error(
+      'An error occured while fecthing events.',
+    ) as TCustomError;
     error.code = response.status;
     error.info = await response.json();
+
     throw error;
   }
 
   const { events } = await response.json();
-  return events;
+  return events as TEvent[];
 }
 
 /** Creates a new event in the backend */
-export async function createNewEvent(eventData) {
+export async function createNewEvent(newEventData: TFormEventData) {
   const response = await fetch('http://localhost:3001/events', {
     method: 'POST',
-    body: JSON.stringify(eventData),
+    body: JSON.stringify({ event: newEventData }),
     headers: {
       'Content-Type': 'application/json',
     },
   });
 
   if (!response.ok) {
-    const error = new Error('An error occured while creating the event.');
+    const error = new Error(
+      'An error occured while creating the event.',
+    ) as TCustomError;
     error.code = response.status;
     error.info = await response.json();
     throw error;
   }
 
   const { event } = await response.json();
-  return event;
+  return event as TEvent;
 }
 
 /** Gets the selectable Images for new events from the backend */
@@ -57,18 +62,23 @@ export async function fetchSelectableImages(params: { signal: AbortSignal }) {
   });
 
   if (!response.ok) {
-    const error = new Error('An error occurred while fetching the images.');
+    const error = new Error(
+      'An error occurred while fetching the images.',
+    ) as TCustomError;
     error.code = response.status;
     error.info = await response.json();
     throw error;
   }
 
   const { images } = await response.json();
-  return images;
+  return images as TEventImage[];
 }
 
 /** Gets the event details from the backend */
-export async function fetchEvent(params: { id: string; signal: AbortSignal }) {
+export async function fetchEvent(params: {
+  id: string | undefined;
+  signal: AbortSignal;
+}) {
   const { id, signal } = params;
   const response = await fetch(`http://localhost:3001/events/${id}`, {
     signal,
@@ -76,8 +86,8 @@ export async function fetchEvent(params: { id: string; signal: AbortSignal }) {
 
   if (!response.ok) {
     const error = new Error(
-      'An error occurred while fetching the event details',
-    );
+      'An error occurred while fetching the event details.',
+    ) as TCustomError;
     error.code = response.status;
     error.info = await response.json();
     throw error;
@@ -95,7 +105,9 @@ export async function deleteEvent(params: { id: string }) {
   });
 
   if (!response.ok) {
-    const error = new Error('An error occorred while deleting the event');
+    const error = new Error(
+      'An error occorred while deleting the event',
+    ) as TCustomError;
     error.code = response.status;
     error.info = await response.json();
     throw error;
@@ -105,7 +117,10 @@ export async function deleteEvent(params: { id: string }) {
 }
 
 /** Updates the corresponding event details in the backend */
-export async function updateEvent(params: { id: string; event: any }) {
+export async function updateEvent(params: {
+  id: string | undefined;
+  event: any;
+}) {
   const { id, event } = params;
 
   const response = await fetch(`http://localhost:3001/events/${id}`, {
@@ -117,7 +132,9 @@ export async function updateEvent(params: { id: string; event: any }) {
   });
 
   if (!response.ok) {
-    const error = new Error('An error occurred while updating the event');
+    const error = new Error(
+      'An error occurred while updating the event',
+    ) as TCustomError;
     error.code = response.status;
     error.info = await response.json();
     throw error;

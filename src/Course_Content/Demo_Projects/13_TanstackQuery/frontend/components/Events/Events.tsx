@@ -1,4 +1,3 @@
-// @ts-nocheck
 import * as React from 'react';
 import * as RRD from 'react-router-dom';
 // Components
@@ -11,7 +10,6 @@ export function Events() {
   return (
     <>
       <RRD.Outlet />
-      <div id="modal" /> {/* New Event Modal */}
       <Header>
         <RRD.Link to="/events/new" className="button">
           New Event

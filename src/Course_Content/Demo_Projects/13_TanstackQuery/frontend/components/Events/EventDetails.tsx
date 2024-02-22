@@ -7,7 +7,7 @@ import * as RQ from '@tanstack/react-query';
 import * as httpUtils from '../../utils/http';
 // Components
 import { Header } from '../Header';
-import { ErrorBlock, Modal } from '../UI/_index';
+import { ErrorBlock, Modal } from '../UI';
 
 export function EventDetails() {
   const [isDeleting, setIsDeleting] = React.useState(false);
@@ -38,7 +38,7 @@ export function EventDetails() {
       navigate('/events');
     },
   });
-
+  console.log(isDeleting);
   // TODO: Delete error handling
   const {
     mutate,

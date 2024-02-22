@@ -221,7 +221,7 @@ ul {
 
 #image-picker li {
   width: 4rem;
-  height: 3rem;
+  height: 2.6rem;
   border: 2px solid transparent;
   border-radius: 4px;
   overflow: hidden;
@@ -229,6 +229,11 @@ ul {
 
 #image-picker li.selected {
   border-color: #e30d7c;
+}
+
+#image-picker button {
+  padding: 0;
+  border: 0;
 }
 
 #image-picker img {
@@ -239,8 +244,7 @@ ul {
 
 #event-details .error-block-container {
   margin: 0 2rem;
-  
-} 
+}
 
 #event-details header {
   width: 40rem;
@@ -372,7 +376,6 @@ ul {
 .button-text:hover {
   color: #7c184c;
 }
-
 
 .error-block {
   background-color: #f0d9e5;

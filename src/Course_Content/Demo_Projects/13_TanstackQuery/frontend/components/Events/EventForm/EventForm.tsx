@@ -1,37 +1,35 @@
-// @ts-nocheck
-/* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable react/jsx-no-bind */
 import * as React from 'react';
 import * as RQ from '@tanstack/react-query';
-import * as httpUtils from '../../utils/http';
+import * as httpUtils from '../../../utils/http';
 // Components & Types
-import { TImage } from '../../types/types';
-import { ImagePicker } from '../ImagePicker';
-import { ErrorBlock } from '../UI/ErrorBlock';
+import { TEventImage, TFormEventData } from '../../../types';
+import { ErrorBlock } from '../../UI';
+import { ImagePicker } from './ImagePicker';
 
 export function EventForm(
   props: {
     inputData: any;
-    onSubmit: (formData) => void;
+    onSubmit: (formData: TFormEventData) => void;
   } & React.PropsWithChildren,
 ) {
   const { inputData, onSubmit, children } = props;
   const [selectedImage, setSelectedImage] = React.useState(inputData?.image);
 
-  function handleSelectImage(image: TImage) {
-    setSelectedImage(image);
-  }
+  const handleSelectImage = React.useCallback((imgPath: string) => {
+    setSelectedImage(imgPath);
+  }, []);
 
-  function handleSubmit(event) {
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    const formData = new FormData(event.target);
+    const formData = new FormData(event.currentTarget);
     const data = Object.fromEntries(formData);
-
-    onSubmit({ ...data, image: selectedImage });
+    const updatedEvent = { ...data, image: selectedImage } as TFormEventData;
+    onSubmit(updatedEvent);
   }
 
-  const queryResults = RQ.useQuery({
+  // Get images from backend
+  const queryResults = RQ.useQuery<TEventImage[]>({
     queryKey: ['event-images'],
     queryFn: httpUtils.fetchSelectableImages,
   });
@@ -108,7 +106,7 @@ export function EventForm(
         />
       </p>
 
-      <p className="form-actions">{children}</p>
+      <div className="form-actions">{children}</div>
     </form>
   );
 }

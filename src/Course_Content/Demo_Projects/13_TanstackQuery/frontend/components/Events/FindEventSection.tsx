@@ -1,10 +1,9 @@
-// @ts-nocheck
-/* eslint-disable import/no-extraneous-dependencies */
 import * as React from 'react';
 import * as RQ from '@tanstack/react-query';
 import * as httpUtils from '../../utils/http';
 // Components
-import { ErrorBlock, LoadingIndicator } from '../UI/_index';
+import { TCustomError, TEvent } from '../../types';
+import { ErrorBlock, LoadingIndicator } from '../UI';
 import { EventItem } from './EventItem';
 
 export function FindEventSection() {
@@ -16,10 +15,9 @@ export function FindEventSection() {
     setSearchTerm(searchElement.current?.value || '');
   }
 
-  const queryResults = RQ.useQuery({
+  const queryResults = RQ.useQuery<TEvent[], TCustomError, TEvent[]>({
     queryKey: ['events', { searchTerm }],
-    queryFn: ({ signal, queryKey }) =>
-      httpUtils.fetchEvents({ signal, ...queryKey[1] }),
+    queryFn: ({ signal }) => httpUtils.fetchEvents({ signal, searchTerm }),
     enabled: searchTerm !== undefined,
   });
 

@@ -1,10 +1,10 @@
-// @ts-nocheck
 import * as React from 'react';
 import * as RRD from 'react-router-dom';
+import { TEvent } from '../../types';
 
 export function EventItem(props: //
 {
-  event: any;
+  event: TEvent;
 }) {
   const { event } = props;
   const { date } = event;

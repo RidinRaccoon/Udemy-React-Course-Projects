@@ -1,11 +1,11 @@
-// @ts-nocheck
 import * as React from 'react';
 import * as RRD from 'react-router-dom';
 import * as RQ from '@tanstack/react-query';
 import * as httpUtils from '../../utils/http';
 // Components
-import { ErrorBlock, Modal } from '../UI/_index';
-import { EventForm } from './EventForm';
+import { TCustomError, TEvent, TFormEventData } from '../../types';
+import { ErrorBlock, Modal } from '../UI';
+import { EventForm } from './EventForm/EventForm';
 
 export function EditEvent() {
   const navigate = RRD.useNavigate();
@@ -13,13 +13,8 @@ export function EditEvent() {
   const submit = RRD.useSubmit();
   const { id } = RRD.useParams();
 
-  // TODO: Validate data
-  // if(!id) return
-
- 
-
   const handleSubmit = React.useCallback(
-    (formData) => {
+    (formData: TFormEventData) => {
       submit(formData, { method: 'PUT' });
     },
     [submit],
@@ -29,8 +24,7 @@ export function EditEvent() {
     navigate('../');
   }, [navigate]);
 
-  // Get cached data from loader
-  const queryResults = RQ.useQuery({
+  const queryResults = RQ.useQuery<TEvent, TCustomError>({
     queryKey: ['events', id],
     queryFn: ({ signal }) => httpUtils.fetchEvent({ id, signal }),
     staleTime: 10000, // ms
@@ -78,21 +72,13 @@ export function EditEvent() {
   return <Modal onClose={handleClose}>{content}</Modal>;
 }
 
-// Get event details
-export function loader({ params }) {
-  const { id } = params;
-  return httpUtils.queryClient.fetchQuery({
-    queryKey: ['events', id],
-    queryFn: ({ signal }) => httpUtils.fetchEvent({ id, signal }),
-  });
-}
-
 // Update event details
-export async function action({ request, params }) {
+export async function action(args: RRD.ActionFunctionArgs<{ id: string }>) {
+  const { request, params } = args;
   const { id } = params;
   const formData = await request.formData();
   const updatedEventData = Object.fromEntries(formData);
   await httpUtils.updateEvent({ id, event: updatedEventData });
-  await httpUtils.queryClient.invalidateQueries(['events']);
+  await httpUtils.queryClient.invalidateQueries({ queryKey: ['events'] });
   return RRD.redirect('../');
 }

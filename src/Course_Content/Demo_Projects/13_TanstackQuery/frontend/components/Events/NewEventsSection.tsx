@@ -1,23 +1,23 @@
-// @ts-nocheck
-/* eslint-disable import/no-extraneous-dependencies */
 import * as React from 'react';
 import * as RQ from '@tanstack/react-query';
 import * as httpUtils from '../../utils/http';
 // Components
-import { LoadingIndicator, ErrorBlock } from '../UI/_index';
+import { LoadingIndicator, ErrorBlock } from '../UI';
 import { EventItem } from './EventItem';
+import { TCustomError, TEvent } from '../../types/types';
 
 export function NewEventsSection() {
-  const queryResults = RQ.useQuery({
-    queryKey: ['events', { max: 3 }],
-    queryFn: ({ signal, queryKey }) =>
-      httpUtils.fetchEvents({ signal, ...queryKey[1] }),
+  const eventQueryLimit = 3;
+  const queryResults = RQ.useQuery<TEvent[], TCustomError>({
+    queryKey: ['events', { max: eventQueryLimit }],
+    queryFn: ({ signal }) =>
+      httpUtils.fetchEvents({ signal, max: eventQueryLimit }),
     staleTime: 5000,
   });
 
   const { data, isPending, isError, error } = queryResults;
-  let content;
 
+  let content;
   if (isPending) content = <LoadingIndicator />;
 
   if (isError) {
