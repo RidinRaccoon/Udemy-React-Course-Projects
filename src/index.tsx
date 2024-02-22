@@ -24,7 +24,7 @@ import { createRoot } from 'react-dom/client';
 // import { ReactRouterAdvancedApp } from './Course_Content/Demo_Projects/10-React_Router_Advanced/frontend/ReactRouterAdvancedApp';
 // import { AuthenticationApp } from './Course_Content/Demo_Projects/11_Authentication/frontend/AuthenticationApp';
 // import { DeploymentBasicsApp } from './Course_Content/Demo_Projects/12_Deployment+LazyLoading/DeploymentBasicsApp';
-import { TanstackQueryApp } from './Course_Content/Demo_Projects/13_TanstackQuery/frontend/TanstackQueryApp';
+// import { TanstackQueryApp } from './Course_Content/Demo_Projects/13_TanstackQuery/frontend/TanstackQueryApp';
 
 // PRACTICE PROJECTS
 // import { TicTacToeApp } from './Course_Content/Practice_Projects/1-Tic-Tac-Toe/TicTacToeApp';
@@ -32,6 +32,7 @@ import { TanstackQueryApp } from './Course_Content/Demo_Projects/13_TanstackQuer
 // import { ProjectManagementApp } from './Course_Content/Practice_Projects/3-Project_Management/ProjectManagementApp';
 // import { ProjectManagementApp } from './Course_Content/Practice_Projects/3.1-Project_Management_wContext/ProjectManagementApp';
 // import { QuizApp } from './Course_Content/Practice_Projects/4-Quiz/QuizApp';
+import { ReactFoodApp } from './Course_Content/Practice_Projects/5_ReactFood/frontend/ReactFoodApp';
 
 const container: HTMLElement = document.getElementById('root')!;
 const root = createRoot(container);
@@ -50,13 +51,14 @@ const root = createRoot(container);
 // root.render(<ReactRouterAdvancedApp />);
 // root.render(<AuthenticationApp />);
 // root.render(<DeploymentBasicsApp />);
-root.render(<TanstackQueryApp />);
+// root.render(<TanstackQueryApp />);
 
 // PRACTICE PROJECTS
 // root.render(<TicTacToeApp />);
 // root.render(<InvestmentCalculatorApp />);
 // root.render(<ProjectManagementApp />);
 // root.render(<QuizApp />)
+root.render(<ReactFoodApp />);
 
 /* --------------------------*/
 /* Render Old Course Content */
