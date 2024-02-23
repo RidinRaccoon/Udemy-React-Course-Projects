@@ -5,7 +5,7 @@ import * as httpUtils from './utils/http';
 import './styles/index.css';
 import { RootLayout } from './pages/RootLayout';
 import { MealsCatalog } from './components/MealsCatalog';
-import { MealItem } from './components/MealItem';
+import { MealDetails } from './components/MealDetails';
 
 const router = RRD.createBrowserRouter([
   {
@@ -19,11 +19,12 @@ const router = RRD.createBrowserRouter([
       {
         path: '/catalog/',
         element: <MealsCatalog />,
-      },
-
-      {
-        path: '/catalog/:id',
-        element: <MealItem />,
+        children: [
+          {
+            path: '/catalog/:id',
+            element: <MealDetails />,
+          },
+        ],
       },
     ],
   },

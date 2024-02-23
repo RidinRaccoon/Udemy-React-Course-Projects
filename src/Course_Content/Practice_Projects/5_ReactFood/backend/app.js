@@ -21,6 +21,26 @@ app.get('/meals', async (req, res) => {
   res.json(JSON.parse(meals));
 });
 
+app.get('/meals/:id', async (req, res) => {
+  const { id } = req.params;
+
+  const mealsFileContent = await fs.readFile(
+    './data/available-meals.json',
+    'utf8',
+  );
+  const meals = JSON.parse(mealsFileContent);
+
+  const meal = meals.find((meal) => meal.id === id);
+
+  if (!meal) {
+    return res
+      .status(404)
+      .json({ message: `For the id ${id}, no meal could be found.` });
+  }
+
+  res.json(meal);
+});
+
 app.post('/orders', async (req, res) => {
   const orderData = req.body.order;
 

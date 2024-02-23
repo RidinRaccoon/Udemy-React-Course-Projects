@@ -16,12 +16,12 @@ export function MealsCatalog() {
     <>
       <RRD.Outlet />
       <h1>Meals Catalog</h1>
-      <div>
-        <ul>
+      <div id="meals">
+        <ul >
           {data?.map((meal) => {
             const { id, name } = meal;
             return (
-              <li key={id}>
+              <li className="meal-item"key={id}>
                 <RRD.Link to={`/catalog/${id}`}>{name}</RRD.Link>
               </li>
             );
