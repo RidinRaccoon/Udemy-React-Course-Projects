@@ -10,7 +10,7 @@ export async function getMeals() {
 
   if (!response.ok) {
     // Throw error
-    const error = new Error('Failed to get events.');
+    const error = new Error('Failed to get meals.');
     throw error;
   }
 
@@ -27,7 +27,7 @@ export async function getMealDetails(params: {
   const response = await fetch(`http://localhost:3001/meals/${id}`, { signal });
   if (!response.ok) {
     // Throw error
-    const error = new Error('Failed to get events.');
+    const error = new Error('Failed to get meal details.');
     throw error;
   }
 
