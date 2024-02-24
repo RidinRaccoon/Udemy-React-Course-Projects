@@ -26,12 +26,18 @@ export function MealDetails() {
   }
 
   if (data) {
+    const {name, image, price, description } = data;
     content = (
-      <article>
-        <h1>{data?.name}</h1>
-        <img src={`http://localhost:3001/${data?.image}`} alt={data?.name} />
-        <p>{data?.description}</p>
-        <p>{data?.price}</p>
+      <article className="meal-item">
+        <img src={`http://localhost:3001/${image}`} alt={name} />
+        <div>
+          <h3>{name} </h3>
+          <p className="meal-item-price">{price}€</p>
+          <p className="meal-item-description">{description}</p>
+        </div>
+        <p className="cart-item-actions">
+          <button type="button">Add to Cart</button>
+        </p>
       </article>
     );
   }

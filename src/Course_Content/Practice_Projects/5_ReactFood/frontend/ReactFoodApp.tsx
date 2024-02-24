@@ -8,6 +8,11 @@ import { RootLayout } from './pages/RootLayout';
 import { MealsCatalog } from './components/MealsCatalog';
 import { MealDetails } from './components/MealDetails';
 
+/* TODO:
+  - Separate css from index file
+  - Create info button on MealItem top-right corner that links to details page
+*/
+
 const router = RRD.createBrowserRouter([
   {
     path: '/',

@@ -2,6 +2,7 @@ import * as React from 'react';
 // import * as RRD from 'react-router-dom';
 import logo from '../assets/logo.jpg';
 import { Cart } from './Cart';
+import { Button } from './UI/Button';
 
 export function Header() {
   const [showCart, setShowCart] = React.useState(false);
@@ -20,9 +21,12 @@ export function Header() {
           <h1>ReactFood</h1>
         </div>
         <nav>
-          <button type="button" onClick={toggleCart}>
+          <Button isTextOnly onClick={toggleCart}>
             Cart (0)
-          </button>
+          </Button>
+          {/* <button type="button" onClick={toggleCart}>
+            Cart (0)
+          </button> */}
         </nav>
       </header>
     </>
