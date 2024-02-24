@@ -1,15 +1,15 @@
 import * as React from 'react';
-// import * as RRD from 'react-router-dom';
-import { Modal } from './UI/Modal';
+// Components & Types
+import { Modal } from '../Modal';
+import { CartContext } from '../../../store/CartContext';
+import { CartItem } from './CartItem';
 
 export function Cart(props: { isVisible: Boolean; onClose: () => void }) {
-  // const navigate = RRD.useNavigate();
   const { isVisible, onClose } = props;
 
-  /*   const handleClose = React.useCallback(() => {
-    console.log('called');
-    // navigate('../');
-  }, [navigate]); */
+  const { state: cartState } = React.useContext(CartContext);
+
+  const { items: cartItems, cartTotal } = cartState;
 
   return (
     <div>
@@ -20,16 +20,14 @@ export function Cart(props: { isVisible: Boolean; onClose: () => void }) {
               Close
             </button>
             <ul>
-              <li>Item 1</li>
-              <li>Item 2</li>
+              {cartItems.map((item) => (
+                <CartItem key={item.id} item={item} />
+              ))}
             </ul>
+            <p>Total: {cartTotal}</p>
           </div>
         </Modal>
       )}
     </div>
   );
 }
-
-/* {isVisible && (
-  
-)} */

@@ -7,6 +7,7 @@ import './styles/index.css';
 import { RootLayout } from './pages/RootLayout';
 import { MealsCatalog } from './components/MealsCatalog';
 import { MealDetails } from './components/MealDetails';
+import { CartContextProvider } from './store/CartContextProvider';
 
 /* TODO:
   - Separate css from index file
@@ -36,8 +37,10 @@ const router = RRD.createBrowserRouter([
 
 export function ReactFoodApp() {
   return (
-    <RQ.QueryClientProvider client={httpUtils.queryClient}>
-      <RRD.RouterProvider router={router} />
-    </RQ.QueryClientProvider>
+    <CartContextProvider>
+      <RQ.QueryClientProvider client={httpUtils.queryClient}>
+        <RRD.RouterProvider router={router} />
+      </RQ.QueryClientProvider>
+    </CartContextProvider>
   );
 }

@@ -1,7 +1,7 @@
 import * as React from 'react';
 // import * as RRD from 'react-router-dom';
 import logo from '../assets/logo.jpg';
-import { Cart } from './Cart';
+import { Cart } from './UI/Cart/Cart';
 import { Button } from './UI/Button';
 
 export function Header() {
