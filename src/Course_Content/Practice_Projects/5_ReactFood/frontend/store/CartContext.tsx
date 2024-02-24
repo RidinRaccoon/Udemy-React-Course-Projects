@@ -12,7 +12,8 @@ export type TCartContext = {
 };
 
 export type TUpdateCartParams = {
-  item: string;
+  id: string;
+  name: string;
   price: number;
 };
 
