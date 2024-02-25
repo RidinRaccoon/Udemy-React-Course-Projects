@@ -1,5 +1,7 @@
 import * as React from 'react';
 // import * as RRD from 'react-router-dom';
+import { CartContext } from '../store/CartContext';
+// Components & Types
 import logo from '../assets/logo.jpg';
 import { Cart } from './UI/Cart/Cart';
 import { Button } from './UI/Button';
@@ -10,6 +12,12 @@ export function Header() {
   const toggleCart = React.useCallback(() => {
     setShowCart(!showCart);
   }, [showCart]);
+
+  const { state: cartState } = React.useContext(CartContext);
+
+  const { items: cartItems } = cartState;
+  
+  const itemQuantity = cartItems.reduce((accu, item) => accu + item.quantity, 0);
 
   return (
     <>
@@ -22,11 +30,8 @@ export function Header() {
         </div>
         <nav>
           <Button isTextOnly onClick={toggleCart}>
-            Cart (0)
+            Cart ({itemQuantity})
           </Button>
-          {/* <button type="button" onClick={toggleCart}>
-            Cart (0)
-          </button> */}
         </nav>
       </header>
     </>

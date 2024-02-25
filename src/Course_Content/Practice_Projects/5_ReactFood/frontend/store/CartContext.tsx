@@ -1,7 +1,15 @@
 import * as React from 'react';
+// Components & Types
+import { TCartItem } from '../types/types';
+
+export type TUpdateCartParams = {
+  id: string;
+  name: string;
+  price: number;
+};
 
 export type TCartState = {
-  items: { id: string; name: string; price: number; quantity: number }[];
+  items: TCartItem[];
   cartTotal: number;
 };
 
@@ -9,12 +17,6 @@ export type TCartContext = {
   state: TCartState;
   addToCart(args: TUpdateCartParams): void;
   removeFromCart(args: TUpdateCartParams): void;
-};
-
-export type TUpdateCartParams = {
-  id: string;
-  name: string;
-  price: number;
 };
 
 export const CartContext = React.createContext<TCartContext>({

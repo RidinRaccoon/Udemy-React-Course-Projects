@@ -25,7 +25,7 @@ export function MealItem(props: { meal: TMeal }) {
         <p className="cart-item-actions">
           <Button
             isTextOnly={false}
-            onClick={() => addToCart({ id, name, price })}
+            onClick={() => addToCart({ id, name, price: parseFloat(price) })}
           >
             Add to Cart
           </Button>

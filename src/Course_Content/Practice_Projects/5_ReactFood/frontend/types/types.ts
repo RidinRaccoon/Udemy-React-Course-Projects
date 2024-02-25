@@ -6,4 +6,10 @@ export type TMeal = {
   image: string;
 };
 
+export type TCartItem = {
+  id: string;
+  name: string;
+  price: number;
+  quantity: number;
+}
 

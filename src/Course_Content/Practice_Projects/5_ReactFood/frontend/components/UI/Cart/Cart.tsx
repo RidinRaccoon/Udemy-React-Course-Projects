@@ -1,14 +1,14 @@
 import * as React from 'react';
+import * as formattingUtils from '../../../utils/formatting';
 // Components & Types
 import { Modal } from '../Modal';
 import { CartContext } from '../../../store/CartContext';
 import { CartItem } from './CartItem';
 
 export function Cart(props: { isVisible: Boolean; onClose: () => void }) {
+  const { currencyFormatter } = formattingUtils;
   const { isVisible, onClose } = props;
-
   const { state: cartState } = React.useContext(CartContext);
-
   const { items: cartItems, cartTotal } = cartState;
 
   return (
@@ -24,7 +24,7 @@ export function Cart(props: { isVisible: Boolean; onClose: () => void }) {
                 <CartItem key={item.id} item={item} />
               ))}
             </ul>
-            <p>Total: {cartTotal}</p>
+            <p>Total: {currencyFormatter.format(cartTotal)}</p>
           </div>
         </Modal>
       )}

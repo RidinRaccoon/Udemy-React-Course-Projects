@@ -1,16 +1,10 @@
 import * as React from 'react';
 import { CartContext, TCartContext, TUpdateCartParams } from './CartContext';
-// import { TCartState } from '../types/types';
+// Components & Types
+import { TCartItem } from '../types/types';
 
-/* const DUMMY_CART_STATE = {
-  items: [
-    { id: 'm1', name: 'Spaghetti Carbonara', price: 9.99, quantity: 1 },
-    { id: 'm2', name: 'Lasagna', price: 12.99, quantity: 2 },
-  ],
-  cartTotal: 35.97,
-}; */
 const defaultCartState = {
-  items: [] as { id: string; name: string; price: number; quantity: number }[],
+  items: [] as TCartItem[],
   cartTotal: 0,
 };
 export function CartContextProvider(props: React.PropsWithChildren) {
@@ -21,12 +15,11 @@ export function CartContextProvider(props: React.PropsWithChildren) {
 
   function addToCart(params: TUpdateCartParams) {
     const { id, name, price } = params;
-    console.log(name);
 
     setCartItems((prevItems) => {
-      // Already in Cart
       let newCart;
       const cartItem = prevItems.find((item) => item.id === id);
+      // Already in Cart
       if (cartItem) {
         const updatedItem = { ...cartItem, quantity: cartItem.quantity + 1 };
         const remainingItems = prevItems.filter((item) => item.id !== id);
@@ -36,15 +29,32 @@ export function CartContextProvider(props: React.PropsWithChildren) {
         const newItem = { id, name, price, quantity: 1 };
         newCart = [newItem, ...prevItems];
       }
-      setCartTotal((prevTotal) => prevTotal + price * 1);
+      setCartTotal((prevTotal) => parseFloat((prevTotal + price).toFixed(2)));
       return newCart;
     });
   }
   function removeFromCart(params: TUpdateCartParams) {
-    const { name, price } = params;
-    console.log(name);
-    setCartItems([]);
-    setCartTotal((prevTotal) => prevTotal - price);
+    const { id, name, price } = params;
+    setCartItems((prevItems) => {
+      let newCart;
+      const cartItem = prevItems.find((item) => item.id === id);
+      if (!cartItem) return prevItems;
+
+      const remainingItems = prevItems.filter((item) => item.id !== id);
+      if (cartItem.quantity === 1) newCart = [...remainingItems];
+      else {
+        const updatedItem = {
+          id,
+          name,
+          price,
+          quantity: cartItem.quantity - 1,
+        };
+        newCart = [updatedItem, ...remainingItems];
+      }
+
+      setCartTotal((prevTotal) => parseFloat((prevTotal - price).toFixed(2)));
+      return newCart;
+    });
   }
 
   const cartContext: TCartContext = React.useMemo(
