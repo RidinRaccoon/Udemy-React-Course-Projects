@@ -9,8 +9,13 @@ export function Cart(props: { isVisible: Boolean; onClose: () => void }) {
   const { currencyFormatter } = formattingUtils;
   const { isVisible, onClose } = props;
   const { state: cartState } = React.useContext(CartContext);
-  const { items: cartItems, cartTotal } = cartState;
+  const { items: cartItems } = cartState;
 
+  const cartTotal = cartItems.reduce(
+    (accu, item) => accu + item.price * item.quantity,
+    0,
+  );
+  
   return (
     <div>
       {isVisible && (

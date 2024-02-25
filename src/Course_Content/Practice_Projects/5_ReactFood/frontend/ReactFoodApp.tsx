@@ -12,6 +12,7 @@ import { CartContextProvider } from './store/CartContextProvider';
 /* TODO:
   - Separate css from index file
   - Create info button on MealItem top-right corner that links to details page
+  - Calculate total outside of state
 */
 
 const router = RRD.createBrowserRouter([

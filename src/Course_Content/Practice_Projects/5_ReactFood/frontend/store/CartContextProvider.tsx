@@ -5,13 +5,10 @@ import { TCartItem } from '../types/types';
 
 const defaultCartState = {
   items: [] as TCartItem[],
-  cartTotal: 0,
 };
 export function CartContextProvider(props: React.PropsWithChildren) {
   const { children } = props;
-
   const [cartItems, setCartItems] = React.useState(defaultCartState.items);
-  const [cartTotal, setCartTotal] = React.useState(defaultCartState.cartTotal);
 
   function addToCart(params: TUpdateCartParams) {
     const { id, name, price } = params;
@@ -29,7 +26,7 @@ export function CartContextProvider(props: React.PropsWithChildren) {
         const newItem = { id, name, price, quantity: 1 };
         newCart = [newItem, ...prevItems];
       }
-      setCartTotal((prevTotal) => parseFloat((prevTotal + price).toFixed(2)));
+
       return newCart;
     });
   }
@@ -52,7 +49,6 @@ export function CartContextProvider(props: React.PropsWithChildren) {
         newCart = [updatedItem, ...remainingItems];
       }
 
-      setCartTotal((prevTotal) => parseFloat((prevTotal - price).toFixed(2)));
       return newCart;
     });
   }
@@ -61,12 +57,11 @@ export function CartContextProvider(props: React.PropsWithChildren) {
     () => ({
       state: {
         items: cartItems,
-        cartTotal,
       },
       addToCart,
       removeFromCart,
     }),
-    [cartItems, cartTotal],
+    [cartItems],
   );
   return (
     <CartContext.Provider value={cartContext}>{children}</CartContext.Provider>

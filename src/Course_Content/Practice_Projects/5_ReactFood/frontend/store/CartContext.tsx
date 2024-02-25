@@ -10,7 +10,6 @@ export type TUpdateCartParams = {
 
 export type TCartState = {
   items: TCartItem[];
-  cartTotal: number;
 };
 
 export type TCartContext = {
@@ -20,7 +19,7 @@ export type TCartContext = {
 };
 
 export const CartContext = React.createContext<TCartContext>({
-  state: { items: [], cartTotal: 0 },
+  state: { items: [] },
   addToCart: () => {},
   removeFromCart: () => {},
 });
