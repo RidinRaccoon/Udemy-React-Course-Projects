@@ -1,4 +1,5 @@
 import * as RQ from '@tanstack/react-query';
+// Components & types
 import { TMeal } from '../types/types';
 
 export const queryClient = new RQ.QueryClient();

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { CartContext, TCartContext, TUpdateCartParams } from './CartContext';
-// Components & Types
+// Components & types
 import { TCartItem } from '../types/types';
 
 const defaultCartState = {

@@ -4,7 +4,6 @@ import * as React from 'react';
 export function Button(
   props: React.ButtonHTMLAttributes<HTMLButtonElement> & {
     isTextOnly: Boolean;
-    // className?: String;
   } & React.PropsWithChildren,
 ) {
   const { children, isTextOnly, className, ...btnElementProps } = props;
@@ -17,7 +16,3 @@ export function Button(
     </button>
   );
 }
-
-Button.defaultProps = {
-  // className: '',
-};

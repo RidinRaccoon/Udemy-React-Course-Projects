@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as formattingUtils from '../../../utils/formatting';
 import { CartContext } from '../../../store/CartContext';
-// Components & Types
+// Components & types
 import { Button } from '../Button';
 import { TCartItem } from '../../../types/types';
 

@@ -3,7 +3,7 @@ import * as RRD from 'react-router-dom';
 import * as RQ from '@tanstack/react-query';
 import * as httpUtils from './utils/http';
 import './styles/index.css';
-// Compoents & Types
+// Compoents & types
 import { RootLayout } from './pages/RootLayout';
 import { MealsCatalog } from './components/MealsCatalog';
 import { MealDetails } from './components/MealDetails';

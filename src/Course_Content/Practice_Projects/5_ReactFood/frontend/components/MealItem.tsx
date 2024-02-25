@@ -1,17 +1,16 @@
-// @ts-nocheck
 import * as React from 'react';
 import * as RRD from 'react-router-dom';
-import * as formatUtils from '../utils/formatting';
+import * as formattingUtils from '../utils/formatting';
 import { CartContext } from '../store/CartContext';
-// Components & Types
+// Components & types
 import { TMeal } from '../types/types';
 import { Button } from './UI/Button';
 
 export function MealItem(props: { meal: TMeal }) {
   const { meal } = props;
   const { id, name, image, price } = meal;
-  const { currencyFormatter } = formatUtils;
-
+  const { currencyFormatter } = formattingUtils;
+  const formattedPrice = currencyFormatter.format(parseFloat(price));
   const { addToCart } = React.useContext(CartContext);
 
   return (
@@ -20,7 +19,7 @@ export function MealItem(props: { meal: TMeal }) {
         <img src={`http://localhost:3001/${image}`} alt={name} />
         <div>
           <h3>{name} </h3>
-          <p className="meal-item-price">{currencyFormatter.format(price)}</p>
+          <p className="meal-item-price">{formattedPrice}</p>
         </div>
         <p className="cart-item-actions">
           <Button

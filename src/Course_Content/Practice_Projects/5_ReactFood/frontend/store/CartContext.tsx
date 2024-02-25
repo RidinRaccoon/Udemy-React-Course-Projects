@@ -1,5 +1,5 @@
 import * as React from 'react';
-// Components & Types
+// Components & types
 import { TCartItem } from '../types/types';
 
 export type TUpdateCartParams = {

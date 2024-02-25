@@ -1,8 +1,7 @@
 import * as React from 'react';
-// import * as RRD from 'react-router-dom';
 import * as RQ from '@tanstack/react-query';
 import * as httpUtils from '../utils/http';
-// Components & Types
+// Components & types
 import { TMeal } from '../types/types';
 import { LoadingIndicator } from './UI/LoadingIndicator';
 import { ErrorBlock } from './UI/ErrorBlock';

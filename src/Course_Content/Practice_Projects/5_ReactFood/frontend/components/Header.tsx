@@ -1,7 +1,6 @@
 import * as React from 'react';
-// import * as RRD from 'react-router-dom';
 import { CartContext } from '../store/CartContext';
-// Components & Types
+// Components & types
 import logo from '../assets/logo.jpg';
 import { Cart } from './UI/Cart/Cart';
 import { Button } from './UI/Button';

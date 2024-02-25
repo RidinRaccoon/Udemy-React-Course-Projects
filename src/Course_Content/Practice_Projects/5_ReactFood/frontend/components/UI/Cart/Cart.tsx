@@ -14,7 +14,7 @@ export function Cart(props: { isVisible: Boolean; onClose: () => void }) {
   return (
     <div>
       {isVisible && (
-        <Modal /* onClose={toggleCart} */>
+        <Modal>
           <div>
             <button type="button" onClick={onClose}>
               Close
