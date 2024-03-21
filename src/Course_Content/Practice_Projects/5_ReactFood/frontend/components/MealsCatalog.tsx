@@ -1,10 +1,11 @@
 import * as React from 'react';
 import * as RQ from '@tanstack/react-query';
 import * as httpUtils from '../utils/http';
+import classes from './MealsCatalog.module.css';
 // Components & types
 import { TMeal } from '../types/types';
-import { LoadingIndicator } from './UI/LoadingIndicator';
-import { ErrorBlock } from './UI/ErrorBlock';
+import { LoadingIndicator } from './UI/LoadingIndicator/LoadingIndicator';
+import { ErrorBlock } from './UI/ErrorBlock/ErrorBlock';
 import { MealItem } from './MealItem';
 
 export function MealsCatalog() {
@@ -26,7 +27,7 @@ export function MealsCatalog() {
 
   if (data) {
     content = (
-      <ul id="meals">
+      <ul id={classes.meals}>
         {data?.map((meal) => {
           const { id } = meal;
           return <MealItem key={id} meal={meal} />;

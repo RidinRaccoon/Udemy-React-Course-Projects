@@ -14,7 +14,7 @@ export function CartContextProvider(props: React.PropsWithChildren) {
     const { id, name, price } = params;
 
     setCartItems((prevItems) => {
-      let newCart;
+      let newCart: TCartItem[];
       const cartItem = prevItems.find((item) => item.id === id);
       // Already in Cart
       if (cartItem) {
@@ -33,7 +33,7 @@ export function CartContextProvider(props: React.PropsWithChildren) {
   function removeFromCart(params: TUpdateCartParams) {
     const { id, name, price } = params;
     setCartItems((prevItems) => {
-      let newCart;
+      let newCart: TCartItem[];
       const cartItem = prevItems.find((item) => item.id === id);
       if (!cartItem) return prevItems;
 

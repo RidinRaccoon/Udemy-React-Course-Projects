@@ -3,8 +3,8 @@ import * as RRD from 'react-router-dom';
 import * as RQ from '@tanstack/react-query';
 import * as httpUtils from '../utils/http';
 // Components & types
-import { LoadingIndicator } from './UI/LoadingIndicator';
-import { ErrorBlock } from './UI/ErrorBlock';
+import { LoadingIndicator } from './UI/LoadingIndicator/LoadingIndicator';
+import { ErrorBlock } from './UI/ErrorBlock/ErrorBlock';
 
 export function MealDetails() {
   const { id } = RRD.useParams();

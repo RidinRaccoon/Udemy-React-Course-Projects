@@ -4,7 +4,7 @@ import { CartContext } from '../store/CartContext';
 // Components & types
 import logo from '../assets/logo.jpg';
 import { Cart } from './UI/Cart/Cart';
-import { Button } from './UI/Button';
+import { Button } from './UI/Button/Button';
 
 export function Header() {
   const [showCart, setShowCart] = React.useState(false);

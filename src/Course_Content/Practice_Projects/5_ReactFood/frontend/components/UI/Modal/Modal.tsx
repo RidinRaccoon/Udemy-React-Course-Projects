@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import classes from './Modal.module.css';
 
 export function Modal(props: React.PropsWithChildren) {
   const dialog = React.useRef<HTMLDialogElement>(null);
@@ -18,7 +19,7 @@ export function Modal(props: React.PropsWithChildren) {
   }, []);
 
   return ReactDOM.createPortal(
-    <dialog className="modal" ref={dialog}>
+    <dialog className={classes.modal} ref={dialog}>
       {children}
     </dialog>,
     document.getElementById('modal')!,

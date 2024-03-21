@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import * as React from 'react';
+import classes from './Button.module.css';
 
 export function Button(
   props: React.ButtonHTMLAttributes<HTMLButtonElement> & {
@@ -7,7 +8,7 @@ export function Button(
   } & React.PropsWithChildren,
 ) {
   const { children, isTextOnly, className, ...btnElementProps } = props;
-  let cssClasses = isTextOnly ? 'text-button' : 'button';
+  let cssClasses = isTextOnly ? classes['text-button'] : classes.button;
   if (className) cssClasses += ` ${className}`;
 
   return (

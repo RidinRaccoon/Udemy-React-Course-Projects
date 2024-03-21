@@ -2,9 +2,10 @@ import * as React from 'react';
 import * as RRD from 'react-router-dom';
 import * as formattingUtils from '../utils/formatting';
 import { CartContext } from '../store/CartContext';
+import classes from './MealItem.module.css';
 // Components & types
 import { TMeal } from '../types/types';
-import { Button } from './UI/Button';
+import { Button } from './UI/Button/Button';
 
 export function MealItem(props: { meal: TMeal }) {
   const { meal } = props;
@@ -14,14 +15,14 @@ export function MealItem(props: { meal: TMeal }) {
   const { addToCart } = React.useContext(CartContext);
 
   return (
-    <li className="meal-item">
+    <li className={classes['meal-item']}>
       <article>
         <img src={`http://localhost:3001/${image}`} alt={name} />
         <div>
           <h3>{name} </h3>
-          <p className="meal-item-price">{formattedPrice}</p>
+          <p className={classes['meal-item-price']}>{formattedPrice}</p>
         </div>
-        <p className="cart-item-actions">
+        <p className={classes['meal-item-actions']}>
           <Button
             isTextOnly={false}
             onClick={() => addToCart({ id, name, price: parseFloat(price) })}
