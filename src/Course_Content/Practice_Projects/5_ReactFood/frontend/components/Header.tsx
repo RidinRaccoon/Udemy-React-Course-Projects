@@ -3,18 +3,12 @@ import * as RRD from 'react-router-dom';
 import { CartContext } from '../store/CartContext';
 // Components & types
 import logo from '../assets/logo.jpg';
-import { Cart } from './UI/Cart/Cart';
+import { Cart } from './Cart/Cart';
 import { Button } from './UI/Button/Button';
+import { ModalContext } from '../store/ModalContex';
 
 export function Header() {
-  const [showCart, setShowCart] = React.useState(false);
-
-  const toggleCart = React.useCallback(() => {
-    setShowCart(!showCart);
-  }, [showCart]);
-
   const { state: cartState } = React.useContext(CartContext);
-
   const { items: cartItems } = cartState;
 
   const itemQuantity = cartItems.reduce(
@@ -22,21 +16,20 @@ export function Header() {
     0,
   );
 
-  return (
-    <>
-      <Cart isVisible={showCart} onClose={toggleCart} />
+  const { open } = React.useContext(ModalContext);
+  const toggleCart = React.useCallback(() => open(<Cart />), [open]);
 
-      <header id="main-header">
-        <RRD.Link id="title" to="/">
-          <img src={logo} alt="A restaurant" />
-          <h1>ReactFood</h1>
-        </RRD.Link>
-        <nav>
-          <Button isTextOnly onClick={toggleCart}>
-            Cart ({itemQuantity})
-          </Button>
-        </nav>
-      </header>
-    </>
+  return (
+    <header id="main-header">
+      <RRD.Link id="title" to="/">
+        <img src={logo} alt="A restaurant" />
+        <h1>ReactFood</h1>
+      </RRD.Link>
+      <nav>
+        <Button isTextOnly onClick={toggleCart}>
+          Cart ({itemQuantity})
+        </Button>
+      </nav>
+    </header>
   );
 }

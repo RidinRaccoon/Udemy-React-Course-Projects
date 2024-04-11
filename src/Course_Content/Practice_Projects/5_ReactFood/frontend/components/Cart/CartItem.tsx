@@ -1,10 +1,10 @@
 import * as React from 'react';
-import * as formattingUtils from '../../../utils/formatting';
-import { CartContext } from '../../../store/CartContext';
+import * as formattingUtils from '../../utils/formatting';
+import { CartContext } from '../../store/CartContext';
 import classes from './CartItem.module.css';
 // Components & types
-import { Button } from '../Button/Button';
-import { TCartItem } from '../../../types/types';
+import { Button } from '../UI/Button/Button';
+import { TCartItem } from '../../types/types';
 
 export function CartItem(props: { item: TCartItem }) {
   const { item } = props;

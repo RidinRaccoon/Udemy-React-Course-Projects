@@ -39,7 +39,6 @@
 }
 
 .meal-item-actions {
-  /* margin-bottom: 1.5rem; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -69,3 +68,24 @@
   background-color: #1d1a16;
   color: #ffab04;
 }
+
+.description-container {
+  position: relative;
+}
+
+.description-container button {
+  position: absolute;
+  top: 8px;
+  right: 5px;
+}
+
+.description-container .description {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.7);
+  margin-top: 8px;
+  margin-left: 50px;
+  margin-right: 50px;
+  border-radius: 20px;
+  padding: 10px;
+}
+
